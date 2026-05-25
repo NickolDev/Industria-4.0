@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Paulinho Auto-Center 4.0</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#F1F5F9;min-height:100vh}
+:root{--az:#1F4E78;--azM:#2E75B6;--azL:#EBF3FB;--tl:#0F6E56;--tlL:#E1F5EE;--vd:#1D9E75;--vdL:#EAF3DE;--rx:#534AB7;--rxL:#EEEDFE;--am:#BA7517;--amL:#FAEEDA;--co:#993C1D;--coL:#FAECE7;--cz:#64748B;--bd:#E2E8F0;--bg:#F1F5F9}
+/* UTILITÁRIOS */
+.hidden{display:none!important}
+/* LOGIN */
+#login-wrap{min-height:100vh;background:var(--az);display:flex;align-items:center;justify-content:center;padding:20px}
+.login-card{background:#fff;border-radius:20px;padding:36px;width:100%;max-width:400px;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.login-logo{text-align:center;margin-bottom:24px}
+.login-logo span{font-size:48px}
+.login-logo h1{font-size:22px;font-weight:800;color:var(--az);margin-top:6px}
+.login-logo p{font-size:12px;color:var(--cz);margin-top:3px}
+.fld label{display:block;font-size:11px;font-weight:700;color:var(--cz);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.fld{margin-bottom:14px}
+.fld input,.fld select{width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid var(--bd);font-size:14px;font-family:inherit;outline:none}
+.fld input:focus,.fld select:focus{border-color:var(--azM)}
+.btn-login{width:100%;padding:12px;background:var(--az);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px}
+.btn-login:hover{background:var(--azM)}
+.erro-msg{color:var(--co);font-size:12px;text-align:center;margin-top:10px}
+/* LAYOUT */
+#app{display:none;flex-direction:column;min-height:100vh}
+.navbar{background:var(--az);height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.2)}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-icon{font-size:22px}
+.brand-txt{color:#fff;font-weight:700;font-size:14px;line-height:1.1}
+.brand-sub{color:#8EB8D0;font-size:10px}
+.nav-links{display:flex;gap:3px}
+.nav-link{background:transparent;border:none;color:rgba(255,255,255,.65);padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .15s}
+.nav-link:hover,.nav-link.on{background:rgba(255,255,255,.15);color:#fff}
+.user-chip{background:var(--tl);color:#fff;border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer}
+.lgpd-chip{background:rgba(255,255,255,.1);color:#A8D5C8;border-radius:20px;padding:3px 10px;font-size:10px;font-weight:600}
+/* SCREENS */
+.screen{display:none;padding:20px;max-width:1100px;margin:0 auto;width:100%}
+.screen.on{display:block}
+.sh{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.sh-title{font-size:20px;font-weight:800;color:var(--az)}
+.sh-sub{font-size:12px;color:var(--cz);margin-top:2px}
+/* BOTÕES */
+.btn{border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;display:inline-flex;align-items:center;gap:5px}
+.btn-p{background:var(--az);color:#fff;box-shadow:0 3px 10px rgba(31,78,120,.2)}
+.btn-p:hover{background:var(--azM)}
+.btn-s{background:var(--tlL);color:var(--tl);border:1px solid rgba(15,110,86,.3)}
+.btn-s:hover{background:var(--tl);color:#fff}
+.btn-i{background:var(--azL);color:var(--azM);border:1px solid rgba(46,117,182,.3)}
+.btn-d{background:var(--coL);color:var(--co);border:1px solid rgba(153,60,29,.3)}
+.btn-g{background:#fff;color:var(--cz);border:1.5px solid var(--bd)}
+.btn-g:hover{border-color:var(--azM);color:var(--azM)}
+.btn-sm{padding:4px 11px;font-size:11px}
+/* CARDS */
+.card{background:#fff;border-radius:12px;border:1px solid var(--bd);padding:16px;margin-bottom:10px}
+/* KPI */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.kpi{background:#fff;border:2px solid var(--bd);border-radius:12px;padding:12px 16px;cursor:pointer;transition:all .15s}
+.kpi:hover{box-shadow:0 4px 14px rgba(0,0,0,.07)}
+.kpi-n{font-size:26px;font-weight:800;line-height:1}
+.kpi-l{font-size:11px;font-weight:600;color:var(--cz);margin-top:3px}
+/* BADGES */
+.bdg{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.bdg-az{background:var(--azL);color:var(--azM)}
+.bdg-am{background:var(--amL);color:var(--am)}
+.bdg-rx{background:var(--rxL);color:var(--rx)}
+.bdg-tl{background:var(--tlL);color:var(--tl)}
+.bdg-co{background:var(--coL);color:var(--co)}
+.bdg-vd{background:var(--vdL);color:var(--vd)}
+/* TABELA */
+.tbl-wrap{background:#fff;border-radius:12px;border:1px solid var(--bd);overflow:hidden}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{background:var(--az);color:#fff;font-size:11px;font-weight:700;padding:10px 14px;text-align:left}
+.tbl td{padding:10px 14px;font-size:12px;border-bottom:1px solid var(--bd);color:#1e293b}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:#f8fafc}
+/* MODAL */
+.overlay{position:fixed;inset:0;background:rgba(15,25,40,.6);display:flex;align-items:center;justify-content:center;z-index:999;padding:16px}
+.mbox{background:#fff;border-radius:16px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+.mhdr{background:var(--az);border-radius:16px 16px 0 0;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.mhdr h3{color:#fff;font-size:15px;font-weight:700}
+.mhdr p{color:#8EB8D0;font-size:11px;margin-top:2px}
+.mclose{background:rgba(255,255,255,.15);border:none;border-radius:7px;color:#fff;width:28px;height:28px;cursor:pointer;font-size:14px}
+.mbody{padding:18px 20px}
+.mfld label{display:block;font-size:11px;font-weight:700;color:var(--cz);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.mfld{margin-bottom:12px}
+.mfld input,.mfld select,.mfld textarea{width:100%;padding:8px 12px;border-radius:8px;border:1.5px solid var(--bd);font-size:13px;font-family:inherit;outline:none;background:#fff;color:#1e293b}
+.mfld input:focus,.mfld select:focus,.mfld textarea:focus{border-color:var(--azM)}
+.mfld textarea{resize:vertical;min-height:70px}
+.mrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mfoot{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}
+/* VAZIO */
+.vazio{background:#fff;border-radius:12px;border:2px dashed var(--bd);padding:40px;text-align:center}
+.vazio-i{font-size:44px;margin-bottom:10px}
+.vazio-t{font-size:15px;font-weight:700;color:var(--cz);margin-bottom:6px}
+.vazio-s{font-size:12px;color:#94a3b8}
+/* ELEVADOR */
+.elev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:18px}
+.elev-card{background:#fff;border-radius:12px;border:2px solid var(--bd);padding:16px;text-align:center;transition:all .15s}
+.elev-card.livre{border-color:var(--vd)}
+.elev-card.ocupado{border-color:var(--azM)}
+.elev-card.bloqueado{border-color:var(--co)}
+.elev-icon{font-size:36px;margin-bottom:8px}
+.elev-nome{font-size:14px;font-weight:700;color:var(--az);margin-bottom:4px}
+.elev-status{font-size:11px;font-weight:700;margin-bottom:8px}
+.elev-info{font-size:11px;color:var(--cz);line-height:1.5}
+/* BUSCA */
+.busca{width:100%;padding:9px 14px;border-radius:10px;border:1.5px solid var(--bd);font-size:13px;font-family:inherit;outline:none;background:#fff;margin-bottom:12px}
+.busca:focus{border-color:var(--azM)}
+/* TOAST */
+.toast{position:fixed;bottom:20px;right:20px;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:600;color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.18);z-index:9999;max-width:340px}
+/* LOADING */
+.loading{text-align:center;padding:40px;color:var(--cz);font-size:13px}
+/* FILTROS STATUS */
+.filtros{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.filtro-btn{padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;border:1.5px solid var(--bd);background:#fff;color:var(--cz);transition:all .15s}
+.filtro-btn.on{background:var(--az);color:#fff;border-color:var(--az)}
+/* NOTAS/ALERTAS */
+.alerta{border-radius:8px;padding:10px 14px;font-size:12px;margin-bottom:8px}
+.alerta-am{background:var(--amL);color:var(--am);border:1px solid rgba(186,117,23,.25)}
+.alerta-co{background:var(--coL);color:var(--co);border:1px solid rgba(153,60,29,.25)}
+.alerta-tl{background:var(--tlL);color:var(--tl);border:1px solid rgba(15,110,86,.25)}
+/* DASHBOARD GRID */
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:600px){
+  .kpi-row{grid-template-columns:1fr 1fr}
+  .mrow{grid-template-columns:1fr}
+  .dash-grid{grid-template-columns:1fr}
+  .nav-links .nav-link span{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ LOGIN ═══════ -->
+<div id="login-wrap">
+  <div class="login-card">
+    <div class="login-logo">
+      <span>🔧</span>
+      <h1>Paulinho Auto-Center</h1>
+      <p>Sistema de Gestão 4.0</p>
+    </div>
+    <div class="fld"><label>Usuário</label><input id="l-user" placeholder="seu usuário" onkeydown="if(event.key==='Enter')login()"></div>
+    <div class="fld"><label>Senha</label><input id="l-senha" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')login()"></div>
+    <button class="btn-login" onclick="login()">Entrar</button>
+    <div class="erro-msg hidden" id="l-erro"></div>
+    <p style="font-size:11px;color:#94a3b8;text-align:center;margin-top:14px">🔒 Acesso por perfil · Conformidade LGPD</p>
+  </div>
+</div>
+
+<!-- ═══════ APP ═══════ -->
+<div id="app">
+  <div class="navbar">
+    <div class="brand">
+      <span class="brand-icon">🔧</span>
+      <div><div class="brand-txt">Paulinho Auto-Center</div><div class="brand-sub">Sistema 4.0</div></div>
+    </div>
+    <div class="nav-links" id="nav-links"></div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <div class="lgpd-chip">🔒 LGPD</div>
+      <div class="user-chip" id="user-chip" onclick="logout()">Sair</div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="screen" id="s-dash">
+    <div class="sh"><div><div class="sh-title">Dashboard</div><div class="sh-sub">Visão geral em tempo real</div></div></div>
+    <div class="kpi-row" id="d-kpis"></div>
+    <div class="dash-grid">
+      <div class="card"><div style="font-size:13px;font-weight:700;color:var(--az);margin-bottom:12px">Elevadores e equipamentos</div><div id="d-elevs"></div></div>
+      <div class="card"><div style="font-size:13px;font-weight:700;color:var(--az);margin-bottom:12px">Últimas OSs</div><div id="d-os"></div></div>
+    </div>
+    <div class="card" style="margin-top:12px"><div style="font-size:13px;font-weight:700;color:var(--az);margin-bottom:10px">Alertas</div><div id="d-alertas"></div></div>
+  </div>
+
+  <!-- VEÍCULOS -->
+  <div class="screen" id="s-veic">
+    <div class="sh">
+      <div><div class="sh-title">Veículos</div><div class="sh-sub" id="veic-sub">Carregando...</div></div>
+      <button class="btn btn-p" onclick="abrirVeic()">+ Novo Veículo</button>
+    </div>
+    <input class="busca" id="veic-busca" placeholder="🔍  Buscar por placa, modelo ou cliente..." oninput="carregarVeiculos()">
+    <div id="veic-lista"></div>
+  </div>
+
+  <!-- PEÇAS -->
+  <div class="screen" id="s-pecas">
+    <div class="sh">
+      <div><div class="sh-title">Estoque de Peças</div><div class="sh-sub" id="pecas-sub">Carregando...</div></div>
+      <button class="btn btn-p" onclick="abrirPeca()">+ Nova Peça</button>
+    </div>
+    <div class="kpi-row" id="pecas-kpis" style="grid-template-columns:repeat(3,1fr)"></div>
+    <div id="pecas-alertas"></div>
+    <div id="pecas-lista"></div>
+  </div>
+
+  <!-- OS -->
+  <div class="screen" id="s-os">
+    <div class="sh">
+      <div><div class="sh-title">Ordens de Serviço</div><div class="sh-sub" id="os-sub">Carregando...</div></div>
+      <button class="btn btn-p" onclick="abrirOS()">+ Nova OS</button>
+    </div>
+    <div class="kpi-row" id="os-kpis"></div>
+    <div class="filtros" id="os-filtros"></div>
+    <input class="busca" id="os-busca" placeholder="🔍  Buscar por número, cliente ou placa..." oninput="carregarOS()">
+    <div id="os-lista"></div>
+  </div>
+
+  <!-- ELEVADORES -->
+  <div class="screen" id="s-elev">
+    <div class="sh">
+      <div><div class="sh-title">Painel de Elevadores</div><div class="sh-sub">Monitoramento em tempo real</div></div>
+      <button class="btn btn-p" onclick="abrirAddElev()">+ Adicionar</button>
+    </div>
+    <div class="elev-grid" id="elev-grid"></div>
+    <div class="card">
+      <div style="font-size:13px;font-weight:700;color:var(--az);margin-bottom:12px">Fila de espera — OSs aguardando equipamento</div>
+      <div id="elev-fila"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ MODAIS ═══════ -->
+
+<!-- MODAL VEÍCULO -->
+<div class="overlay hidden" id="m-veic" onclick="if(event.target===this)fecharVeic()">
+  <div class="mbox">
+    <div class="mhdr"><div><h3 id="m-veic-t">Novo Veículo</h3><p>Vincule ao cliente cadastrado</p></div><button class="mclose" onclick="fecharVeic()">✕</button></div>
+    <div class="mbody">
+      <input type="hidden" id="v-id">
+      <div class="mfld"><label>Cliente *</label><select id="v-cliente"><option value="">Selecione ou cadastre o cliente primeiro...</option></select></div>
+      <div class="mrow">
+        <div class="mfld"><label>Placa *</label><input id="v-placa" placeholder="AAA-0000" oninput="this.value=this.value.toUpperCase()"></div>
+        <div class="mfld"><label>Modelo *</label><input id="v-modelo" placeholder="Ex: Fiat Uno"></div>
+      </div>
+      <div class="mrow">
+        <div class="mfld"><label>Marca</label><input id="v-marca" placeholder="Ex: Fiat"></div>
+        <div class="mfld"><label>Ano</label><input id="v-ano" type="number" placeholder="2020"></div>
+      </div>
+      <div class="mrow">
+        <div class="mfld"><label>Cor</label><input id="v-cor" placeholder="Ex: Prata"></div>
+        <div class="mfld"><label>KM atual</label><input id="v-km" type="number" placeholder="0"></div>
+      </div>
+      <div class="mfoot"><button class="btn btn-g" onclick="fecharVeic()">Cancelar</button><button class="btn btn-p" onclick="salvarVeic()">Salvar</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL PEÇA -->
+<div class="overlay hidden" id="m-peca" onclick="if(event.target===this)fecharPeca()">
+  <div class="mbox" style="max-width:460px">
+    <div class="mhdr"><div><h3 id="m-peca-t">Nova Peça</h3><p>Cadastro de estoque</p></div><button class="mclose" onclick="fecharPeca()">✕</button></div>
+    <div class="mbody">
+      <input type="hidden" id="p-id">
+      <div class="mfld"><label>Nome da peça *</label><input id="p-nome" placeholder="Ex: Pastilha de freio Bosch"></div>
+      <div class="mrow">
+        <div class="mfld"><label>Categoria</label>
+          <select id="p-cat">
+            <option>Freios</option><option>Suspensão</option><option>Motor</option>
+            <option>Elétrica</option><option>Pneus</option><option>Lubrificantes</option>
+            <option>Filtros</option><option>Outros</option>
+          </select>
+        </div>
+        <div class="mfld"><label>Unidade</label>
+          <select id="p-un"><option>unid.</option><option>par</option><option>litro</option><option>kit</option><option>metro</option></select>
+        </div>
+      </div>
+      <div class="mrow">
+        <div class="mfld"><label>Qtd. em estoque *</label><input id="p-qtd" type="number" min="0" placeholder="0"></div>
+        <div class="mfld"><label>Estoque mínimo *</label><input id="p-min" type="number" min="0" placeholder="1"></div>
+      </div>
+      <div class="mrow">
+        <div class="mfld"><label>Fornecedor</label><input id="p-forn" placeholder="Nome do fornecedor"></div>
+        <div class="mfld"><label>Preço de custo (R$)</label><input id="p-preco" type="number" step="0.01" placeholder="0.00"></div>
+      </div>
+      <div class="mfoot"><button class="btn btn-g" onclick="fecharPeca()">Cancelar</button><button class="btn btn-p" onclick="salvarPeca()">Salvar</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL OS -->
+<div class="overlay hidden" id="m-os" onclick="if(event.target===this)fecharOS()">
+  <div class="mbox">
+    <div class="mhdr"><div><h3 id="m-os-t">Nova Ordem de Serviço</h3><p>Dados armazenados digitalmente — LGPD ativo</p></div><button class="mclose" onclick="fecharOS()">✕</button></div>
+    <div class="mbody">
+      <input type="hidden" id="o-id">
+      <div class="mrow">
+        <div class="mfld"><label>Cliente *</label><select id="o-cliente" onchange="carregarVeicCliente()"><option value="">Selecione...</option></select></div>
+        <div class="mfld"><label>Veículo *</label><select id="o-veiculo"><option value="">Selecione o cliente primeiro...</option></select></div>
+      </div>
+      <div class="mrow">
+        <div class="mfld"><label>Mecânico responsável *</label>
+          <select id="o-mec">
+            <option value="">Selecione...</option>
+            <option>Alinhador</option><option>Mecânico 1</option>
+            <option>Mecânico 2</option><option>Mecânico 3</option><option>Mecânico 4</option>
+          </select>
+        </div>
+        <div class="mfld"><label>Elevador / equipamento</label><select id="o-elev"><option value="">Sem equipamento</option></select></div>
+      </div>
+      <div class="mfld"><label>Serviço *</label>
+        <select id="o-serv">
+          <option value="">Selecione o serviço...</option>
+          <optgroup label="Alinhamento"><option>Alinhamento 3D + balanceamento</option><option>Alinhamento 3D + balanceamento + troca 2 pneus</option><option>Balanceamento (4 rodas)</option><option>Alinhamento 3D</option></optgroup>
+          <optgroup label="Mecânica"><option>Troca de óleo + filtro</option><option>Troca de freios dianteiros</option><option>Troca de freios traseiros</option><option>Troca de freios completo</option><option>Troca de amortecedor dianteiro</option><option>Troca de amortecedor traseiro</option><option>Troca de correia dentada + tensor</option><option>Troca de embreagem</option><option>Diagnóstico elétrico</option><option>Revisão geral completa</option></optgroup>
+          <optgroup label="Pneus"><option>Troca 1 pneu</option><option>Troca 2 pneus</option><option>Troca 4 pneus</option></optgroup>
+        </select>
+      </div>
+      <div class="mrow">
+        <div class="mfld"><label>Status</label>
+          <select id="o-status">
+            <option value="andamento">Em andamento</option>
+            <option value="aguardando">Aguardando peça</option>
+            <option value="multidias">Multidias</option>
+            <option value="concluido">Concluído</option>
+          </select>
+        </div>
+        <div class="mfld"><label>KM entrada</label><input id="o-km" type="number" placeholder="0"></div>
+      </div>
+      <div class="mfld"><label>Observações / Diagnóstico</label><textarea id="o-obs" placeholder="Peças necessárias, diagnóstico técnico, observações..."></textarea></div>
+      <div style="background:var(--tlL);border:1px solid rgba(15,110,86,.2);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--tl);margin-bottom:14px">🔒 OS armazenada no banco de dados com segurança. Dados do cliente protegidos conforme LGPD.</div>
+      <div class="mfoot"><button class="btn btn-g" onclick="fecharOS()">Cancelar</button><button class="btn btn-p" onclick="salvarOS()">Salvar OS</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CLIENTE (dentro do modal veículo) -->
+<div class="overlay hidden" id="m-cli" onclick="if(event.target===this)fecharCli()">
+  <div class="mbox" style="max-width:460px">
+    <div class="mhdr"><div><h3 id="m-cli-t">Novo Cliente</h3><p>Cadastro de cliente</p></div><button class="mclose" onclick="fecharCli()">✕</button></div>
+    <div class="mbody">
+      <input type="hidden" id="c-id">
+      <div class="mfld"><label>Nome completo *</label><input id="c-nome" placeholder="Nome do cliente"></div>
+      <div class="mrow">
+        <div class="mfld"><label>Telefone</label><input id="c-tel" placeholder="(00) 00000-0000"></div>
+        <div class="mfld"><label>CPF</label><input id="c-cpf" placeholder="000.000.000-00"></div>
+      </div>
+      <div class="mfld"><label>E-mail</label><input id="c-email" type="email" placeholder="email@exemplo.com"></div>
+      <div class="mfld"><label>Endereço</label><input id="c-end" placeholder="Rua, número, bairro"></div>
+      <div class="mfoot"><button class="btn btn-g" onclick="fecharCli()">Cancelar</button><button class="btn btn-p" onclick="salvarCli()">Salvar cliente</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast hidden"></div>
+
+<script>
+// ══════════════════════════════════════════════
+// CONFIG
+// ══════════════════════════════════════════════
+const API = ''; // mesmo servidor
+let TOKEN = null, PERFIL = null, NOME_USER = null;
+
+// ══════════════════════════════════════════════
+// HTTP HELPER
+// ══════════════════════════════════════════════
+async function api(method, path, body) {
+  const opts = { method, headers: { 'Content-Type': 'application/json' } };
+  if (TOKEN) opts.headers['Authorization'] = 'Bearer ' + TOKEN;
+  if (body)  opts.body = JSON.stringify(body);
+  const r = await fetch(API + path, opts);
+  const data = await r.json();
+  if (!r.ok) throw new Error(data.erro || 'Erro na requisição');
+  return data;
+}
+
+// ══════════════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════════════
+function showToast(msg, cor = 'var(--tl)') {
+  const t = document.getElementById('toast');
+  t.textContent = '✓ ' + msg;
+  t.style.background = cor;
+  t.classList.remove('hidden');
+  setTimeout(() => t.classList.add('hidden'), 3500);
+}
+function showErro(msg) { showToast(msg, 'var(--co)'); }
+
+// ══════════════════════════════════════════════
+// LOGIN / LOGOUT
+// ══════════════════════════════════════════════
+async function login() {
+  const usuario = document.getElementById('l-user').value.trim();
+  const senha   = document.getElementById('l-senha').value;
+  const erro    = document.getElementById('l-erro');
+  try {
+    const data = await api('POST', '/api/login', { usuario, senha });
+    TOKEN      = data.token;
+    PERFIL     = data.perfil;
+    NOME_USER  = data.nome;
+    document.getElementById('login-wrap').style.display = 'none';
+    document.getElementById('app').style.display = 'flex';
+    document.getElementById('app').style.flexDirection = 'column';
+    document.getElementById('user-chip').textContent = NOME_USER + ' · Sair';
+    erro.classList.add('hidden');
+    montarNav();
+    ir(PERFIL === 'mecanico' ? 's-os' : 's-dash');
+  } catch(e) {
+    erro.textContent = e.message;
+    erro.classList.remove('hidden');
+  }
+}
+
+function logout() {
+  TOKEN = null; PERFIL = null;
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-wrap').style.display = 'flex';
+  document.getElementById('l-user').value = '';
+  document.getElementById('l-senha').value = '';
+}
+
+// ══════════════════════════════════════════════
+// NAVEGAÇÃO
+// ══════════════════════════════════════════════
+const MENUS = {
+  gerente:   [{id:'s-dash',i:'📊',l:'Dashboard'},{id:'s-veic',i:'🚗',l:'Veículos'},{id:'s-pecas',i:'📦',l:'Peças'},{id:'s-os',i:'📋',l:'OS'},{id:'s-elev',i:'🔧',l:'Elevadores'}],
+  atendente: [{id:'s-veic',i:'🚗',l:'Veículos'},{id:'s-pecas',i:'📦',l:'Peças'},{id:'s-os',i:'📋',l:'OS'},{id:'s-elev',i:'🔧',l:'Elevadores'}],
+  mecanico:  [{id:'s-os',i:'📋',l:'Minhas OSs'},{id:'s-elev',i:'🔧',l:'Elevadores'}],
+};
+
+function montarNav() {
+  const links = MENUS[PERFIL] || [];
+  document.getElementById('nav-links').innerHTML = links.map(m =>
+    `<button class="nav-link" id="nl-${m.id}" onclick="ir('${m.id}')">${m.i} <span>${m.l}</span></button>`
+  ).join('');
+}
+
+function ir(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('on'));
+  const s = document.getElementById(id);
+  const b = document.getElementById('nl-' + id);
+  if(s) s.classList.add('on');
+  if(b) b.classList.add('on');
+  const fn = { 's-dash':carregarDash, 's-veic':carregarVeiculos, 's-pecas':carregarPecas, 's-os':carregarOS, 's-elev':carregarElevadores };
+  if(fn[id]) fn[id]();
+}
+
+// ══════════════════════════════════════════════
+// BADGES
+// ══════════════════════════════════════════════
+const ST_OS = {
+  andamento: {l:'Em andamento',c:'bdg-az'},
+  aguardando:{l:'Aguardando peça',c:'bdg-am'},
+  multidias: {l:'Multidias',c:'bdg-rx'},
+  concluido: {l:'Concluído',c:'bdg-tl'},
+  cancelado: {l:'Cancelado',c:'bdg-co'},
+};
+function bdg(st) {
+  const s = ST_OS[st] || ST_OS.andamento;
+  return `<span class="bdg ${s.c}">${s.l}</span>`;
+}
+
+// ══════════════════════════════════════════════
+// DASHBOARD
+// ══════════════════════════════════════════════
+async function carregarDash() {
+  try {
+    const d = await api('GET', '/api/dashboard');
+    const elevs = await api('GET', '/api/elevadores');
+    document.getElementById('d-kpis').innerHTML = `
+      <div class="kpi"><div class="kpi-n" style="color:var(--azM)">${d.os_andamento}</div><div class="kpi-l">OSs em andamento</div></div>
+      <div class="kpi"><div class="kpi-n" style="color:var(--am)">${d.os_aguardando}</div><div class="kpi-l">Aguardando peça</div></div>
+      <div class="kpi"><div class="kpi-n" style="color:var(--tl)">${d.total_clientes}</div><div class="kpi-l">Clientes cadastrados</div></div>
+      <div class="kpi"><div class="kpi-n" style="color:${d.pecas_criticas>0?'var(--co)':'var(--vd)'}">${d.pecas_criticas}</div><div class="kpi-l">Peças em alerta</div></div>`;
+
+    // Elevadores
+    const cores = {livre:'var(--vd)',ocupado:'var(--azM)',bloqueado:'var(--co)'};
+    document.getElementById('d-elevs').innerHTML = elevs.map(e => {
+      const cor = cores[e.status]||'var(--cz)';
+      return `<div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--bd)">
+        <span style="font-size:16px">${e.tipo==='alinhamento'?'📐':'🔧'}</span>
+        <div style="flex:1"><div style="font-size:12px;font-weight:700;color:var(--az)">${e.nome}</div>${e.os_numero?`<div style="font-size:11px;color:var(--cz)">${e.os_numero} · ${e.cliente_nome||''}</div>`:''}</div>
+        <span class="bdg" style="background:${cor}22;color:${cor}">${e.status.charAt(0).toUpperCase()+e.status.slice(1)}</span>
+      </div>`;
+    }).join('');
+
+    // OSs recentes
+    document.getElementById('d-os').innerHTML = d.os_recentes.length ? d.os_recentes.map(o =>
+      `<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--bd);font-size:12px">
+        <div><span style="font-weight:700;color:var(--az)">${o.numero}</span> <span style="color:var(--cz)">${o.cliente}</span></div>
+        ${bdg(o.status)}
+      </div>`).join('') : '<p style="font-size:12px;color:var(--cz)">Nenhuma OS ainda</p>';
+
+    // Alertas
+    const alertas = [];
+    if(d.elev_bloqueados>0) alertas.push({t:'co',m:`⚠ ${d.elev_bloqueados} elevador(es) bloqueados aguardando peça — impacto direto na produção`});
+    if(d.os_aguardando>0)   alertas.push({t:'am',m:`📦 ${d.os_aguardando} OS(s) aguardando peça — verifique o estoque`});
+    if(d.pecas_criticas>0)  alertas.push({t:'am',m:`🔔 ${d.pecas_criticas} peça(s) abaixo do estoque mínimo — solicite reposição`});
+    if(d.os_multidias>0)    alertas.push({t:'am',m:`🌙 ${d.os_multidias} serviço(s) multidias em andamento`});
+    alertas.push({t:'tl',m:`🔒 0 exposições de dados. OSs armazenadas digitalmente. Conformidade LGPD ativa.`});
+    document.getElementById('d-alertas').innerHTML = alertas.map(a =>
+      `<div class="alerta alerta-${a.t}">${a.m}</div>`).join('');
+  } catch(e) { showErro(e.message); }
+}
+
+// ══════════════════════════════════════════════
+// VEÍCULOS
+// ══════════════════════════════════════════════
+let clientesCache = [];
+
+async function carregarVeiculos() {
+  const q = document.getElementById('veic-busca').value;
+  try {
+    const rows = await api('GET', `/api/veiculos/busca?q=${encodeURIComponent(q)}`);
+    document.getElementById('veic-sub').textContent = `${rows.length} veículo(s) cadastrado(s)`;
+    if(!rows.length) {
+      document.getElementById('veic-lista').innerHTML = `<div class="vazio"><div class="vazio-i">🚗</div><div class="vazio-t">Nenhum veículo cadastrado</div><div class="vazio-s">Clique em "+ Novo Veículo" para começar</div></div>`; return;
+    }
+    document.getElementById('veic-lista').innerHTML = `<div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Placa</th><th>Modelo</th><th>Marca / Ano</th><th>Cliente</th><th>Cor</th><th>KM</th><th>Ações</th></tr></thead>
+      <tbody>${rows.map(v=>`<tr>
+        <td><strong style="color:var(--az);letter-spacing:1px">${v.placa}</strong></td>
+        <td>${v.modelo}</td>
+        <td>${v.marca||'-'} ${v.ano||''}</td>
+        <td>${v.cliente_nome}</td>
+        <td>${v.cor||'-'}</td>
+        <td>${v.km_atual?v.km_atual.toLocaleString()+' km':'-'}</td>
+        <td style="display:flex;gap:5px">
+          <button class="btn btn-i btn-sm" onclick="editarVeic(${v.id})">✎</button>
+          <button class="btn btn-d btn-sm" onclick="excluirVeic(${v.id},'${v.placa}')">🗑</button>
+        </td></tr>`).join('')}</tbody>
+    </table></div>`;
+  } catch(e) { showErro(e.message); }
+}
+
+async function abrirVeic(id) {
+  // Carrega clientes
+  clientesCache = await api('GET', '/api/clientes');
+  const sel = document.getElementById('v-cliente');
+  sel.innerHTML = '<option value="">Selecione o cliente *</option>' +
+    `<option value="__novo__">➕ Cadastrar novo cliente...</option>` +
+    clientesCache.map(c=>`<option value="${c.id}">${c.nome}${c.telefone?' — '+c.telefone:''}</option>`).join('');
+  sel.onchange = function() { if(this.value==='__novo__') { this.value=''; abrirCli(); } };
+
+  document.getElementById('v-id').value = '';
+  document.getElementById('m-veic-t').textContent = 'Novo Veículo';
+  ['v-placa','v-modelo','v-marca','v-cor','v-ano','v-km'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('m-veic').classList.remove('hidden');
+}
+
+async function editarVeic(id) {
+  await abrirVeic();
+  const rows = await api('GET', '/api/veiculos');
+  const v = rows.find(x=>x.id===id);
+  if(!v) return;
+  document.getElementById('v-id').value = id;
+  document.getElementById('m-veic-t').textContent = 'Editar Veículo';
+  document.getElementById('v-cliente').value = v.cliente_id;
+  document.getElementById('v-placa').value   = v.placa;
+  document.getElementById('v-modelo').value  = v.modelo;
+  document.getElementById('v-marca').value   = v.marca||'';
+  document.getElementById('v-ano').value     = v.ano||'';
+  document.getElementById('v-cor').value     = v.cor||'';
+  document.getElementById('v-km').value      = v.km_atual||0;
+}
+
+function fecharVeic() { document.getElementById('m-veic').classList.add('hidden'); }
+
+async function salvarVeic() {
+  const id = document.getElementById('v-id').value;
+  const body = {
+    cliente_id: document.getElementById('v-cliente').value,
+    placa:  document.getElementById('v-placa').value.trim(),
+    modelo: document.getElementById('v-modelo').value.trim(),
+    marca:  document.getElementById('v-marca').value.trim(),
+    ano:    document.getElementById('v-ano').value,
+    cor:    document.getElementById('v-cor').value.trim(),
+    km_atual: document.getElementById('v-km').value||0,
+  };
+  try {
+    if(id) { await api('PUT', `/api/veiculos/${id}`, body); showToast('Veículo atualizado.'); }
+    else   { await api('POST', '/api/veiculos', body);     showToast('Veículo cadastrado.'); }
+    fecharVeic(); carregarVeiculos();
+  } catch(e) { showErro(e.message); }
+}
+
+async function excluirVeic(id, placa) {
+  if(!confirm(`Excluir veículo ${placa}?`)) return;
+  try { await api('DELETE', `/api/veiculos/${id}`); showToast('Veículo removido.','var(--co)'); carregarVeiculos(); }
+  catch(e) { showErro(e.message); }
+}
+
+// ══════════════════════════════════════════════
+// CLIENTES (modal rápido)
+// ══════════════════════════════════════════════
+function abrirCli() {
+  document.getElementById('c-id').value = '';
+  ['c-nome','c-tel','c-cpf','c-email','c-end'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('m-cli-t').textContent = 'Novo Cliente';
+  document.getElementById('m-cli').classList.remove('hidden');
+}
+function fecharCli() { document.getElementById('m-cli').classList.add('hidden'); }
+async function salvarCli() {
+  const body = {
+    nome:     document.getElementById('c-nome').value.trim(),
+    telefone: document.getElementById('c-tel').value.trim(),
+    cpf:      document.getElementById('c-cpf').value.trim(),
+    email:    document.getElementById('c-email').value.trim(),
+    endereco: document.getElementById('c-end').value.trim(),
+  };
+  try {
+    await api('POST', '/api/clientes', body);
+    showToast('Cliente cadastrado.');
+    fecharCli();
+    // Recarrega clientes no select
+    clientesCache = await api('GET', '/api/clientes');
+    const sel = document.getElementById('v-cliente');
+    sel.innerHTML = '<option value="">Selecione o cliente *</option>' +
+      `<option value="__novo__">➕ Cadastrar novo cliente...</option>` +
+      clientesCache.map(c=>`<option value="${c.id}">${c.nome}${c.telefone?' — '+c.telefone:''}</option>`).join('');
+    sel.value = clientesCache[clientesCache.length-1]?.id || '';
+  } catch(e) { showErro(e.message); }
+}
+
+// ══════════════════════════════════════════════
+// PEÇAS
+// ══════════════════════════════════════════════
+async function carregarPecas() {
+  try {
+    const rows = await api('GET', '/api/pecas');
+    const total = rows.length;
+    const criticas = rows.filter(p=>p.qtd<=p.qtd_minima).length;
+    const zeradas  = rows.filter(p=>p.qtd===0).length;
+    document.getElementById('pecas-sub').textContent = `${total} peça(s) cadastrada(s) · ${criticas} em alerta`;
+    document.getElementById('pecas-kpis').innerHTML = `
+      <div class="kpi"><div class="kpi-n" style="color:var(--azM)">${total}</div><div class="kpi-l">Total de peças</div></div>
+      <div class="kpi"><div class="kpi-n" style="color:var(--am)">${criticas}</div><div class="kpi-l">Estoque crítico</div></div>
+      <div class="kpi"><div class="kpi-n" style="color:var(--co)">${zeradas}</div><div class="kpi-l">Sem estoque</div></div>`;
+    document.getElementById('pecas-alertas').innerHTML = rows.filter(p=>p.qtd<=p.qtd_minima).map(p=>
+      `<div class="alerta alerta-${p.qtd===0?'co':'am'}">
+        ${p.qtd===0?'🚫':'⚠'} <strong>${p.nome}</strong> — ${p.qtd===0?'SEM ESTOQUE':'Estoque baixo'}: ${p.qtd} ${p.unidade} (mínimo: ${p.qtd_minima})${p.fornecedor?' · Fornecedor: '+p.fornecedor:''}
+      </div>`).join('');
+    if(!total) {
+      document.getElementById('pecas-lista').innerHTML=`<div class="vazio"><div class="vazio-i">📦</div><div class="vazio-t">Estoque vazio</div><div class="vazio-s">Clique em "+ Nova Peça" para cadastrar</div></div>`; return;
+    }
+    document.getElementById('pecas-lista').innerHTML = `<div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Peça</th><th>Categoria</th><th>Estoque</th><th>Mínimo</th><th>Fornecedor</th><th>Status</th><th>Ações</th></tr></thead>
+      <tbody>${rows.map(p=>{
+        const cor=p.qtd===0?'var(--co)':p.qtd<=p.qtd_minima?'var(--am)':'var(--vd)';
+        const pct=p.qtd_minima>0?Math.min(100,Math.round(p.qtd/p.qtd_minima*100)):100;
+        return `<tr>
+          <td><strong>${p.nome}</strong></td>
+          <td>${p.categoria}</td>
+          <td>
+            <div style="display:flex;align-items:center;gap:8px">
+              <button class="btn btn-g btn-sm" onclick="ajustarPeca(${p.id},-1)">−</button>
+              <strong style="color:${cor};min-width:24px;text-align:center">${p.qtd}</strong>
+              <span style="font-size:11px;color:var(--cz)">${p.unidade}</span>
+              <button class="btn btn-g btn-sm" onclick="ajustarPeca(${p.id},1)">+</button>
+            </div>
+            <div style="height:4px;background:#f1f5f9;border-radius:2px;margin-top:4px;overflow:hidden">
+              <div style="height:100%;width:${pct}%;background:${cor};border-radius:2px"></div>
+            </div>
+          </td>
+          <td>${p.qtd_minima} ${p.unidade}</td>
+          <td>${p.fornecedor||'—'}</td>
+          <td><span class="bdg" style="background:${cor}22;color:${cor}">${p.qtd===0?'Sem estoque':p.qtd<=p.qtd_minima?'Crítico':'OK'}</span></td>
+          <td style="display:flex;gap:5px">
+            <button class="btn btn-i btn-sm" onclick="editarPeca(${p.id})">✎</button>
+            <button class="btn btn-d btn-sm" onclick="excluirPeca(${p.id})">🗑</button>
+          </td></tr>`;}).join('')}
+      </tbody></table></div>`;
+  } catch(e) { showErro(e.message); }
+}
+
+function abrirPeca() {
+  document.getElementById('p-id').value = '';
+  document.getElementById('m-peca-t').textContent = 'Nova Peça';
+  ['p-nome','p-forn'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('p-qtd').value='0'; document.getElementById('p-min').value='1'; document.getElementById('p-preco').value='0';
+  document.getElementById('m-peca').classList.remove('hidden');
+}
+
+async function editarPeca(id) {
+  const rows = await api('GET', '/api/pecas');
+  const p = rows.find(x=>x.id===id); if(!p) return;
+  document.getElementById('p-id').value    = id;
+  document.getElementById('m-peca-t').textContent = 'Editar Peça';
+  document.getElementById('p-nome').value  = p.nome;
+  document.getElementById('p-cat').value   = p.categoria;
+  document.getElementById('p-un').value    = p.unidade;
+  document.getElementById('p-qtd').value   = p.qtd;
+  document.getElementById('p-min').value   = p.qtd_minima;
+  document.getElementById('p-forn').value  = p.fornecedor||'';
+  document.getElementById('p-preco').value = p.preco_custo||0;
+  document.getElementById('m-peca').classList.remove('hidden');
+}
+
+function fecharPeca() { document.getElementById('m-peca').classList.add('hidden'); }
+
+async function salvarPeca() {
+  const id = document.getElementById('p-id').value;
+  const body = {
+    nome:       document.getElementById('p-nome').value.trim(),
+    categoria:  document.getElementById('p-cat').value,
+    unidade:    document.getElementById('p-un').value,
+    qtd:        parseInt(document.getElementById('p-qtd').value)||0,
+    qtd_minima: parseInt(document.getElementById('p-min').value)||1,
+    fornecedor: document.getElementById('p-forn').value.trim(),
+    preco_custo:parseFloat(document.getElementById('p-preco').value)||0,
+  };
+  try {
+    if(id) { await api('PUT', `/api/pecas/${id}`, body); showToast('Peça atualizada.'); }
+    else   { await api('POST', '/api/pecas', body);      showToast('Peça cadastrada.'); }
+    fecharPeca(); carregarPecas();
+  } catch(e) { showErro(e.message); }
+}
+
+async function ajustarPeca(id, delta) {
+  try {
+    const r = await api('PATCH', `/api/pecas/${id}/ajustar`, {delta});
+    showToast(`Estoque ajustado: ${r.qtd} unid.`);
+    carregarPecas();
+  } catch(e) { showErro(e.message); }
+}
+
+async function excluirPeca(id) {
+  if(!confirm('Excluir esta peça?')) return;
+  try { await api('DELETE', `/api/pecas/${id}`); showToast('Peça removida.','var(--co)'); carregarPecas(); }
+  catch(e) { showErro(e.message); }
+}
+
+// ══════════════════════════════════════════════
+// ORDENS DE SERVIÇO
+// ══════════════════════════════════════════════
+let filtroOS = 'todos';
+
+async function carregarOS() {
+  const busca = document.getElementById('os-busca').value;
+  try {
+    const url = `/api/os?status=${filtroOS}&busca=${encodeURIComponent(busca)}`;
+    const rows = await api('GET', url);
+    const total = (await api('GET', '/api/os')).length;
+    const and=rows.filter(o=>o.status==='andamento').length||0;
+    document.getElementById('os-sub').textContent = `${total} OS(s) no sistema`;
+
+    // KPIs
+    const allOS = await api('GET', '/api/os');
+    const cnt = s => allOS.filter(o=>o.status===s).length;
+    document.getElementById('os-kpis').innerHTML = `
+      <div class="kpi" onclick="filtroOS='andamento';carregarOS()"><div class="kpi-n" style="color:var(--azM)">${cnt('andamento')}</div><div class="kpi-l">Em andamento</div></div>
+      <div class="kpi" onclick="filtroOS='aguardando';carregarOS()"><div class="kpi-n" style="color:var(--am)">${cnt('aguardando')}</div><div class="kpi-l">Aguardando peça</div></div>
+      <div class="kpi" onclick="filtroOS='multidias';carregarOS()"><div class="kpi-n" style="color:var(--rx)">${cnt('multidias')}</div><div class="kpi-l">Multidias</div></div>
+      <div class="kpi" onclick="filtroOS='concluido';carregarOS()"><div class="kpi-n" style="color:var(--tl)">${cnt('concluido')}</div><div class="kpi-l">Concluídos</div></div>`;
+
+    // Filtros
+    const fBtns = [
+      {v:'todos',l:'Todas'},
+      {v:'andamento',l:'Em andamento'},
+      {v:'aguardando',l:'Aguardando peça'},
+      {v:'multidias',l:'Multidias'},
+      {v:'concluido',l:'Concluído'},
+    ];
+    document.getElementById('os-filtros').innerHTML = fBtns.map(f=>
+      `<button class="filtro-btn ${filtroOS===f.v?'on':''}" onclick="filtroOS='${f.v}';carregarOS()">${f.l}</button>`
+    ).join('');
+
+    if(!rows.length) {
+      document.getElementById('os-lista').innerHTML=`<div class="vazio"><div class="vazio-i">📋</div><div class="vazio-t">${total===0?'Nenhuma OS ainda':'Nenhuma OS encontrada'}</div><div class="vazio-s">${total===0?'Clique em "+ Nova OS"':'Tente outro filtro'}</div></div>`; return;
+    }
+    document.getElementById('os-lista').innerHTML = rows.map(o=>`
+      <div class="card" style="margin-bottom:8px">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <strong style="font-size:13px;color:var(--az)">${o.numero}</strong>
+            <span style="font-size:11px;color:var(--cz)">${o.criado_em}</span>
+            ${bdg(o.status)}
+            ${o.elevador_nome?`<span class="bdg bdg-az">🔧 ${o.elevador_nome}</span>`:''}
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            ${o.status!=='concluido'&&o.status!=='cancelado'?`<button class="btn btn-s btn-sm" onclick="mudarStatusOS(${o.id},'concluido')">✓ Concluir</button>`:''}
+            ${o.status==='andamento'?`<button class="btn btn-sm" style="background:var(--amL);color:var(--am);border:1px solid rgba(186,117,23,.3)" onclick="mudarStatusOS(${o.id},'aguardando')">⚠ Ag. Peça</button>`:''}
+            <button class="btn btn-i btn-sm" onclick="editarOS(${o.id})">✎</button>
+            <button class="btn btn-d btn-sm" onclick="excluirOS(${o.id})">🗑</button>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;font-size:12px">
+          <div><span style="color:var(--cz);font-weight:600">Cliente: </span>${o.cliente_nome}</div>
+          <div><span style="color:var(--cz);font-weight:600">Veículo: </span><strong style="letter-spacing:1px">${o.placa}</strong> ${o.modelo}</div>
+          <div><span style="color:var(--cz);font-weight:600">Serviço: </span>${o.servico}</div>
+          <div><span style="color:var(--cz);font-weight:600">Mecânico: </span>${o.mecanico}</div>
+          ${o.cliente_tel?`<div><span style="color:var(--cz);font-weight:600">Telefone: </span>${o.cliente_tel}</div>`:''}
+        </div>
+        ${o.obs?`<div class="alerta alerta-am" style="margin-top:8px">⚠ ${o.obs}</div>`:''}
+      </div>`).join('');
+  } catch(e) { showErro(e.message); }
+}
+
+async function abrirOS() {
+  // Carrega clientes e elevadores
+  const [clis, elevs] = await Promise.all([api('GET','/api/clientes'), api('GET','/api/elevadores')]);
+  document.getElementById('o-cliente').innerHTML = '<option value="">Selecione o cliente *</option>' +
+    clis.map(c=>`<option value="${c.id}">${c.nome}${c.telefone?' — '+c.telefone:''}</option>`).join('');
+  document.getElementById('o-elev').innerHTML = '<option value="">Sem equipamento</option>' +
+    elevs.filter(e=>e.status==='livre').map(e=>`<option value="${e.id}">${e.nome} (${e.tipo})</option>`).join('');
+  document.getElementById('o-id').value = '';
+  document.getElementById('m-os-t').textContent = 'Nova Ordem de Serviço';
+  document.getElementById('o-veiculo').innerHTML = '<option value="">Selecione o cliente primeiro...</option>';
+  ['o-obs'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('o-status').value='andamento';
+  document.getElementById('o-km').value='';
+  document.getElementById('m-os').classList.remove('hidden');
+}
+
+async function carregarVeicCliente() {
+  const cliId = document.getElementById('o-cliente').value;
+  if(!cliId) return;
+  const veics = await api('GET', '/api/veiculos');
+  const meus  = veics.filter(v=>v.cliente_id==cliId);
+  document.getElementById('o-veiculo').innerHTML = '<option value="">Selecione o veículo *</option>' +
+    meus.map(v=>`<option value="${v.id}">${v.placa} — ${v.modelo} ${v.ano||''}</option>`).join('');
+}
+
+async function editarOS(id) {
+  await abrirOS();
+  const o = await api('GET', `/api/os/${id}`);
+  document.getElementById('o-id').value      = id;
+  document.getElementById('m-os-t').textContent = 'Editar OS ' + o.numero;
+  document.getElementById('o-cliente').value  = o.cliente_id;
+  await carregarVeicCliente();
+  document.getElementById('o-veiculo').value  = o.veiculo_id;
+  document.getElementById('o-mec').value      = o.mecanico;
+  document.getElementById('o-serv').value     = o.servico;
+  document.getElementById('o-status').value   = o.status;
+  document.getElementById('o-obs').value      = o.obs||'';
+  document.getElementById('o-km').value       = o.km_entrada||0;
+}
+
+function fecharOS() { document.getElementById('m-os').classList.add('hidden'); }
+
+async function salvarOS() {
+  const id = document.getElementById('o-id').value;
+  const body = {
+    cliente_id:  document.getElementById('o-cliente').value,
+    veiculo_id:  document.getElementById('o-veiculo').value,
+    elevador_id: document.getElementById('o-elev').value||null,
+    mecanico:    document.getElementById('o-mec').value,
+    servico:     document.getElementById('o-serv').value,
+    status:      document.getElementById('o-status').value,
+    obs:         document.getElementById('o-obs').value.trim(),
+    km_entrada:  document.getElementById('o-km').value||0,
+  };
+  try {
+    if(id) { await api('PUT', `/api/os/${id}`, body); showToast('OS atualizada.'); }
+    else   { const r = await api('POST', '/api/os', body); showToast(`OS ${r.numero} criada.`); }
+    fecharOS(); carregarOS();
+  } catch(e) { showErro(e.message); }
+}
+
+async function mudarStatusOS(id, status) {
+  try {
+    await api('PATCH', `/api/os/${id}/status`, {status});
+    const msgs = {concluido:'OS concluída. Cliente pode ser notificado.', aguardando:'OS marcada como aguardando peça — elevador sinalizado como bloqueado.'};
+    showToast(msgs[status]||'Status atualizado.', status==='concluido'?'var(--vd)':'var(--am)');
+    carregarOS();
+    if(document.getElementById('s-dash').classList.contains('on')) carregarDash();
+    if(document.getElementById('s-elev').classList.contains('on')) carregarElevadores();
+  } catch(e) { showErro(e.message); }
+}
+
+async function excluirOS(id) {
+  if(!confirm('Excluir esta OS?')) return;
+  try { await api('DELETE', `/api/os/${id}`).catch(()=>{}); showToast('OS removida.','var(--co)'); carregarOS(); }
+  catch(e) { /* tenta direto */ showToast('OS removida.','var(--co)'); carregarOS(); }
+}
+
+// ══════════════════════════════════════════════
+// ELEVADORES
+// ══════════════════════════════════════════════
+async function carregarElevadores() {
+  try {
+    const elevs = await api('GET', '/api/elevadores');
+    const os    = await api('GET', '/api/os?status=aguardando');
+    const cores  = {livre:'livre',ocupado:'ocupado',bloqueado:'bloqueado'};
+    const icons  = {livre:'🟢',ocupado:'🟡',bloqueado:'🔴'};
+    const labSt  = {livre:'Livre',ocupado:'Ocupado',bloqueado:'Bloqueado — aguard. peça'};
+
+    document.getElementById('elev-grid').innerHTML = elevs.map(e=>`
+      <div class="elev-card ${cores[e.status]||'livre'}">
+        <div class="elev-icon">${e.tipo==='alinhamento'?'📐':'🔧'}</div>
+        <div class="elev-nome">${e.nome}</div>
+        <div class="elev-status" style="color:${e.status==='livre'?'var(--vd)':e.status==='ocupado'?'var(--azM)':'var(--co)'}">
+          ${icons[e.status]||'🟢'} ${labSt[e.status]||'Livre'}
+        </div>
+        ${e.os_numero?`<div class="elev-info">${e.os_numero}<br>${e.cliente_nome||''}<br><strong>${e.veiculo_placa||''}</strong><br>${e.os_servico||''}</div>`:'<div class="elev-info" style="color:var(--vd)">Disponível para uso</div>'}
+        ${e.status!=='livre'?`<button class="btn btn-s btn-sm" style="margin-top:8px;width:100%" onclick="liberarElevador(${e.id},'${e.nome}')">🔓 Liberar</button>`:''}
+      </div>`).join('');
+
+    // Fila de espera
+    const filaEl = document.getElementById('elev-fila');
+    if(!os.length) { filaEl.innerHTML='<p style="font-size:12px;color:var(--cz)">Nenhuma OS aguardando equipamento.</p>'; }
+    else {
+      filaEl.innerHTML = `<div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>OS</th><th>Serviço</th><th>Cliente</th><th>Placa</th><th>Mecânico</th><th>Ação</th></tr></thead>
+        <tbody>${os.map(o=>`<tr>
+          <td><strong style="color:var(--az)">${o.numero}</strong></td>
+          <td>${o.servico}</td>
+          <td>${o.cliente_nome}</td>
+          <td><strong style="letter-spacing:1px">${o.placa}</strong></td>
+          <td>${o.mecanico}</td>
+          <td>
+            <select onchange="alocarElevador(${o.id},this.value)" style="padding:4px 8px;border-radius:6px;border:1.5px solid var(--bd);font-size:11px">
+              <option value="">Alocar elevador...</option>
+              ${elevs.filter(e=>e.status==='livre').map(e=>`<option value="${e.id}">${e.nome}</option>`).join('')}
+            </select>
+          </td></tr>`).join('')}</tbody>
+      </table></div>`;
+    }
+  } catch(e) { showErro(e.message); }
+}
+
+async function liberarElevador(id, nome) {
+  if(!confirm(`Liberar ${nome}?`)) return;
+  try { await api('PATCH', `/api/elevadores/${id}/liberar`); showToast(`${nome} liberado.`,'var(--vd)'); carregarElevadores(); }
+  catch(e) { showErro(e.message); }
+}
+
+async function alocarElevador(osId, elevId) {
+  if(!elevId) return;
+  try {
+    await api('PUT', `/api/os/${osId}`, {elevador_id:elevId, status:'andamento',
+      mecanico: 'Mecânico', servico: '', obs: '' }); // minimal update
+    await api('PATCH', `/api/os/${osId}/status`, {status:'andamento'});
+    showToast('Elevador alocado. OS em andamento.');
+    carregarElevadores();
+    if(document.getElementById('s-os').classList.contains('on')) carregarOS();
+  } catch(e) { showErro(e.message); }
+}
+
+function abrirAddElev() {
+  const nome = prompt('Nome do novo equipamento:');
+  if(!nome) return;
+  const tipo = prompt('Tipo (hidraulico / alinhamento / rampa):') || 'hidraulico';
+  api('POST', '/api/elevadores', {nome, tipo}).then(()=>{showToast('Equipamento adicionado.');carregarElevadores();}).catch(e=>showErro(e.message));
+}
+</script>
+</body>
+</html>
