@@ -770,7 +770,7 @@ async function carregarOS() {
             <span style="font-size:11px;color:var(--cz)">${o.criado_em}</span>
             ${bdg(o.status)}
             ${o.elevador_nome?`<span class="bdg bdg-az">🔧 ${o.elevador_nome}</span>`:''}
-          </div>
+          </div>${o.status!=='concluido'&&o.status!=='cancelado'?`<button class="btn btn-s btn-sm" onclick="mudarStatusOS(${o.id},'concluido')">✓ Concluir</button>`:''}
           <div style="display:flex;gap:6px;flex-wrap:wrap">
             ${o.status!=='concluido'&&o.status!=='cancelado'?`<button class="btn btn-s btn-sm" onclick="mudarStatusOS(${o.id},'concluido')">✓ Concluir</button>`:''}
             ${o.status==='andamento'?`<button class="btn btn-sm" style="background:var(--amL);color:var(--am);border:1px solid rgba(186,117,23,.3)" onclick="mudarStatusOS(${o.id},'aguardando')">⚠ Ag. Peça</button>`:''}
@@ -850,16 +850,19 @@ async function salvarOS() {
     fecharOS(); carregarOS();
   } catch(e) { showErro(e.message); }
 }
-
+//Funcao corrigida para mudanca de status
 async function mudarStatusOS(id, status) {
   try {
-    await api('PATCH', `/api/os/${id}/status`, {status});
-    const msgs = {concluido:'OS concluída. Cliente pode ser notificado.', aguardando:'OS marcada como aguardando peça — elevador sinalizado como bloqueado.'};
-    showToast(msgs[status]||'Status atualizado.', status==='concluido'?'var(--vd)':'var(--am)');
+    await req('PATCH', `/api/os/${id}/status`, {status});
+    if(status === 'concluido') {
+      const os = await req('GET', `/api/os/${id}`);
+      mostrarWA(os);
+    }
+    ok(status==='concluido'?'OS concluída!':'Status atualizado.', status==='concluido'?'var(--vd)':'var(--am)');
     carregarOS();
     if(document.getElementById('s-dash').classList.contains('on')) carregarDash();
     if(document.getElementById('s-elev').classList.contains('on')) carregarElevadores();
-  } catch(e) { showErro(e.message); }
+  } catch(e){ err(e.message); }
 }
 
 async function excluirOS(id) {
