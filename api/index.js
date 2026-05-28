@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 // ── Conexão Supabase ──
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: 'postgresql://postgres:zMl5hsZEvpr7bfi9@db.wxeqyotnhfsacagyqefp.supabase.co:5432/postgres',
   ssl: { rejectUnauthorized: false }
 });
 
