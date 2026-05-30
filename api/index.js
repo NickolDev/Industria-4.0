@@ -468,3 +468,4 @@ app.get('/api/auditoria', auth, async (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`\n🔧 Paulinho Auto-Center 4.0 — Etapa 1\n🌐 http://localhost:${PORT}\n`));
 module.exports = app;
+module.exports = app;
