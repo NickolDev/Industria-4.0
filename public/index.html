@@ -9,7 +9,6 @@
     body{font-family:'Segoe UI',system-ui,sans-serif;background:#F1F5F9;min-height:100vh}
     :root{--az:#1F4E78;--azM:#2E75B6;--azL:#EBF3FB;--tl:#0F6E56;--tlL:#E1F5EE;--vd:#1D9E75;--vdL:#EAF3DE;--rx:#534AB7;--rxL:#EEEDFE;--am:#BA7517;--amL:#FAEEDA;--co:#993C1D;--coL:#FAECE7;--cz:#64748B;--bd:#E2E8F0;--bg:#F1F5F9}
     .hidden{display:none!important}
-    /* LOGIN */
     #login-wrap{min-height:100vh;background:linear-gradient(135deg,var(--az),#0d2d4a);display:flex;align-items:center;justify-content:center;padding:20px}
     .login-card{background:#fff;border-radius:20px;padding:36px;width:100%;max-width:400px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
     .login-logo{text-align:center;margin-bottom:24px}
@@ -22,69 +21,52 @@
     .fld input:focus{border-color:var(--azM)}
     .btn-login{width:100%;padding:12px;background:var(--az);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer}
     .btn-login:hover{background:var(--azM)}
-    /* APP */
     #app{display:none;flex-direction:column;min-height:100vh}
     .navbar{background:var(--az);height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.2)}
     .brand{display:flex;align-items:center;gap:10px;cursor:pointer}
     .brand-txt{color:#fff;font-weight:700;font-size:14px;line-height:1.1}
     .brand-sub{color:#8EB8D0;font-size:10px}
-    .nav-links{display:flex;gap:2px;overflow-x:auto}
-    .nav-link{background:transparent;border:none;color:rgba(255,255,255,.65);padding:6px 10px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .15s}
+    .nav-links{display:flex;gap:2px;overflow-x:auto;max-width:70vw}
+    .nav-link{background:transparent;border:none;color:rgba(255,255,255,.65);padding:6px 10px;border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .15s}
     .nav-link:hover,.nav-link.on{background:rgba(255,255,255,.15);color:#fff}
     .user-chip{background:var(--tl);color:#fff;border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
     .lgpd-chip{background:rgba(255,255,255,.1);color:#A8D5C8;border-radius:20px;padding:3px 10px;font-size:10px;font-weight:600}
-    /* SCREENS */
     .screen{display:none;padding:20px;max-width:1100px;margin:0 auto;width:100%}
     .screen.on{display:block}
     .sh{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:18px}
     .sh-title{font-size:20px;font-weight:800;color:var(--az)}
     .sh-sub{font-size:12px;color:var(--cz);margin-top:2px}
-    /* BOTÕES */
     .btn{border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;display:inline-flex;align-items:center;gap:5px}
-    .btn-p{background:var(--az);color:#fff}
-    .btn-p:hover{background:var(--azM)}
-    .btn-s{background:var(--tlL);color:var(--tl);border:1px solid rgba(15,110,86,.3)}
-    .btn-s:hover{background:var(--tl);color:#fff}
+    .btn-p{background:var(--az);color:#fff}.btn-p:hover{background:var(--azM)}
+    .btn-s{background:var(--tlL);color:var(--tl);border:1px solid rgba(15,110,86,.3)}.btn-s:hover{background:var(--tl);color:#fff}
     .btn-i{background:var(--azL);color:var(--azM);border:1px solid rgba(46,117,182,.3)}
     .btn-d{background:var(--coL);color:var(--co);border:1px solid rgba(153,60,29,.3)}
-    .btn-g{background:#fff;color:var(--cz);border:1.5px solid var(--bd)}
-    .btn-g:hover{border-color:var(--azM);color:var(--azM)}
+    .btn-g{background:#fff;color:var(--cz);border:1.5px solid var(--bd)}.btn-g:hover{border-color:var(--azM);color:var(--azM)}
     .btn-sm{padding:4px 10px;font-size:11px}
     .btn-am{background:var(--amL);color:var(--am);border:1px solid rgba(186,117,23,.3)}
-    /* CARDS */
+    .btn-vd{background:var(--vdL);color:var(--vd);border:1px solid rgba(29,158,117,.3)}
     .card{background:#fff;border-radius:12px;border:1px solid var(--bd);padding:16px;margin-bottom:10px}
-    /* KPI */
     .kpi-row{display:grid;gap:10px;margin-bottom:18px}
-    .kpi-5{grid-template-columns:repeat(5,1fr)}
-    .kpi-4{grid-template-columns:repeat(4,1fr)}
-    .kpi-3{grid-template-columns:repeat(3,1fr)}
+    .kpi-6{grid-template-columns:repeat(6,1fr)}.kpi-5{grid-template-columns:repeat(5,1fr)}.kpi-4{grid-template-columns:repeat(4,1fr)}.kpi-3{grid-template-columns:repeat(3,1fr)}
     .kpi{background:#fff;border:2px solid var(--bd);border-radius:12px;padding:12px 16px;cursor:pointer;transition:all .15s}
     .kpi:hover{box-shadow:0 4px 14px rgba(0,0,0,.07)}
-    .kpi-n{font-size:26px;font-weight:800;line-height:1}
-    .kpi-l{font-size:11px;font-weight:600;color:var(--cz);margin-top:3px}
-    /* BADGES */
+    .kpi-n{font-size:26px;font-weight:800;line-height:1}.kpi-l{font-size:11px;font-weight:600;color:var(--cz);margin-top:3px}
     .bdg{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
-    .bdg-az{background:var(--azL);color:var(--azM)}
-    .bdg-am{background:var(--amL);color:var(--am)}
-    .bdg-rx{background:var(--rxL);color:var(--rx)}
-    .bdg-tl{background:var(--tlL);color:var(--tl)}
-    .bdg-co{background:var(--coL);color:var(--co)}
-    .bdg-vd{background:var(--vdL);color:var(--vd)}
-    /* TABELA */
+    .bdg-az{background:var(--azL);color:var(--azM)}.bdg-am{background:var(--amL);color:var(--am)}.bdg-rx{background:var(--rxL);color:var(--rx)}.bdg-tl{background:var(--tlL);color:var(--tl)}.bdg-co{background:var(--coL);color:var(--co)}.bdg-vd{background:var(--vdL);color:var(--vd)}
+    .prio{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
+    .prio-urgente{background:var(--coL);color:var(--co);animation:pulse 1.5s infinite}
+    .prio-alta{background:var(--amL);color:var(--am)}.prio-media{background:var(--azL);color:var(--azM)}.prio-baixa{background:#f1f5f9;color:var(--cz)}
     .tbl-wrap{background:#fff;border-radius:12px;border:1px solid var(--bd);overflow:auto}
     .tbl{width:100%;border-collapse:collapse;min-width:500px}
     .tbl th{background:var(--az);color:#fff;font-size:11px;font-weight:700;padding:10px 14px;text-align:left;white-space:nowrap}
     .tbl td{padding:9px 14px;font-size:12px;border-bottom:1px solid var(--bd);color:#1e293b}
-    .tbl tr:last-child td{border-bottom:none}
-    .tbl tr:hover td{background:#f8fafc}
+    .tbl tr:last-child td{border-bottom:none}.tbl tr:hover td{background:#f8fafc}
     .td-btns{display:flex;gap:5px;flex-wrap:wrap}
-    /* MODAL */
     .overlay{position:fixed;inset:0;background:rgba(15,25,40,.6);display:flex;align-items:center;justify-content:center;z-index:999;padding:16px}
     .mbox{background:#fff;border-radius:16px;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.25)}
-    .mbox-lg{max-width:680px}
+    .mbox-lg{max-width:700px}
     .mhdr{background:var(--az);border-radius:16px 16px 0 0;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1}
-    .mhdr h3{color:#fff;font-size:15px;font-weight:700}
-    .mhdr p{color:#8EB8D0;font-size:11px;margin-top:2px}
+    .mhdr h3{color:#fff;font-size:15px;font-weight:700}.mhdr p{color:#8EB8D0;font-size:11px;margin-top:2px}
     .mclose{background:rgba(255,255,255,.15);border:none;border-radius:7px;color:#fff;width:28px;height:28px;cursor:pointer;font-size:14px}
     .mbody{padding:18px 20px}
     .mfld{margin-bottom:12px}
@@ -93,55 +75,37 @@
     .mfld input:focus,.mfld select:focus,.mfld textarea:focus{border-color:var(--azM)}
     .mfld textarea{resize:vertical;min-height:70px}
     .mrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .mrow-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
     .mfoot{display:flex;gap:8px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap}
-    /* VAZIO */
     .vazio{background:#fff;border-radius:12px;border:2px dashed var(--bd);padding:40px;text-align:center}
-    .vazio-i{font-size:44px;margin-bottom:10px}
-    .vazio-t{font-size:15px;font-weight:700;color:var(--cz);margin-bottom:6px}
-    .vazio-s{font-size:12px;color:#94a3b8}
-    /* ELEVADORES */
+    .vazio-i{font-size:44px;margin-bottom:10px}.vazio-t{font-size:15px;font-weight:700;color:var(--cz);margin-bottom:6px}.vazio-s{font-size:12px;color:#94a3b8}
     .elev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-bottom:18px}
     .elev-card{background:#fff;border-radius:12px;border:2px solid var(--bd);padding:16px;text-align:center;transition:all .2s}
-    .elev-card.livre{border-color:var(--vd)}
-    .elev-card.ocupado{border-color:var(--azM)}
-    .elev-card.bloqueado{border-color:var(--co);background:var(--coL)}
-    /* BUSCA */
+    .elev-card.livre{border-color:var(--vd)}.elev-card.ocupado{border-color:var(--azM)}.elev-card.bloqueado{border-color:var(--co);background:var(--coL)}
     .busca{width:100%;padding:9px 14px;border-radius:10px;border:1.5px solid var(--bd);font-size:13px;font-family:inherit;outline:none;background:#fff;margin-bottom:12px}
     .busca:focus{border-color:var(--azM)}
-    /* FILTROS */
     .filtros{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
     .filtro-btn{padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;border:1.5px solid var(--bd);background:#fff;color:var(--cz);transition:all .15s}
     .filtro-btn.on{background:var(--az);color:#fff;border-color:var(--az)}
-    /* ALERTAS */
     .alerta{border-radius:8px;padding:9px 14px;font-size:12px;margin-bottom:7px;line-height:1.5}
     .alerta-am{background:var(--amL);color:var(--am);border:1px solid rgba(186,117,23,.25)}
     .alerta-co{background:var(--coL);color:var(--co);border:1px solid rgba(153,60,29,.25)}
     .alerta-tl{background:var(--tlL);color:var(--tl);border:1px solid rgba(15,110,86,.25)}
     .alerta-az{background:var(--azL);color:var(--azM);border:1px solid rgba(46,117,182,.25)}
-    /* TOAST */
     .toast{position:fixed;bottom:20px;right:20px;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:600;color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.18);z-index:9999;max-width:340px}
-    /* DASH */
     .dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    /* WA */
-    .wa-box{background:#dcf8c6;border-radius:8px;padding:12px 14px;font-size:12px;color:#075e54;font-family:monospace;white-space:pre-wrap;margin-top:8px;border:1px solid rgba(7,94,84,.2)}
-    @media(max-width:640px){
-      .kpi-5,.kpi-4{grid-template-columns:1fr 1fr}
-      .kpi-3{grid-template-columns:1fr 1fr}
-      .mrow{grid-template-columns:1fr}
-      .dash-grid{grid-template-columns:1fr}
-    }
+    .wa-box{background:#dcf8c6;border-radius:8px;padding:12px 14px;font-size:12px;color:#075e54;font-family:monospace;white-space:pre-wrap;margin-top:8px}
+    .secao{background:#f8fafc;border-radius:8px;padding:12px 14px;margin-bottom:12px;border:1px solid var(--bd)}
+    .secao-title{font-size:12px;font-weight:700;color:var(--az);margin-bottom:8px}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}
+    @media(max-width:640px){.kpi-6,.kpi-5,.kpi-4{grid-template-columns:1fr 1fr}.kpi-3{grid-template-columns:1fr 1fr}.mrow,.mrow-3{grid-template-columns:1fr}.dash-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="login-wrap">
   <div class="login-card">
-    <div class="login-logo">
-      <span>🔧</span>
-      <h1>Paulinho Auto-Center</h1>
-      <p>Sistema de Gestão 4.0</p>
-    </div>
+    <div class="login-logo"><span>🔧</span><h1>Paulinho Auto-Center</h1><p>Sistema de Gestão 4.0</p></div>
     <div class="fld"><label>Usuário</label><input id="l-user" placeholder="seu usuário" onkeydown="if(event.key==='Enter')login()"></div>
     <div class="fld"><label>Senha</label><input id="l-senha" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')login()"></div>
     <button class="btn-login" onclick="login()">Entrar</button>
@@ -150,11 +114,9 @@
   </div>
 </div>
 
-<!-- APP -->
 <div id="app">
   <div class="navbar">
-    <div class="brand" onclick="ir('s-dash')">
-      <span style="font-size:22px">🔧</span>
+    <div class="brand" onclick="ir('s-dash')"><span style="font-size:22px">🔧</span>
       <div><div class="brand-txt">Paulinho Auto-Center</div><div class="brand-sub">Sistema 4.0</div></div>
     </div>
     <div class="nav-links" id="nav-links"></div>
@@ -168,7 +130,7 @@
   <div class="screen" id="s-dash">
     <div class="sh"><div><div class="sh-title">Dashboard</div><div class="sh-sub">Visão geral em tempo real</div></div>
       <button class="btn btn-g btn-sm" onclick="carregarDash()">↻ Atualizar</button></div>
-    <div class="kpi-row kpi-5" id="d-kpis"></div>
+    <div class="kpi-row kpi-6" id="d-kpis"></div>
     <div class="dash-grid">
       <div class="card"><div style="font-size:13px;font-weight:700;color:var(--az);margin-bottom:12px">🔧 Elevadores</div><div id="d-elevs"></div></div>
       <div class="card"><div style="font-size:13px;font-weight:700;color:var(--az);margin-bottom:12px">📋 Últimas OSs</div><div id="d-os"></div></div>
@@ -195,10 +157,27 @@
   <!-- PEÇAS -->
   <div class="screen" id="s-pecas">
     <div class="sh"><div><div class="sh-title">Estoque de Peças</div><div class="sh-sub" id="pecas-sub">Carregando...</div></div>
-      <button class="btn btn-p" onclick="abrirPeca()">+ Nova Peça</button></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-g btn-sm" onclick="ir('s-movimentacao')">📋 Movimentação</button>
+        <button class="btn btn-p" onclick="abrirPeca()">+ Nova Peça</button>
+      </div></div>
     <div class="kpi-row kpi-3" id="pecas-kpis"></div>
     <div id="pecas-alertas"></div>
     <div id="pecas-lista"></div>
+  </div>
+
+  <!-- MOVIMENTAÇÃO ESTOQUE -->
+  <div class="screen" id="s-movimentacao">
+    <div class="sh"><div><div class="sh-title">Movimentação de Estoque</div><div class="sh-sub">Histórico de entradas e saídas</div></div>
+      <button class="btn btn-g btn-sm" onclick="ir('s-pecas')">← Voltar ao estoque</button></div>
+    <div id="mov-lista"></div>
+  </div>
+
+  <!-- MECÂNICOS -->
+  <div class="screen" id="s-mecanicos">
+    <div class="sh"><div><div class="sh-title">Mecânicos</div><div class="sh-sub" id="mec-sub">Carregando...</div></div>
+      <button class="btn btn-p" onclick="abrirMec()">+ Novo Mecânico</button></div>
+    <div id="mec-lista"></div>
   </div>
 
   <!-- OS -->
@@ -213,7 +192,7 @@
 
   <!-- ELEVADORES -->
   <div class="screen" id="s-elev">
-    <div class="sh"><div><div class="sh-title">Painel de Elevadores</div><div class="sh-sub">Monitoramento em tempo real</div></div>
+    <div class="sh"><div><div class="sh-title">Painel de Elevadores</div><div class="sh-sub">Cronômetro em tempo real</div></div>
       <div style="display:flex;gap:8px">
         <button class="btn btn-g btn-sm" onclick="carregarElevadores()">↻ Atualizar</button>
         <button class="btn btn-p btn-sm" onclick="addElev()">+ Equipamento</button>
@@ -222,9 +201,16 @@
     <div class="card"><div style="font-size:13px;font-weight:700;color:var(--az);margin-bottom:12px">⏳ Fila de espera</div><div id="elev-fila"></div></div>
   </div>
 
+  <!-- ORÇAMENTOS -->
+  <div class="screen" id="s-orcamentos">
+    <div class="sh"><div><div class="sh-title">Orçamentos</div><div class="sh-sub" id="orc-sub">Carregando...</div></div>
+      <button class="btn btn-p" onclick="abrirOrc()">+ Novo Orçamento</button></div>
+    <div id="orc-lista"></div>
+  </div>
+
   <!-- RELATÓRIOS -->
   <div class="screen" id="s-rel">
-    <div class="sh"><div><div class="sh-title">Relatórios</div><div class="sh-sub">Exportação em CSV</div></div></div>
+    <div class="sh"><div><div class="sh-title">Relatórios</div><div class="sh-sub">Análise e exportação</div></div></div>
     <div class="card" style="margin-bottom:14px">
       <div style="font-size:13px;font-weight:700;color:var(--az);margin-bottom:14px">🔍 Filtros</div>
       <div class="mrow" style="margin-bottom:12px">
@@ -234,12 +220,14 @@
       <div style="display:flex;gap:8px;flex-wrap:wrap">
         <button class="btn btn-p" onclick="carregarRelatorio()">Gerar relatório</button>
         <button class="btn btn-s" onclick="exportarCSV()">⬇ Exportar CSV</button>
+        <button class="btn btn-i" onclick="carregarFinanceiro()">💰 Financeiro</button>
       </div>
     </div>
     <div class="dash-grid" style="margin-bottom:14px">
       <div class="card"><div style="font-size:13px;font-weight:700;color:var(--az);margin-bottom:10px">📊 Serviços</div><div id="r-servicos"></div></div>
       <div class="card"><div style="font-size:13px;font-weight:700;color:var(--az);margin-bottom:10px">👨‍🔧 Mecânicos</div><div id="r-mecanicos"></div></div>
     </div>
+    <div id="r-financeiro" class="hidden"></div>
     <div id="r-lista"></div>
   </div>
 
@@ -266,14 +254,8 @@
     <div class="mhdr"><div><h3 id="m-cli-t">Novo Cliente</h3><p>Cadastro completo</p></div><button class="mclose" onclick="fecharCli()">✕</button></div>
     <div class="mbody">
       <input type="hidden" id="c-id">
-      <div class="mrow">
-        <div class="mfld"><label>Nome completo *</label><input id="c-nome" placeholder="Nome do cliente"></div>
-        <div class="mfld"><label>Telefone</label><input id="c-tel" placeholder="(37) 99999-9999"></div>
-      </div>
-      <div class="mrow">
-        <div class="mfld"><label>CPF</label><input id="c-cpf" placeholder="000.000.000-00"></div>
-        <div class="mfld"><label>E-mail</label><input id="c-email" type="email" placeholder="email@exemplo.com"></div>
-      </div>
+      <div class="mrow"><div class="mfld"><label>Nome *</label><input id="c-nome" placeholder="Nome completo"></div><div class="mfld"><label>Telefone</label><input id="c-tel" placeholder="(37) 99999-9999"></div></div>
+      <div class="mrow"><div class="mfld"><label>CPF</label><input id="c-cpf" placeholder="000.000.000-00"></div><div class="mfld"><label>E-mail</label><input id="c-email" type="email" placeholder="email@exemplo.com"></div></div>
       <div class="mfld"><label>Endereço</label><input id="c-end" placeholder="Rua, número, bairro"></div>
       <div id="c-historico"></div>
       <div class="mfoot"><button class="btn btn-g" onclick="fecharCli()">Cancelar</button><button class="btn btn-p" onclick="salvarCli()">Salvar</button></div>
@@ -287,21 +269,12 @@
     <div class="mhdr"><div><h3 id="m-veic-t">Novo Veículo</h3><p>Vincule ao cliente</p></div><button class="mclose" onclick="fecharVeic()">✕</button></div>
     <div class="mbody">
       <input type="hidden" id="v-id">
-      <div class="mfld"><label>Cliente *</label>
-        <select id="v-cliente"><option value="">Selecione o cliente...</option><option value="__novo__">➕ Novo cliente</option></select>
-      </div>
-      <div class="mrow">
-        <div class="mfld"><label>Placa *</label><input id="v-placa" placeholder="AAA-0000" oninput="this.value=this.value.toUpperCase()" maxlength="8"></div>
-        <div class="mfld"><label>Modelo *</label><input id="v-modelo" placeholder="Ex: Uno, Gol"></div>
-      </div>
-      <div class="mrow">
-        <div class="mfld"><label>Marca</label><input id="v-marca" placeholder="Fiat, VW..."></div>
-        <div class="mfld"><label>Ano</label><input id="v-ano" type="number" placeholder="2020"></div>
-      </div>
-      <div class="mrow">
-        <div class="mfld"><label>Cor</label><input id="v-cor" placeholder="Prata, Branco..."></div>
-        <div class="mfld"><label>KM atual</label><input id="v-km" type="number" placeholder="0"></div>
-      </div>
+      <div class="mfld"><label>Cliente *</label><select id="v-cliente"><option value="">Selecione...</option><option value="__novo__">➕ Novo cliente</option></select></div>
+      <div class="mrow"><div class="mfld"><label>Placa *</label><input id="v-placa" placeholder="AAA-0000" oninput="this.value=this.value.toUpperCase()" maxlength="8"></div><div class="mfld"><label>Modelo *</label><input id="v-modelo" placeholder="Ex: Uno, Gol"></div></div>
+      <div class="mrow"><div class="mfld"><label>Marca</label><input id="v-marca" placeholder="Fiat, VW..."></div><div class="mfld"><label>Ano</label><input id="v-ano" type="number" placeholder="2020"></div></div>
+      <div class="mrow"><div class="mfld"><label>Cor</label><input id="v-cor" placeholder="Prata, Branco..."></div><div class="mfld"><label>KM atual</label><input id="v-km" type="number" placeholder="0"></div></div>
+      <div class="mrow"><div class="mfld"><label>Combustível</label><select id="v-comb"><option value="">Selecione...</option><option>Flex</option><option>Gasolina</option><option>Diesel</option><option>Elétrico</option><option>GNV</option></select></div><div class="mfld"><label>Chassi</label><input id="v-chassi" placeholder="Opcional"></div></div>
+      <div class="mfld"><label>Observações</label><textarea id="v-obs" style="min-height:50px" placeholder="Observações técnicas..."></textarea></div>
       <div class="mfoot"><button class="btn btn-g" onclick="fecharVeic()">Cancelar</button><button class="btn btn-p" onclick="salvarVeic()">Salvar</button></div>
     </div>
   </div>
@@ -314,23 +287,41 @@
     <div class="mbody">
       <input type="hidden" id="p-id">
       <div class="mfld"><label>Nome *</label><input id="p-nome" placeholder="Ex: Pastilha de freio Bosch"></div>
-      <div class="mrow">
-        <div class="mfld"><label>Categoria</label>
-          <select id="p-cat"><option>Freios</option><option>Suspensão</option><option>Motor</option><option>Elétrica</option><option>Pneus</option><option>Lubrificantes</option><option>Filtros</option><option>Outros</option></select>
-        </div>
-        <div class="mfld"><label>Unidade</label>
-          <select id="p-un"><option>unid.</option><option>par</option><option>litro</option><option>kit</option><option>metro</option></select>
-        </div>
-      </div>
-      <div class="mrow">
-        <div class="mfld"><label>Qtd. em estoque *</label><input id="p-qtd" type="number" min="0" placeholder="0"></div>
-        <div class="mfld"><label>Estoque mínimo *</label><input id="p-min" type="number" min="0" placeholder="1"></div>
-      </div>
-      <div class="mrow">
-        <div class="mfld"><label>Fornecedor</label><input id="p-forn" placeholder="Nome do fornecedor"></div>
-        <div class="mfld"><label>Preço de custo (R$)</label><input id="p-preco" type="number" step="0.01" placeholder="0.00"></div>
-      </div>
+      <div class="mrow"><div class="mfld"><label>Categoria</label><select id="p-cat"><option>Freios</option><option>Suspensão</option><option>Motor</option><option>Elétrica</option><option>Pneus</option><option>Lubrificantes</option><option>Filtros</option><option>Outros</option></select></div><div class="mfld"><label>Unidade</label><select id="p-un"><option>unid.</option><option>par</option><option>litro</option><option>kit</option><option>metro</option></select></div></div>
+      <div class="mrow"><div class="mfld"><label>Qtd. estoque *</label><input id="p-qtd" type="number" min="0" placeholder="0"></div><div class="mfld"><label>Estoque mínimo *</label><input id="p-min" type="number" min="0" placeholder="1"></div></div>
+      <div class="mrow"><div class="mfld"><label>Preço de custo (R$)</label><input id="p-custo" type="number" step="0.01" placeholder="0.00"></div><div class="mfld"><label>Preço de venda (R$)</label><input id="p-venda" type="number" step="0.01" placeholder="0.00"></div></div>
+      <div class="mfld"><label>Fornecedor</label><input id="p-forn" placeholder="Nome do fornecedor"></div>
       <div class="mfoot"><button class="btn btn-g" onclick="fecharPeca()">Cancelar</button><button class="btn btn-p" onclick="salvarPeca()">Salvar</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- MECÂNICO -->
+<div class="overlay hidden" id="m-mec" onclick="if(event.target===this)fecharMec()">
+  <div class="mbox mbox-lg">
+    <div class="mhdr"><div><h3 id="m-mec-t">Novo Mecânico</h3><p>Cadastro de profissional</p></div><button class="mclose" onclick="fecharMec()">✕</button></div>
+    <div class="mbody">
+      <input type="hidden" id="me-id">
+      <div class="mrow"><div class="mfld"><label>Nome *</label><input id="me-nome" placeholder="Nome completo"></div><div class="mfld"><label>Telefone</label><input id="me-tel" placeholder="(37) 99999-9999"></div></div>
+      <div class="mrow">
+        <div class="mfld"><label>Especialidade</label><select id="me-esp"><option>Mecânica geral</option><option>Elétrica</option><option>Alinhamento</option><option>Suspensão</option><option>Motor</option></select></div>
+        <div class="mfld"><label>Status</label><select id="me-status"><option value="disponivel">Disponível</option><option value="ocupado">Ocupado</option><option value="ausente">Ausente</option><option value="ferias">Férias</option></select></div>
+      </div>
+      <div class="mrow"><div class="mfld"><label>Comissão (%)</label><input id="me-com" type="number" step="0.1" min="0" max="100" placeholder="0"></div><div></div></div>
+      <div class="mfld"><label>Observações</label><textarea id="me-obs" style="min-height:50px" placeholder="Observações..."></textarea></div>
+      <!-- Vales -->
+      <div id="me-vales-sec" class="hidden">
+        <div style="border-top:1px solid var(--bd);padding-top:14px;margin-top:14px">
+          <div style="font-size:13px;font-weight:700;color:var(--az);margin-bottom:10px">💰 Sistema de Vales</div>
+          <div class="mrow" style="margin-bottom:8px">
+            <div class="mfld"><label>Valor do vale (R$)</label><input id="vale-valor" type="number" step="0.01" placeholder="0.00"></div>
+            <div class="mfld"><label>Motivo</label><input id="vale-motivo" placeholder="Motivo do adiantamento"></div>
+          </div>
+          <button class="btn btn-am btn-sm" onclick="adicionarVale()">+ Registrar Vale</button>
+          <div id="vales-lista" style="margin-top:10px"></div>
+        </div>
+      </div>
+      <div class="mfoot"><button class="btn btn-g" onclick="fecharMec()">Cancelar</button><button class="btn btn-p" onclick="salvarMec()">Salvar</button></div>
     </div>
   </div>
 </div>
@@ -341,18 +332,22 @@
     <div class="mhdr"><div><h3 id="m-os-t">Nova Ordem de Serviço</h3><p>Dados protegidos — LGPD ativo</p></div><button class="mclose" onclick="fecharOS()">✕</button></div>
     <div class="mbody">
       <input type="hidden" id="o-id">
+      <div class="mrow"><div class="mfld"><label>Cliente *</label><select id="o-cliente" onchange="carregarVeicCliente()"><option value="">Selecione...</option></select></div><div class="mfld"><label>Veículo *</label><select id="o-veiculo"><option value="">Selecione o cliente primeiro...</option></select></div></div>
       <div class="mrow">
-        <div class="mfld"><label>Cliente *</label><select id="o-cliente" onchange="carregarVeicCliente()"><option value="">Selecione...</option></select></div>
-        <div class="mfld"><label>Veículo *</label><select id="o-veiculo"><option value="">Selecione o cliente primeiro...</option></select></div>
-      </div>
-      <div class="mrow">
-        <div class="mfld"><label>Mecânico *</label>
-          <select id="o-mec"><option value="">Selecione...</option><option>Alinhador</option><option>Mecânico 1</option><option>Mecânico 2</option><option>Mecânico 3</option><option>Mecânico 4</option></select>
-        </div>
+        <div class="mfld"><label>Mecânico *</label><select id="o-mec"><option value="">Selecione...</option></select></div>
         <div class="mfld"><label>Elevador</label><select id="o-elev"><option value="">Sem equipamento</option></select></div>
       </div>
+      <div class="mrow">
+        <div class="mfld"><label>Prioridade</label><select id="o-prio"><option value="baixa">🟢 Baixa</option><option value="media" selected>🟡 Média</option><option value="alta">🔴 Alta</option><option value="urgente">🚨 Urgente</option></select></div>
+        <div class="mfld"><label>Status</label><select id="o-status">
+          <option value="aguardando_atendimento">Aguardando atendimento</option><option value="diagnostico">Em diagnóstico</option>
+          <option value="aguardando_aprovacao">Aguardando aprovação</option><option value="em_execucao">Em execução</option>
+          <option value="aguardando_peca">Aguardando peça</option><option value="pausado">Pausada</option>
+          <option value="finalizado">Finalizada</option><option value="entregue">Entregue</option><option value="cancelado">Cancelado</option>
+        </select></div>
+      </div>
       <div class="mfld"><label>Serviço *</label>
-        <select id="o-serv">
+        <select id="o-serv" onchange="toggleOutro()">
           <option value="">Selecione...</option>
           <optgroup label="Alinhamento"><option>Alinhamento 3D + balanceamento</option><option>Alinhamento 3D + balanceamento + troca 2 pneus</option><option>Balanceamento (4 rodas)</option><option>Alinhamento 3D</option></optgroup>
           <optgroup label="Mecânica"><option>Troca de óleo + filtro</option><option>Troca de freios dianteiros</option><option>Troca de freios traseiros</option><option>Troca de freios completo</option><option>Troca de amortecedor dianteiro</option><option>Troca de amortecedor traseiro</option><option>Troca de correia dentada + tensor</option><option>Troca de embreagem</option><option>Diagnóstico elétrico</option><option>Revisão geral completa</option><option>Revisão preventiva</option></optgroup>
@@ -360,32 +355,82 @@
           <option value="outro">✏️ Outro (texto livre)</option>
         </select>
       </div>
-      <div class="mfld hidden" id="o-outro-wrap"><label>Descrição do serviço *</label><textarea id="o-servico-outro" placeholder="Descreva o serviço..."></textarea></div>
-      <div class="mrow">
-        <div class="mfld"><label>Status</label>
-          <select id="o-status">
-            <option value="aguardando_atendimento">Aguardando atendimento</option>
-            <option value="diagnostico">Em diagnóstico</option>
-            <option value="aguardando_aprovacao">Aguardando aprovação</option>
-            <option value="em_execucao">Em execução</option>
-            <option value="aguardando_peca">Aguardando peça</option>
-            <option value="pausado">Pausada</option>
-            <option value="finalizado">Finalizada</option>
-            <option value="entregue">Entregue</option>
-            <option value="cancelado">Cancelado</option>
-          </select>
+      <div class="mfld hidden" id="o-outro-wrap"><label>Descrição do serviço *</label><textarea id="o-servico-outro" placeholder="Descreva o serviço realizado..."></textarea></div>
+      <div class="mrow"><div class="mfld"><label>KM entrada</label><input id="o-km" type="number" placeholder="0"></div><div class="mfld"><label>Previsão de entrega</label><input type="datetime-local" id="o-previsao"></div></div>
+      <div class="mrow"><div class="mfld"><label>Valor mão de obra (R$)</label><input id="o-maobra" type="number" step="0.01" placeholder="0.00" oninput="calcularTotal()"></div><div class="mfld"><label>Desconto (R$)</label><input id="o-desconto" type="number" step="0.01" placeholder="0.00" oninput="calcularTotal()"></div></div>
+      <!-- Peças na OS -->
+      <div class="secao">
+        <div class="secao-title">📦 Peças utilizadas</div>
+        <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+          <select id="o-peca-sel" style="flex:1;min-width:200px;padding:7px 10px;border-radius:8px;border:1.5px solid var(--bd);font-size:12px;font-family:inherit;outline:none"></select>
+          <input type="number" id="o-peca-qtd" min="1" value="1" style="width:60px;padding:7px 8px;border-radius:8px;border:1.5px solid var(--bd);font-size:12px;font-family:inherit;outline:none">
+          <button class="btn btn-i btn-sm" onclick="addPecaOS()" type="button">+ Adicionar</button>
         </div>
-        <div class="mfld"><label>KM entrada</label><input id="o-km" type="number" placeholder="0"></div>
-      </div>
-      <div class="mrow">
-        <div class="mfld"><label>Valor total (R$)</label><input id="o-valor" type="number" step="0.01" placeholder="0.00"></div>
-        <div></div>
+        <div id="o-pecas-lista"></div>
+        <div style="font-size:12px;color:var(--cz);margin-top:6px">Total peças: <strong id="o-total-pecas" style="color:var(--az)">R$ 0,00</strong> · Total: <strong id="o-total-geral" style="color:var(--tl)">R$ 0,00</strong></div>
       </div>
       <div class="mfld"><label>Observações</label><textarea id="o-obs" placeholder="Diagnóstico, observações..."></textarea></div>
-      <div style="background:var(--tlL);border:1px solid rgba(15,110,86,.2);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--tl);margin-bottom:14px">
-        🔒 OS armazenada digitalmente. Dados do cliente protegidos — LGPD (Lei nº 13.709/2018).
-      </div>
+      <div style="background:var(--tlL);border:1px solid rgba(15,110,86,.2);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--tl);margin-bottom:14px">🔒 OS armazenada digitalmente. Dados do cliente protegidos — LGPD (Lei nº 13.709/2018).</div>
       <div class="mfoot"><button class="btn btn-g" onclick="fecharOS()">Cancelar</button><button class="btn btn-p" onclick="salvarOS()">Salvar OS</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ORÇAMENTO -->
+<div class="overlay hidden" id="m-orc" onclick="if(event.target===this)fecharOrc()">
+  <div class="mbox mbox-lg">
+    <div class="mhdr"><div><h3 id="m-orc-t">Novo Orçamento</h3><p>Crie o orçamento e converta em OS</p></div><button class="mclose" onclick="fecharOrc()">✕</button></div>
+    <div class="mbody">
+      <input type="hidden" id="orc-id">
+      <div class="mrow"><div class="mfld"><label>Cliente *</label><select id="orc-cliente" onchange="carregarVeicOrc()"><option value="">Selecione...</option></select></div><div class="mfld"><label>Veículo *</label><select id="orc-veiculo"><option value="">Selecione o cliente primeiro...</option></select></div></div>
+      <div class="mrow"><div class="mfld"><label>Mecânico *</label><select id="orc-mec"><option value="">Selecione...</option></select></div><div class="mfld"><label>Validade (dias)</label><input id="orc-validade" type="number" value="7" min="1"></div></div>
+      <div class="mfld"><label>Serviço *</label>
+        <select id="orc-serv" onchange="toggleOutroOrc()">
+          <option value="">Selecione...</option>
+          <optgroup label="Alinhamento"><option>Alinhamento 3D + balanceamento</option><option>Balanceamento (4 rodas)</option><option>Alinhamento 3D</option></optgroup>
+          <optgroup label="Mecânica"><option>Troca de óleo + filtro</option><option>Troca de freios dianteiros</option><option>Troca de freios traseiros</option><option>Troca de amortecedor dianteiro</option><option>Troca de correia dentada + tensor</option><option>Troca de embreagem</option><option>Diagnóstico elétrico</option><option>Revisão geral completa</option></optgroup>
+          <optgroup label="Pneus"><option>Troca 1 pneu</option><option>Troca 2 pneus</option><option>Troca 4 pneus</option></optgroup>
+          <option value="outro">✏️ Outro</option>
+        </select>
+      </div>
+      <div class="mfld hidden" id="orc-outro-wrap"><label>Descrição</label><textarea id="orc-servico-outro" placeholder="Descreva o serviço..."></textarea></div>
+      <div class="mrow"><div class="mfld"><label>Valor mão de obra (R$)</label><input id="orc-maobra" type="number" step="0.01" placeholder="0.00" oninput="calcularTotalOrc()"></div><div></div></div>
+      <div class="secao">
+        <div class="secao-title">📦 Peças do orçamento</div>
+        <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+          <select id="orc-peca-sel" style="flex:1;min-width:200px;padding:7px 10px;border-radius:8px;border:1.5px solid var(--bd);font-size:12px;font-family:inherit;outline:none"></select>
+          <input type="number" id="orc-peca-qtd" min="1" value="1" style="width:60px;padding:7px 8px;border-radius:8px;border:1.5px solid var(--bd);font-size:12px;font-family:inherit;outline:none">
+          <button class="btn btn-i btn-sm" onclick="addPecaOrc()" type="button">+ Add</button>
+        </div>
+        <div id="orc-pecas-lista"></div>
+        <div style="font-size:12px;color:var(--cz);margin-top:6px">Total: <strong id="orc-total" style="color:var(--tl)">R$ 0,00</strong></div>
+      </div>
+      <div class="mfld"><label>Observações</label><textarea id="orc-obs" placeholder="Observações..."></textarea></div>
+      <div class="mfoot"><button class="btn btn-g" onclick="fecharOrc()">Cancelar</button><button class="btn btn-p" onclick="salvarOrc()">Salvar Orçamento</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- FINALIZAR OS (financeiro) -->
+<div class="overlay hidden" id="m-fin" onclick="if(event.target===this)fecharFin()">
+  <div class="mbox" style="max-width:440px">
+    <div class="mhdr"><div><h3>💰 Finalizar OS</h3><p>Registrar pagamento</p></div><button class="mclose" onclick="fecharFin()">✕</button></div>
+    <div class="mbody">
+      <input type="hidden" id="fin-id">
+      <div id="fin-resumo" style="background:var(--bg);border-radius:8px;padding:12px;margin-bottom:12px;font-size:13px"></div>
+      <div class="mfld"><label>Forma de pagamento</label>
+        <select id="fin-forma"><option value="">Selecione...</option><option value="pix">Pix</option><option value="dinheiro">Dinheiro</option><option value="cartao_debito">Cartão débito</option><option value="cartao_credito">Cartão crédito</option><option value="parcelado">Parcelado</option></select>
+      </div>
+      <div class="mfld"><label>Status do pagamento</label>
+        <select id="fin-status"><option value="pago">Pago</option><option value="parcial">Parcial</option><option value="pendente">Pendente</option></select>
+      </div>
+      <div class="mfld"><label>Registrar garantia? (dias)</label>
+        <input id="fin-garantia" type="number" placeholder="Ex: 90 (deixe 0 para não registrar)" value="0">
+      </div>
+      <div class="mfoot">
+        <button class="btn btn-g" onclick="fecharFin()">Cancelar</button>
+        <button class="btn btn-s" onclick="confirmarFinalizar()">✓ Confirmar</button>
+      </div>
     </div>
   </div>
 </div>
@@ -397,12 +442,7 @@
     <div class="mbody">
       <input type="hidden" id="u-id">
       <div class="mfld"><label>Nome *</label><input id="u-nome" placeholder="Nome completo"></div>
-      <div class="mrow">
-        <div class="mfld"><label>Usuário *</label><input id="u-usuario" placeholder="sem espaços"></div>
-        <div class="mfld"><label>Perfil *</label>
-          <select id="u-perfil"><option value="gerente">Gerente</option><option value="atendente">Atendente</option><option value="mecanico">Mecânico</option></select>
-        </div>
-      </div>
+      <div class="mrow"><div class="mfld"><label>Usuário *</label><input id="u-usuario" placeholder="sem espaços"></div><div class="mfld"><label>Perfil *</label><select id="u-perfil"><option value="gerente">Gerente</option><option value="atendente">Atendente</option><option value="mecanico">Mecânico</option></select></div></div>
       <div class="mfld"><label>Senha *</label><input id="u-senha" type="password" placeholder="••••••••"></div>
       <div class="mfoot"><button class="btn btn-g" onclick="fecharUsuario()">Cancelar</button><button class="btn btn-p" onclick="salvarUsuario()">Salvar</button></div>
     </div>
@@ -424,109 +464,92 @@
   </div>
 </div>
 
-<!-- TOAST -->
 <div id="toast" class="toast hidden"></div>
 
 <script>
-  // ═══════════════════════════════════
-  // CONFIG — TODAS AS CHAMADAS COM /api/
-  // ═══════════════════════════════════
-  const BASE = '/api';
-  let TOKEN=null, PERFIL=null, NOME_USER=null;
-  let filtroOS='todos', relCache=[];
+  const BASE='/api';
+  let TOKEN=null,PERFIL=null,NOME_USER=null;
+  let filtroOS='todos',relCache=[];
+  let pecasOS=[],pecasOrc=[],pecasEstoqueCache=[];
+  let mecIdAtual=null;
 
-  async function api(method, path, body) {
-    const opts = { method, headers: { 'Content-Type':'application/json' } };
-    if(TOKEN) opts.headers['Authorization'] = 'Bearer '+TOKEN;
-    if(body) opts.body = JSON.stringify(body);
-    const r = await fetch(BASE+path, opts);
-    const d = await r.json();
+  async function api(method,path,body){
+    const opts={method,headers:{'Content-Type':'application/json'}};
+    if(TOKEN) opts.headers['Authorization']='Bearer '+TOKEN;
+    if(body) opts.body=JSON.stringify(body);
+    const r=await fetch(BASE+path,opts);
+    const d=await r.json();
     if(!r.ok) throw new Error(d.erro||'Erro na requisição');
     return d;
   }
 
-  // TOAST
-  function ok(msg, cor='var(--tl)'){
+  function ok(msg,cor='var(--tl)'){
     const t=document.getElementById('toast');
-    t.textContent='✓ '+msg; t.style.background=cor;
-    t.classList.remove('hidden');
-    setTimeout(()=>t.classList.add('hidden'),3500);
+    t.textContent='✓ '+msg;t.style.background=cor;
+    t.classList.remove('hidden');setTimeout(()=>t.classList.add('hidden'),3500);
   }
-  function err(msg){ ok(msg,'var(--co)'); }
+  function err(msg){ok(msg,'var(--co)');}
 
-  // LOGIN
   async function login(){
     const usuario=document.getElementById('l-user').value.trim();
     const senha=document.getElementById('l-senha').value;
     const erroEl=document.getElementById('l-erro');
     try {
       const d=await api('POST','/login',{usuario,senha});
-      TOKEN=d.token; PERFIL=d.perfil; NOME_USER=d.nome;
+      TOKEN=d.token;PERFIL=d.perfil;NOME_USER=d.nome;
       document.getElementById('login-wrap').style.display='none';
-      const app=document.getElementById('app');
-      app.style.display='flex'; app.style.flexDirection='column';
+      const app=document.getElementById('app');app.style.display='flex';app.style.flexDirection='column';
       document.getElementById('user-chip').textContent=NOME_USER+' · Sair';
       erroEl.classList.add('hidden');
-      montarNav();
-      ir(PERFIL==='mecanico'?'s-os':'s-dash');
-    } catch(e){ erroEl.textContent=e.message; erroEl.classList.remove('hidden'); }
+      montarNav();ir(PERFIL==='mecanico'?'s-os':'s-dash');
+    } catch(e){erroEl.textContent=e.message;erroEl.classList.remove('hidden');}
   }
-  function logout(){
-    TOKEN=null; PERFIL=null;
-    document.getElementById('app').style.display='none';
-    document.getElementById('login-wrap').style.display='flex';
-    document.getElementById('l-senha').value='';
-  }
+  function logout(){TOKEN=null;PERFIL=null;document.getElementById('app').style.display='none';document.getElementById('login-wrap').style.display='flex';document.getElementById('l-senha').value='';}
 
-  // NAVEGAÇÃO
   const MENUS={
-    gerente:[{id:'s-dash',i:'📊',l:'Dashboard'},{id:'s-clientes',i:'👥',l:'Clientes'},{id:'s-veic',i:'🚗',l:'Veículos'},{id:'s-pecas',i:'📦',l:'Peças'},{id:'s-os',i:'📋',l:'OS'},{id:'s-elev',i:'🔧',l:'Elevadores'},{id:'s-rel',i:'📈',l:'Relatórios'},{id:'s-usuarios',i:'👤',l:'Usuários'},{id:'s-audit',i:'🔍',l:'Auditoria'}],
-    atendente:[{id:'s-clientes',i:'👥',l:'Clientes'},{id:'s-veic',i:'🚗',l:'Veículos'},{id:'s-pecas',i:'📦',l:'Peças'},{id:'s-os',i:'📋',l:'OS'},{id:'s-elev',i:'🔧',l:'Elevadores'}],
+    gerente:[{id:'s-dash',i:'📊',l:'Dashboard'},{id:'s-clientes',i:'👥',l:'Clientes'},{id:'s-veic',i:'🚗',l:'Veículos'},{id:'s-pecas',i:'📦',l:'Peças'},{id:'s-mecanicos',i:'🔩',l:'Mecânicos'},{id:'s-os',i:'📋',l:'OS'},{id:'s-orcamentos',i:'📝',l:'Orçamentos'},{id:'s-elev',i:'🔧',l:'Elevadores'},{id:'s-rel',i:'📈',l:'Relatórios'},{id:'s-usuarios',i:'👤',l:'Usuários'},{id:'s-audit',i:'🔍',l:'Auditoria'}],
+    atendente:[{id:'s-clientes',i:'👥',l:'Clientes'},{id:'s-veic',i:'🚗',l:'Veículos'},{id:'s-pecas',i:'📦',l:'Peças'},{id:'s-os',i:'📋',l:'OS'},{id:'s-orcamentos',i:'📝',l:'Orçamentos'},{id:'s-elev',i:'🔧',l:'Elevadores'}],
     mecanico:[{id:'s-os',i:'📋',l:'Minhas OSs'},{id:'s-elev',i:'🔧',l:'Elevadores'}],
   };
   function montarNav(){
-    document.getElementById('nav-links').innerHTML=(MENUS[PERFIL]||[]).map(m=>
-            `<button class="nav-link" id="nl-${m.id}" onclick="ir('${m.id}')">${m.i} ${m.l}</button>`
-    ).join('');
+    document.getElementById('nav-links').innerHTML=(MENUS[PERFIL]||[]).map(m=>`<button class="nav-link" id="nl-${m.id}" onclick="ir('${m.id}')">${m.i} ${m.l}</button>`).join('');
   }
   function ir(id){
     document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
     document.querySelectorAll('.nav-link').forEach(b=>b.classList.remove('on'));
-    const s=document.getElementById(id), b=document.getElementById('nl-'+id);
-    if(s)s.classList.add('on'); if(b)b.classList.add('on');
-    const fn={'s-dash':carregarDash,'s-clientes':carregarClientes,'s-veic':carregarVeiculos,'s-pecas':carregarPecas,'s-os':carregarOS,'s-elev':carregarElevadores,'s-usuarios':carregarUsuarios,'s-audit':carregarAudit};
+    const s=document.getElementById(id),b=document.getElementById('nl-'+id);
+    if(s)s.classList.add('on');if(b)b.classList.add('on');
+    const fn={'s-dash':carregarDash,'s-clientes':carregarClientes,'s-veic':carregarVeiculos,
+      's-pecas':carregarPecas,'s-movimentacao':carregarMovimentacao,'s-mecanicos':carregarMecanicos,
+      's-os':carregarOS,'s-orcamentos':carregarOrcamentos,'s-elev':carregarElevadores,
+      's-rel':()=>{},'s-usuarios':carregarUsuarios,'s-audit':carregarAudit};
     if(fn[id]) fn[id]();
   }
 
-  // UTILITÁRIOS
   const STS={
-    aguardando_atendimento:{l:'Aguardando',c:'bdg-az'},
-    diagnostico:{l:'Diagnóstico',c:'bdg-am'},
-    aguardando_aprovacao:{l:'Ag. aprovação',c:'bdg-rx'},
-    em_execucao:{l:'Em execução',c:'bdg-az'},
-    aguardando_peca:{l:'Ag. peça',c:'bdg-am'},
-    pausado:{l:'Pausada',c:'bdg-rx'},
-    finalizado:{l:'Finalizada',c:'bdg-tl'},
-    entregue:{l:'Entregue',c:'bdg-vd'},
-    cancelado:{l:'Cancelado',c:'bdg-co'},
-    andamento:{l:'Em andamento',c:'bdg-az'},
-    concluido:{l:'Concluído',c:'bdg-tl'},
+    aguardando_atendimento:{l:'Aguardando',c:'bdg-az'},diagnostico:{l:'Diagnóstico',c:'bdg-am'},
+    aguardando_aprovacao:{l:'Ag. aprovação',c:'bdg-rx'},em_execucao:{l:'Em execução',c:'bdg-az'},
+    aguardando_peca:{l:'Ag. peça',c:'bdg-am'},pausado:{l:'Pausada',c:'bdg-rx'},
+    finalizado:{l:'Finalizada',c:'bdg-tl'},entregue:{l:'Entregue',c:'bdg-vd'},cancelado:{l:'Cancelado',c:'bdg-co'},
+    andamento:{l:'Em andamento',c:'bdg-az'},concluido:{l:'Concluído',c:'bdg-tl'},
   };
-  function bdg(s){ const x=STS[s]||{l:s,c:'bdg-az'}; return `<span class="bdg ${x.c}">${x.l}</span>`; }
-  function fmtMoeda(v){ return 'R$ '+(parseFloat(v)||0).toFixed(2).replace('.',','); }
-  function fmtData(d){ if(!d)return '-'; return new Date(d).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}); }
-  function fmtMin(m){ if(!m||m<1)return 'recém alocado'; const h=Math.floor(m/60),mn=Math.round(m%60); return h>0?`${h}h ${mn}min`:`${mn} min`; }
+  function bdg(s){const x=STS[s]||{l:s,c:'bdg-az'};return `<span class="bdg ${x.c}">${x.l}</span>`;}
+  function prioBdg(p){const m={urgente:{l:'🚨 Urgente',c:'prio-urgente'},alta:{l:'🔴 Alta',c:'prio-alta'},media:{l:'🟡 Média',c:'prio-media'},baixa:{l:'🟢 Baixa',c:'prio-baixa'}};const x=m[p]||m.media;return `<span class="prio ${x.c}">${x.l}</span>`;}
+  function fmtR(v){return 'R$ '+(parseFloat(v)||0).toFixed(2).replace('.',',');}
+  function fmtD(d){if(!d)return '-';return new Date(d).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});}
+  function fmtMin(m){if(!m||m<1)return 'recém alocado';const h=Math.floor(m/60),mn=Math.round(m%60);return h>0?`${h}h ${mn}min`:`${mn} min`;}
 
-  // ═══════ DASHBOARD ═══════
+  // ═══ DASHBOARD ═══
   async function carregarDash(){
     try {
       const [d,elevs]=await Promise.all([api('GET','/dashboard'),api('GET','/elevadores')]);
       document.getElementById('d-kpis').innerHTML=`
       <div class="kpi"><div class="kpi-n" style="color:var(--azM)">${d.os_andamento}</div><div class="kpi-l">OSs ativas</div></div>
-      <div class="kpi"><div class="kpi-n" style="color:var(--am)">${d.os_aguardando}</div><div class="kpi-l">Aguardando peça</div></div>
+      <div class="kpi"><div class="kpi-n" style="color:var(--am)">${d.os_aguardando}</div><div class="kpi-l">Ag. peça</div></div>
+      <div class="kpi"><div class="kpi-n" style="color:var(--co)">${d.os_urgentes||0}</div><div class="kpi-l">Urgentes</div></div>
       <div class="kpi"><div class="kpi-n" style="color:var(--tl)">${d.total_clientes}</div><div class="kpi-l">Clientes</div></div>
-      <div class="kpi"><div class="kpi-n" style="color:var(--az)">${d.total_veiculos}</div><div class="kpi-l">Veículos</div></div>
-      <div class="kpi"><div class="kpi-n" style="color:${d.pecas_criticas>0?'var(--co)':'var(--vd)'}">${d.pecas_criticas}</div><div class="kpi-l">Peças em alerta</div></div>`;
+      <div class="kpi"><div class="kpi-n" style="color:var(--vd)">${fmtR(d.faturamento_hoje)}</div><div class="kpi-l">Faturamento hoje</div></div>
+      <div class="kpi"><div class="kpi-n" style="color:${d.pecas_criticas>0?'var(--co)':'var(--vd)'}">${d.pecas_criticas}</div><div class="kpi-l">Peças alerta</div></div>`;
       const cores={livre:'var(--vd)',ocupado:'var(--azM)',bloqueado:'var(--co)'};
       document.getElementById('d-elevs').innerHTML=elevs.map(e=>`
       <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--bd)">
@@ -538,32 +561,30 @@
       document.getElementById('d-os').innerHTML=d.os_recentes.length?d.os_recentes.map(o=>`
       <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--bd);font-size:12px">
         <div><span style="font-weight:700;color:var(--az)">${o.numero}</span> <span style="color:var(--cz)">${o.cliente} · ${o.placa}</span></div>
-        ${bdg(o.status)}
+        <div style="display:flex;gap:4px">${prioBdg(o.prioridade)} ${bdg(o.status)}</div>
       </div>`).join(''):'<p style="font-size:12px;color:var(--cz)">Nenhuma OS ainda</p>';
       const alertas=[];
+      if(d.os_urgentes>0) alertas.push({t:'co',m:`🚨 ${d.os_urgentes} OS(s) com prioridade URGENTE`});
       if(d.elev_bloqueados>0) alertas.push({t:'co',m:`🚨 ${d.elev_bloqueados} elevador(es) bloqueado(s) por falta de peça`});
       if(d.os_aguardando>0) alertas.push({t:'am',m:`📦 ${d.os_aguardando} OS(s) aguardando peça`});
       if(d.pecas_criticas>0) alertas.push({t:'am',m:`🔔 ${d.pecas_criticas} peça(s) abaixo do estoque mínimo`});
-      alertas.push({t:'tl',m:`🔒 0 exposições de dados. OSs digitais. LGPD ativo.`});
+      alertas.push({t:'tl',m:`🔒 0 exposições de dados. Conformidade LGPD ativa.`});
       document.getElementById('d-alertas').innerHTML=alertas.map(a=>`<div class="alerta alerta-${a.t}">${a.m}</div>`).join('');
-    } catch(e){ err(e.message); }
+    } catch(e){err(e.message);}
   }
 
-  // ═══════ CLIENTES ═══════
+  // ═══ CLIENTES ═══
   async function carregarClientes(){
     const q=document.getElementById('cli-busca')?.value||'';
     try {
       const rows=await api('GET',`/clientes?q=${encodeURIComponent(q)}`);
       document.getElementById('cli-sub').textContent=`${rows.length} cliente(s)`;
-      if(!rows.length){ document.getElementById('cli-lista').innerHTML=`<div class="vazio"><div class="vazio-i">👥</div><div class="vazio-t">Nenhum cliente ainda</div><div class="vazio-s">Clique em "+ Novo Cliente"</div></div>`; return; }
+      if(!rows.length){document.getElementById('cli-lista').innerHTML=`<div class="vazio"><div class="vazio-i">👥</div><div class="vazio-t">Nenhum cliente ainda</div><div class="vazio-s">Clique em "+ Novo Cliente"</div></div>`;return;}
       document.getElementById('cli-lista').innerHTML=rows.map(c=>`
       <div class="card" style="cursor:pointer" onclick="editarCli(${c.id})">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-          <div>
-            <div style="font-size:14px;font-weight:700;color:var(--az)">${c.nome}</div>
-            <div style="font-size:12px;color:var(--cz);margin-top:3px">
-              ${c.telefone?'📞 '+c.telefone+' · ':''} 🚗 ${c.total_veiculos} veículo(s) · 📋 ${c.total_os} OS(s)
-            </div>
+          <div><div style="font-size:14px;font-weight:700;color:var(--az)">${c.nome}</div>
+            <div style="font-size:12px;color:var(--cz);margin-top:3px">${c.telefone?'📞 '+c.telefone+' · ':''} 🚗 ${c.total_veiculos} veículo(s) · 📋 ${c.total_os} OS(s)</div>
           </div>
           <div class="td-btns" onclick="event.stopPropagation()">
             <button class="btn btn-i btn-sm" onclick="editarCli(${c.id})">✎</button>
@@ -571,163 +592,207 @@
           </div>
         </div>
       </div>`).join('');
-    } catch(e){ err(e.message); }
+    } catch(e){err(e.message);}
   }
-  async function abrirCli(){
-    document.getElementById('c-id').value=''; document.getElementById('m-cli-t').textContent='Novo Cliente';
-    ['c-nome','c-tel','c-cpf','c-email','c-end'].forEach(i=>document.getElementById(i).value='');
-    document.getElementById('c-historico').innerHTML='';
-    document.getElementById('m-cli').classList.remove('hidden');
-  }
+  async function abrirCli(){document.getElementById('c-id').value='';document.getElementById('m-cli-t').textContent='Novo Cliente';['c-nome','c-tel','c-cpf','c-email','c-end'].forEach(i=>document.getElementById(i).value='');document.getElementById('c-historico').innerHTML='';document.getElementById('m-cli').classList.remove('hidden');}
   async function editarCli(id){
     try {
       const c=await api('GET',`/clientes/${id}`);
-      document.getElementById('c-id').value=id; document.getElementById('m-cli-t').textContent='Editar — '+c.nome;
-      document.getElementById('c-nome').value=c.nome; document.getElementById('c-tel').value=c.telefone||'';
-      document.getElementById('c-cpf').value=c.cpf||''; document.getElementById('c-email').value=c.email||'';
+      document.getElementById('c-id').value=id;document.getElementById('m-cli-t').textContent='Editar — '+c.nome;
+      document.getElementById('c-nome').value=c.nome;document.getElementById('c-tel').value=c.telefone||'';
+      document.getElementById('c-cpf').value=c.cpf||'';document.getElementById('c-email').value=c.email||'';
       document.getElementById('c-end').value=c.endereco||'';
       document.getElementById('c-historico').innerHTML=c.historico_os.length?`
       <div style="margin-top:14px;border-top:1px solid var(--bd);padding-top:14px">
-        <div style="font-size:12px;font-weight:700;color:var(--az);margin-bottom:8px">Histórico de OSs</div>
-        ${c.historico_os.map(o=>`<div style="font-size:12px;padding:5px 0;border-bottom:1px solid var(--bd)"><span style="font-weight:700;color:var(--az)">${o.numero}</span> · ${o.placa} ${o.modelo} · ${o.servico} ${bdg(o.status)}</div>`).join('')}
+        <div style="font-size:12px;font-weight:700;color:var(--az);margin-bottom:8px">Histórico (${c.historico_os.length} OS)</div>
+        ${c.historico_os.map(o=>`<div style="font-size:12px;padding:5px 0;border-bottom:1px solid var(--bd)"><span style="font-weight:700;color:var(--az)">${o.numero}</span> · ${o.placa} · ${o.servico} ${bdg(o.status)}</div>`).join('')}
       </div>`:'';
       document.getElementById('m-cli').classList.remove('hidden');
-    } catch(e){ err(e.message); }
+    } catch(e){err(e.message);}
   }
-  function fecharCli(){ document.getElementById('m-cli').classList.add('hidden'); }
+  function fecharCli(){document.getElementById('m-cli').classList.add('hidden');}
   async function salvarCli(){
     const id=document.getElementById('c-id').value;
     const body={nome:document.getElementById('c-nome').value.trim(),telefone:document.getElementById('c-tel').value.trim(),cpf:document.getElementById('c-cpf').value.trim(),email:document.getElementById('c-email').value.trim(),endereco:document.getElementById('c-end').value.trim()};
     if(!body.nome) return err('Nome é obrigatório');
-    try {
-      if(id){ await api('PUT',`/clientes/${id}`,body); ok('Cliente atualizado.'); }
-      else  { await api('POST','/clientes',body); ok('Cliente cadastrado.'); }
-      fecharCli(); carregarClientes();
-    } catch(e){ err(e.message); }
+    try{if(id){await api('PUT',`/clientes/${id}`,body);ok('Cliente atualizado.');}else{await api('POST','/clientes',body);ok('Cliente cadastrado.');}fecharCli();carregarClientes();}catch(e){err(e.message);}
   }
-  async function excluirCli(id,nome){ if(!confirm(`Excluir "${nome}"?`))return; try{ await api('DELETE',`/clientes/${id}`); ok('Removido.','var(--co)'); carregarClientes(); }catch(e){err(e.message);} }
+  async function excluirCli(id,nome){if(!confirm(`Excluir "${nome}"?`))return;try{await api('DELETE',`/clientes/${id}`);ok('Removido.','var(--co)');carregarClientes();}catch(e){err(e.message);}}
 
-  // ═══════ VEÍCULOS ═══════
+  // ═══ VEÍCULOS ═══
   let clientesCache=[];
   async function carregarVeiculos(){
     const q=document.getElementById('veic-busca')?.value||'';
     try {
       const rows=await api('GET',`/veiculos?q=${encodeURIComponent(q)}`);
       document.getElementById('veic-sub').textContent=`${rows.length} veículo(s)`;
-      if(!rows.length){ document.getElementById('veic-lista').innerHTML=`<div class="vazio"><div class="vazio-i">🚗</div><div class="vazio-t">Nenhum veículo ainda</div><div class="vazio-s">Clique em "+ Novo Veículo"</div></div>`; return; }
+      if(!rows.length){document.getElementById('veic-lista').innerHTML=`<div class="vazio"><div class="vazio-i">🚗</div><div class="vazio-t">Nenhum veículo ainda</div><div class="vazio-s">Clique em "+ Novo Veículo"</div></div>`;return;}
       document.getElementById('veic-lista').innerHTML=`<div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>Placa</th><th>Modelo</th><th>Marca/Ano</th><th>Cliente</th><th>Cor</th><th>KM</th><th>Ações</th></tr></thead>
-      <tbody>${rows.map(v=>`<tr>
-        <td><strong style="color:var(--az);letter-spacing:1px">${v.placa}</strong></td>
-        <td>${v.modelo}</td><td>${v.marca||'-'} ${v.ano||''}</td>
-        <td>${v.cliente_nome}</td><td>${v.cor||'-'}</td>
-        <td>${v.km_atual?Number(v.km_atual).toLocaleString()+' km':'-'}</td>
-        <td class="td-btns"><button class="btn btn-i btn-sm" onclick="editarVeic(${v.id})">✎</button><button class="btn btn-d btn-sm" onclick="excluirVeic(${v.id},'${v.placa}')">🗑</button></td>
-      </tr>`).join('')}</tbody></table></div>`;
-    } catch(e){ err(e.message); }
+      <thead><tr><th>Placa</th><th>Modelo</th><th>Marca/Ano</th><th>Combustível</th><th>Cliente</th><th>KM</th><th>Ações</th></tr></thead>
+      <tbody>${rows.map(v=>`<tr><td><strong style="color:var(--az);letter-spacing:1px">${v.placa}</strong></td><td>${v.modelo}</td><td>${v.marca||'-'} ${v.ano||''}</td><td>${v.combustivel||'-'}</td><td>${v.cliente_nome}</td><td>${v.km_atual?Number(v.km_atual).toLocaleString()+' km':'-'}</td><td class="td-btns"><button class="btn btn-i btn-sm" onclick="editarVeic(${v.id})">✎</button><button class="btn btn-d btn-sm" onclick="excluirVeic(${v.id},'${v.placa}')">🗑</button></td></tr>`).join('')}</tbody></table></div>`;
+    } catch(e){err(e.message);}
   }
   async function abrirVeic(cliPre){
     clientesCache=await api('GET','/clientes');
     const sel=document.getElementById('v-cliente');
-    sel.innerHTML='<option value="">Selecione o cliente *</option><option value="__novo__">➕ Novo cliente</option>'+
-            clientesCache.map(c=>`<option value="${c.id}">${c.nome}${c.telefone?' — '+c.telefone:''}</option>`).join('');
-    sel.onchange=function(){ if(this.value==='__novo__'){this.value='';abrirCli();} };
+    sel.innerHTML='<option value="">Selecione o cliente *</option><option value="__novo__">➕ Novo cliente</option>'+clientesCache.map(c=>`<option value="${c.id}">${c.nome}${c.telefone?' — '+c.telefone:''}</option>`).join('');
+    sel.onchange=function(){if(this.value==='__novo__'){this.value='';abrirCli();}};
     if(cliPre) sel.value=cliPre;
-    document.getElementById('v-id').value=''; document.getElementById('m-veic-t').textContent='Novo Veículo';
-    ['v-placa','v-modelo','v-marca','v-cor','v-ano','v-km'].forEach(i=>document.getElementById(i).value='');
+    document.getElementById('v-id').value='';document.getElementById('m-veic-t').textContent='Novo Veículo';
+    ['v-placa','v-modelo','v-marca','v-cor','v-ano','v-km','v-chassi','v-obs'].forEach(i=>document.getElementById(i).value='');
+    document.getElementById('v-comb').value='';
     document.getElementById('m-veic').classList.remove('hidden');
   }
   async function editarVeic(id){
     await abrirVeic();
-    const rows=await api('GET','/veiculos'); const v=rows.find(x=>x.id===id); if(!v)return;
-    document.getElementById('v-id').value=id; document.getElementById('m-veic-t').textContent='Editar '+v.placa;
-    document.getElementById('v-cliente').value=v.cliente_id; document.getElementById('v-placa').value=v.placa;
-    document.getElementById('v-modelo').value=v.modelo; document.getElementById('v-marca').value=v.marca||'';
-    document.getElementById('v-ano').value=v.ano||''; document.getElementById('v-cor').value=v.cor||'';
-    document.getElementById('v-km').value=v.km_atual||0;
+    const rows=await api('GET','/veiculos');const v=rows.find(x=>x.id===id);if(!v)return;
+    document.getElementById('v-id').value=id;document.getElementById('m-veic-t').textContent='Editar '+v.placa;
+    document.getElementById('v-cliente').value=v.cliente_id;document.getElementById('v-placa').value=v.placa;
+    document.getElementById('v-modelo').value=v.modelo;document.getElementById('v-marca').value=v.marca||'';
+    document.getElementById('v-ano').value=v.ano||'';document.getElementById('v-cor').value=v.cor||'';
+    document.getElementById('v-km').value=v.km_atual||0;document.getElementById('v-comb').value=v.combustivel||'';
+    document.getElementById('v-chassi').value=v.chassi||'';document.getElementById('v-obs').value=v.obs||'';
   }
-  function fecharVeic(){ document.getElementById('m-veic').classList.add('hidden'); }
+  function fecharVeic(){document.getElementById('m-veic').classList.add('hidden');}
   async function salvarVeic(){
     const id=document.getElementById('v-id').value;
-    const body={cliente_id:document.getElementById('v-cliente').value,placa:document.getElementById('v-placa').value.trim(),modelo:document.getElementById('v-modelo').value.trim(),marca:document.getElementById('v-marca').value.trim(),ano:document.getElementById('v-ano').value,cor:document.getElementById('v-cor').value.trim(),km_atual:document.getElementById('v-km').value||0};
+    const body={cliente_id:document.getElementById('v-cliente').value,placa:document.getElementById('v-placa').value.trim(),modelo:document.getElementById('v-modelo').value.trim(),marca:document.getElementById('v-marca').value.trim(),ano:document.getElementById('v-ano').value,cor:document.getElementById('v-cor').value.trim(),km_atual:document.getElementById('v-km').value||0,combustivel:document.getElementById('v-comb').value,chassi:document.getElementById('v-chassi').value.trim(),obs:document.getElementById('v-obs').value.trim()};
     if(!body.placa||!body.modelo||!body.cliente_id) return err('Cliente, placa e modelo são obrigatórios');
-    try {
-      if(id){ await api('PUT',`/veiculos/${id}`,body); ok('Veículo atualizado.'); }
-      else  { await api('POST','/veiculos',body); ok('Veículo cadastrado.'); }
-      fecharVeic(); carregarVeiculos();
-    } catch(e){ err(e.message); }
+    try{if(id){await api('PUT',`/veiculos/${id}`,body);ok('Veículo atualizado.');}else{await api('POST','/veiculos',body);ok('Veículo cadastrado.');}fecharVeic();carregarVeiculos();}catch(e){err(e.message);}
   }
-  async function excluirVeic(id,placa){ if(!confirm(`Excluir ${placa}?`))return; try{ await api('DELETE',`/veiculos/${id}`); ok('Removido.','var(--co)'); carregarVeiculos(); }catch(e){err(e.message);} }
+  async function excluirVeic(id,placa){if(!confirm(`Excluir ${placa}?`))return;try{await api('DELETE',`/veiculos/${id}`);ok('Removido.','var(--co)');carregarVeiculos();}catch(e){err(e.message);}}
 
-  // ═══════ PEÇAS ═══════
+  // ═══ PEÇAS ═══
   async function carregarPecas(){
     try {
       const rows=await api('GET','/pecas');
-      const crit=rows.filter(p=>p.qtd<=p.qtd_minima).length, zero=rows.filter(p=>p.qtd==0).length;
+      pecasEstoqueCache=rows;
+      const crit=rows.filter(p=>p.qtd<=p.qtd_minima).length,zero=rows.filter(p=>p.qtd==0).length;
       document.getElementById('pecas-sub').textContent=`${rows.length} peça(s) · ${crit} em alerta`;
-      document.getElementById('pecas-kpis').innerHTML=`
-      <div class="kpi"><div class="kpi-n" style="color:var(--azM)">${rows.length}</div><div class="kpi-l">Total</div></div>
-      <div class="kpi"><div class="kpi-n" style="color:var(--am)">${crit}</div><div class="kpi-l">Estoque crítico</div></div>
-      <div class="kpi"><div class="kpi-n" style="color:var(--co)">${zero}</div><div class="kpi-l">Sem estoque</div></div>`;
-      document.getElementById('pecas-alertas').innerHTML=rows.filter(p=>p.qtd<=p.qtd_minima).map(p=>
-              `<div class="alerta alerta-${p.qtd==0?'co':'am'}">${p.qtd==0?'🚫':'⚠'} <strong>${p.nome}</strong> — ${p.qtd==0?'SEM ESTOQUE':'Crítico'}: ${p.qtd} ${p.unidade} (mínimo: ${p.qtd_minima})${p.fornecedor?' · '+p.fornecedor:''}</div>`
-      ).join('');
-      if(!rows.length){ document.getElementById('pecas-lista').innerHTML=`<div class="vazio"><div class="vazio-i">📦</div><div class="vazio-t">Estoque vazio</div><div class="vazio-s">Clique em "+ Nova Peça"</div></div>`; return; }
-      document.getElementById('pecas-lista').innerHTML=`<div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>Peça</th><th>Categoria</th><th>Estoque</th><th>Mínimo</th><th>Fornecedor</th><th>Status</th><th>Ações</th></tr></thead>
-      <tbody>${rows.map(p=>{
-        const cor=p.qtd==0?'var(--co)':p.qtd<=p.qtd_minima?'var(--am)':'var(--vd)';
-        const pct=p.qtd_minima>0?Math.min(100,Math.round(p.qtd/p.qtd_minima*100)):100;
-        return `<tr><td><strong>${p.nome}</strong></td><td>${p.categoria}</td>
-          <td><div style="display:flex;align-items:center;gap:6px">
-            <button class="btn btn-g btn-sm" onclick="ajustarPeca(${p.id},-1)">−</button>
-            <strong style="color:${cor};min-width:24px;text-align:center">${p.qtd}</strong>
-            <span style="font-size:10px;color:var(--cz)">${p.unidade}</span>
-            <button class="btn btn-g btn-sm" onclick="ajustarPeca(${p.id},1)">+</button>
-          </div><div style="height:3px;background:#f1f5f9;border-radius:2px;margin-top:3px;width:70px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${cor}"></div></div></td>
-          <td>${p.qtd_minima} ${p.unidade}</td><td>${p.fornecedor||'—'}</td>
-          <td><span class="bdg" style="background:${cor}22;color:${cor}">${p.qtd==0?'Sem estoque':p.qtd<=p.qtd_minima?'Crítico':'OK'}</span></td>
-          <td class="td-btns"><button class="btn btn-i btn-sm" onclick="editarPeca(${p.id})">✎</button><button class="btn btn-d btn-sm" onclick="excluirPeca(${p.id})">🗑</button></td>
-        </tr>`;}).join('')}</tbody></table></div>`;
-    } catch(e){ err(e.message); }
+      document.getElementById('pecas-kpis').innerHTML=`<div class="kpi"><div class="kpi-n" style="color:var(--azM)">${rows.length}</div><div class="kpi-l">Total</div></div><div class="kpi"><div class="kpi-n" style="color:var(--am)">${crit}</div><div class="kpi-l">Estoque crítico</div></div><div class="kpi"><div class="kpi-n" style="color:var(--co)">${zero}</div><div class="kpi-l">Sem estoque</div></div>`;
+      document.getElementById('pecas-alertas').innerHTML=rows.filter(p=>p.qtd<=p.qtd_minima).map(p=>`<div class="alerta alerta-${p.qtd==0?'co':'am'}">${p.qtd==0?'🚫':'⚠'} <strong>${p.nome}</strong> — ${p.qtd==0?'SEM ESTOQUE':'Crítico'}: ${p.qtd} ${p.unidade} (mín: ${p.qtd_minima})${p.fornecedor?' · '+p.fornecedor:''}</div>`).join('');
+      if(!rows.length){document.getElementById('pecas-lista').innerHTML=`<div class="vazio"><div class="vazio-i">📦</div><div class="vazio-t">Estoque vazio</div><div class="vazio-s">Clique em "+ Nova Peça"</div></div>`;return;}
+      document.getElementById('pecas-lista').innerHTML=`<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Peça</th><th>Cat.</th><th>Estoque</th><th>Mín.</th><th>Custo</th><th>Venda</th><th>Fornecedor</th><th>Status</th><th>Ações</th></tr></thead><tbody>${rows.map(p=>{const cor=p.qtd==0?'var(--co)':p.qtd<=p.qtd_minima?'var(--am)':'var(--vd)';const pct=p.qtd_minima>0?Math.min(100,Math.round(p.qtd/p.qtd_minima*100)):100;return `<tr><td><strong>${p.nome}</strong></td><td>${p.categoria}</td><td><div style="display:flex;align-items:center;gap:5px"><button class="btn btn-g btn-sm" onclick="ajustarPeca(${p.id},-1)">−</button><strong style="color:${cor};min-width:24px;text-align:center">${p.qtd}</strong><span style="font-size:10px;color:var(--cz)">${p.unidade}</span><button class="btn btn-g btn-sm" onclick="ajustarPeca(${p.id},1)">+</button></div><div style="height:3px;background:#f1f5f9;border-radius:2px;margin-top:3px;width:70px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${cor}"></div></div></td><td>${p.qtd_minima}</td><td>${fmtR(p.preco_custo)}</td><td>${fmtR(p.preco_venda)}</td><td>${p.fornecedor||'—'}</td><td><span class="bdg" style="background:${cor}22;color:${cor}">${p.qtd==0?'Sem est.':p.qtd<=p.qtd_minima?'Crítico':'OK'}</span></td><td class="td-btns"><button class="btn btn-i btn-sm" onclick="editarPeca(${p.id})">✎</button><button class="btn btn-d btn-sm" onclick="excluirPeca(${p.id})">🗑</button></td></tr>`;}).join('')}</tbody></table></div>`;
+    } catch(e){err(e.message);}
   }
-  function abrirPeca(){
-    document.getElementById('p-id').value=''; document.getElementById('m-peca-t').textContent='Nova Peça';
-    ['p-nome','p-forn'].forEach(i=>document.getElementById(i).value='');
-    document.getElementById('p-qtd').value='0'; document.getElementById('p-min').value='1'; document.getElementById('p-preco').value='0';
-    document.getElementById('m-peca').classList.remove('hidden');
-  }
-  async function editarPeca(id){
-    const rows=await api('GET','/pecas'); const p=rows.find(x=>x.id===id); if(!p)return;
-    document.getElementById('p-id').value=id; document.getElementById('m-peca-t').textContent='Editar — '+p.nome;
-    document.getElementById('p-nome').value=p.nome; document.getElementById('p-cat').value=p.categoria;
-    document.getElementById('p-un').value=p.unidade; document.getElementById('p-qtd').value=p.qtd;
-    document.getElementById('p-min').value=p.qtd_minima; document.getElementById('p-forn').value=p.fornecedor||'';
-    document.getElementById('p-preco').value=p.preco_custo||0;
-    document.getElementById('m-peca').classList.remove('hidden');
-  }
-  function fecharPeca(){ document.getElementById('m-peca').classList.add('hidden'); }
+  function abrirPeca(){document.getElementById('p-id').value='';document.getElementById('m-peca-t').textContent='Nova Peça';['p-nome','p-forn'].forEach(i=>document.getElementById(i).value='');document.getElementById('p-qtd').value='0';document.getElementById('p-min').value='1';document.getElementById('p-custo').value='0';document.getElementById('p-venda').value='0';document.getElementById('m-peca').classList.remove('hidden');}
+  async function editarPeca(id){const rows=await api('GET','/pecas');const p=rows.find(x=>x.id===id);if(!p)return;document.getElementById('p-id').value=id;document.getElementById('m-peca-t').textContent='Editar — '+p.nome;document.getElementById('p-nome').value=p.nome;document.getElementById('p-cat').value=p.categoria;document.getElementById('p-un').value=p.unidade;document.getElementById('p-qtd').value=p.qtd;document.getElementById('p-min').value=p.qtd_minima;document.getElementById('p-forn').value=p.fornecedor||'';document.getElementById('p-custo').value=p.preco_custo||0;document.getElementById('p-venda').value=p.preco_venda||0;document.getElementById('m-peca').classList.remove('hidden');}
+  function fecharPeca(){document.getElementById('m-peca').classList.add('hidden');}
   async function salvarPeca(){
     const id=document.getElementById('p-id').value;
-    const body={nome:document.getElementById('p-nome').value.trim(),categoria:document.getElementById('p-cat').value,unidade:document.getElementById('p-un').value,qtd:parseInt(document.getElementById('p-qtd').value)||0,qtd_minima:parseInt(document.getElementById('p-min').value)||1,fornecedor:document.getElementById('p-forn').value.trim(),preco_custo:parseFloat(document.getElementById('p-preco').value)||0};
+    const body={nome:document.getElementById('p-nome').value.trim(),categoria:document.getElementById('p-cat').value,unidade:document.getElementById('p-un').value,qtd:parseInt(document.getElementById('p-qtd').value)||0,qtd_minima:parseInt(document.getElementById('p-min').value)||1,fornecedor:document.getElementById('p-forn').value.trim(),preco_custo:parseFloat(document.getElementById('p-custo').value)||0,preco_venda:parseFloat(document.getElementById('p-venda').value)||0};
     if(!body.nome) return err('Nome é obrigatório');
-    try {
-      if(id){ await api('PUT',`/pecas/${id}`,body); ok('Peça atualizada.'); }
-      else  { await api('POST','/pecas',body); ok('Peça cadastrada.'); }
-      fecharPeca(); carregarPecas();
-    } catch(e){ err(e.message); }
+    try{if(id){await api('PUT',`/pecas/${id}`,body);ok('Peça atualizada.');}else{await api('POST','/pecas',body);ok('Peça cadastrada.');}fecharPeca();carregarPecas();}catch(e){err(e.message);}
   }
-  async function ajustarPeca(id,delta){ try{ const r=await api('PATCH',`/pecas/${id}/ajustar`,{delta}); ok(`Estoque: ${r.qtd}`); carregarPecas(); }catch(e){err(e.message);} }
-  async function excluirPeca(id){ if(!confirm('Excluir?'))return; try{ await api('DELETE',`/pecas/${id}`); ok('Removida.','var(--co)'); carregarPecas(); }catch(e){err(e.message);} }
+  async function ajustarPeca(id,delta){try{const r=await api('PATCH',`/pecas/${id}/ajustar`,{delta});ok(`Estoque: ${r.qtd}`);carregarPecas();}catch(e){err(e.message);}}
+  async function excluirPeca(id){if(!confirm('Excluir?'))return;try{await api('DELETE',`/pecas/${id}`);ok('Removida.','var(--co)');carregarPecas();}catch(e){err(e.message);}}
+  async function carregarMovimentacao(){
+    try {
+      const rows=await api('GET','/estoque/movimentacao');
+      if(!rows.length){document.getElementById('mov-lista').innerHTML=`<div class="vazio"><div class="vazio-i">📋</div><div class="vazio-t">Nenhuma movimentação</div></div>`;return;}
+      document.getElementById('mov-lista').innerHTML=`<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Data</th><th>Peça</th><th>Tipo</th><th>Qtd.</th><th>OS</th><th>Usuário</th><th>Obs.</th></tr></thead><tbody>${rows.map(r=>`<tr><td style="font-size:11px">${fmtD(r.criado_em)}</td><td><strong>${r.peca_nome}</strong></td><td><span class="bdg ${r.tipo.includes('entrada')?'bdg-vd':r.tipo.includes('saida')?'bdg-co':'bdg-am'}">${r.tipo}</span></td><td><strong>${r.qtd}</strong></td><td>${r.os_id||'—'}</td><td>${r.usuario||'—'}</td><td style="font-size:11px">${r.obs||'—'}</td></tr>`).join('')}</tbody></table></div>`;
+    } catch(e){err(e.message);}
+  }
 
-  // ═══════ OS ═══════
+  // ═══ MECÂNICOS ═══
+  async function carregarMecanicos(){
+    try {
+      const rows=await api('GET','/mecanicos');
+      document.getElementById('mec-sub').textContent=`${rows.length} mecânico(s)`;
+      if(!rows.length){document.getElementById('mec-lista').innerHTML=`<div class="vazio"><div class="vazio-i">🔩</div><div class="vazio-t">Nenhum mecânico cadastrado</div><div class="vazio-s">Clique em "+ Novo Mecânico"</div></div>`;return;}
+      const cores={disponivel:'var(--vd)',ocupado:'var(--azM)',ausente:'var(--am)',ferias:'var(--rx)'};
+      document.getElementById('mec-lista').innerHTML=rows.map(m=>`
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-size:14px;font-weight:700;color:var(--az)">${m.nome}</div>
+            <div style="font-size:12px;color:var(--cz);margin-top:3px">
+              ${m.especialidade} · ${m.telefone||'—'} · Comissão: ${m.comissao||0}% · OSs ativas: ${m.os_ativas||0}
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="bdg" style="background:${cores[m.status]||'var(--vd)'}22;color:${cores[m.status]||'var(--vd)'}">${m.status}</span>
+            <div class="td-btns">
+              <button class="btn btn-i btn-sm" onclick="verRelMec(${m.id},'${m.nome.replace(/'/g,"\\'")}')">📊 Relatório</button>
+              <button class="btn btn-am btn-sm" onclick="editarMec(${m.id})">✎ Editar</button>
+              <button class="btn btn-d btn-sm" onclick="excluirMec(${m.id},'${m.nome.replace(/'/g,"\\'")}')">🗑</button>
+            </div>
+          </div>
+        </div>
+      </div>`).join('');
+    } catch(e){err(e.message);}
+  }
+  async function abrirMec(){
+    mecIdAtual=null;document.getElementById('me-id').value='';document.getElementById('m-mec-t').textContent='Novo Mecânico';
+    ['me-nome','me-tel','me-obs'].forEach(i=>document.getElementById(i).value='');
+    document.getElementById('me-com').value='0';document.getElementById('me-status').value='disponivel';
+    document.getElementById('me-vales-sec').classList.add('hidden');
+    document.getElementById('m-mec').classList.remove('hidden');
+  }
+  async function editarMec(id){
+    const rows=await api('GET','/mecanicos');const m=rows.find(x=>x.id===id);if(!m)return;
+    mecIdAtual=id;document.getElementById('me-id').value=id;document.getElementById('m-mec-t').textContent='Editar — '+m.nome;
+    document.getElementById('me-nome').value=m.nome;document.getElementById('me-tel').value=m.telefone||'';
+    document.getElementById('me-esp').value=m.especialidade||'Mecânica geral';document.getElementById('me-status').value=m.status||'disponivel';
+    document.getElementById('me-com').value=m.comissao||0;document.getElementById('me-obs').value=m.obs||'';
+    document.getElementById('me-vales-sec').classList.remove('hidden');
+    carregarValesModal(id);
+    document.getElementById('m-mec').classList.remove('hidden');
+  }
+  async function carregarValesModal(id){
+    const vales=await api('GET',`/mecanicos/${id}/vales`);
+    const total=vales.reduce((s,v)=>s+(parseFloat(v.valor)||0),0);
+    document.getElementById('vales-lista').innerHTML=vales.length?`
+    <div style="font-size:12px;font-weight:700;color:var(--co);margin-bottom:6px">Total de vales: ${fmtR(total)}</div>
+    ${vales.map(v=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bd);font-size:12px">
+      <span>${fmtD(v.criado_em)} · ${v.motivo||'Sem motivo'}</span>
+      <div style="display:flex;align-items:center;gap:8px"><strong style="color:var(--co)">${fmtR(v.valor)}</strong>
+        <button class="btn btn-d btn-sm" onclick="excluirVale(${v.id})">🗑</button></div>
+    </div>`).join('')}`:'<p style="font-size:12px;color:var(--cz)">Nenhum vale registrado</p>';
+  }
+  async function adicionarVale(){
+    if(!mecIdAtual) return;
+    const valor=document.getElementById('vale-valor').value;
+    const motivo=document.getElementById('vale-motivo').value.trim();
+    if(!valor) return err('Informe o valor do vale');
+    try{await api('POST',`/mecanicos/${mecIdAtual}/vales`,{valor,motivo});ok('Vale registrado.');document.getElementById('vale-valor').value='';document.getElementById('vale-motivo').value='';carregarValesModal(mecIdAtual);}catch(e){err(e.message);}
+  }
+  async function excluirVale(id){if(!confirm('Excluir este vale?'))return;try{await api('DELETE',`/vales/${id}`);ok('Vale removido.','var(--co)');carregarValesModal(mecIdAtual);}catch(e){err(e.message);}}
+  function fecharMec(){document.getElementById('m-mec').classList.add('hidden');mecIdAtual=null;}
+  async function salvarMec(){
+    const id=document.getElementById('me-id').value;
+    const body={nome:document.getElementById('me-nome').value.trim(),telefone:document.getElementById('me-tel').value.trim(),especialidade:document.getElementById('me-esp').value,status:document.getElementById('me-status').value,comissao:parseFloat(document.getElementById('me-com').value)||0,obs:document.getElementById('me-obs').value.trim()};
+    if(!body.nome) return err('Nome é obrigatório');
+    try{if(id){await api('PUT',`/mecanicos/${id}`,body);ok('Mecânico atualizado.');}else{await api('POST','/mecanicos',body);ok('Mecânico cadastrado.');}fecharMec();carregarMecanicos();}catch(e){err(e.message);}
+  }
+  async function excluirMec(id,nome){if(!confirm(`Excluir "${nome}"?`))return;try{await api('DELETE',`/mecanicos/${id}`);ok('Removido.','var(--co)');carregarMecanicos();}catch(e){err(e.message);}}
+  async function verRelMec(id,nome){
+    try {
+      const r=await api('GET',`/mecanicos/${id}/relatorio`);
+      const w=window.open('','_blank');
+      w.document.write(`<html><head><title>Relatório — ${nome}</title><style>body{font-family:sans-serif;padding:24px;max-width:800px;margin:0 auto}h1{color:#1F4E78}table{width:100%;border-collapse:collapse;margin-top:16px}th{background:#1F4E78;color:#fff;padding:8px 12px;text-align:left}td{padding:8px 12px;border-bottom:1px solid #e2e8f0}tr:hover td{background:#f8fafc}.stat{display:inline-block;background:#EBF3FB;color:#2E75B6;padding:8px 16px;border-radius:8px;margin:4px;font-weight:700}</style></head><body>
+      <h1>📊 Relatório — ${nome}</h1>
+      <p>Especialidade: ${r.mecanico.especialidade} · Comissão: ${r.mecanico.comissao||0}%</p>
+      <div style="margin:16px 0">
+        <span class="stat">Total OS: ${r.os.length}</span>
+        <span class="stat">Mão de obra: ${fmtR(r.totalMaoObra)}</span>
+        <span class="stat">Comissão: ${fmtR(r.comissao)}</span>
+        <span class="stat" style="background:#FAECE7;color:#993C1D">Vales: ${fmtR(r.totalVales)}</span>
+        <span class="stat" style="background:#E1F5EE;color:#0F6E56">Líquido: ${fmtR(r.liquido)}</span>
+      </div>
+      <table><thead><tr><th>OS</th><th>Data</th><th>Serviço</th><th>Status</th><th>Valor</th></tr></thead><tbody>
+        ${r.os.map(o=>`<tr><td>${o.numero}</td><td>${fmtD(o.criado_em)}</td><td>${o.servico}</td><td>${o.status}</td><td>${fmtR(o.valor_mao_obra||o.valor_total)}</td></tr>`).join('')}
+      </tbody></table>
+      ${r.vales.length?`<h2>Vales</h2><table><thead><tr><th>Data</th><th>Motivo</th><th>Valor</th></tr></thead><tbody>${r.vales.map(v=>`<tr><td>${fmtD(v.criado_em)}</td><td>${v.motivo||'—'}</td><td>${fmtR(v.valor)}</td></tr>`).join('')}</tbody></table>`:''}
+    </body></html>`);
+    } catch(e){err(e.message);}
+  }
+
+  // ═══ OS ═══
   async function carregarOS(){
     const busca=document.getElementById('os-busca')?.value||'';
     try {
-      const [todos,filtrados]=await Promise.all([
-        api('GET','/os'),
-        api('GET',`/os?status=${filtroOS}&busca=${encodeURIComponent(busca)}`)
-      ]);
+      const [todos,filtrados]=await Promise.all([api('GET','/os'),api('GET',`/os?status=${filtroOS}&busca=${encodeURIComponent(busca)}`)]);
       const cnt=s=>todos.filter(o=>o.status===s).length;
       document.getElementById('os-sub').textContent=`${todos.length} OS(s) no sistema`;
       document.getElementById('os-kpis').innerHTML=`
@@ -735,23 +800,21 @@
       <div class="kpi" onclick="filtroOS='aguardando_peca';carregarOS()"><div class="kpi-n" style="color:var(--am)">${cnt('aguardando_peca')}</div><div class="kpi-l">Ag. peça</div></div>
       <div class="kpi" onclick="filtroOS='finalizado';carregarOS()"><div class="kpi-n" style="color:var(--tl)">${cnt('finalizado')+cnt('entregue')}</div><div class="kpi-l">Finalizadas</div></div>
       <div class="kpi" onclick="filtroOS='cancelado';carregarOS()"><div class="kpi-n" style="color:var(--co)">${cnt('cancelado')}</div><div class="kpi-l">Canceladas</div></div>`;
-      document.getElementById('os-filtros').innerHTML=[
-        {v:'todos',l:'Todas'},{v:'aguardando_atendimento',l:'Aguardando'},{v:'em_execucao',l:'Em execução'},
-        {v:'aguardando_peca',l:'Ag. peça'},{v:'pausado',l:'Pausada'},{v:'finalizado',l:'Finalizada'},{v:'entregue',l:'Entregue'}
-      ].map(f=>`<button class="filtro-btn ${filtroOS===f.v?'on':''}" onclick="filtroOS='${f.v}';carregarOS()">${f.l}</button>`).join('');
-      if(!filtrados.length){ document.getElementById('os-lista').innerHTML=`<div class="vazio"><div class="vazio-i">📋</div><div class="vazio-t">${todos.length===0?'Nenhuma OS ainda':'Nenhuma OS encontrada'}</div><div class="vazio-s">${todos.length===0?'Clique em "+ Nova OS"':'Tente outro filtro'}</div></div>`; return; }
+      document.getElementById('os-filtros').innerHTML=[{v:'todos',l:'Todas'},{v:'aguardando_atendimento',l:'Aguardando'},{v:'diagnostico',l:'Diagnóstico'},{v:'em_execucao',l:'Em execução'},{v:'aguardando_peca',l:'Ag. peça'},{v:'pausado',l:'Pausada'},{v:'finalizado',l:'Finalizada'},{v:'entregue',l:'Entregue'}].map(f=>`<button class="filtro-btn ${filtroOS===f.v?'on':''}" onclick="filtroOS='${f.v}';carregarOS()">${f.l}</button>`).join('');
+      if(!filtrados.length){document.getElementById('os-lista').innerHTML=`<div class="vazio"><div class="vazio-i">📋</div><div class="vazio-t">${todos.length===0?'Nenhuma OS ainda':'Nenhuma OS encontrada'}</div><div class="vazio-s">${todos.length===0?'Clique em "+ Nova OS"':'Tente outro filtro'}</div></div>`;return;}
       document.getElementById('os-lista').innerHTML=filtrados.map(o=>`
       <div class="card" style="margin-bottom:8px">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
             <strong style="font-size:13px;color:var(--az)">${o.numero}</strong>
-            <span style="font-size:11px;color:var(--cz)">${fmtData(o.criado_em)}</span>
-            ${bdg(o.status)}
+            <span style="font-size:11px;color:var(--cz)">${fmtD(o.criado_em)}</span>
+            ${bdg(o.status)} ${prioBdg(o.prioridade||'media')}
             ${o.elevador_nome?`<span class="bdg bdg-az">🔧 ${o.elevador_nome}</span>`:''}
-            ${o.valor_total>0?`<span class="bdg bdg-tl">${fmtMoeda(o.valor_total)}</span>`:''}
+            ${o.valor_total>0?`<span class="bdg bdg-tl">${fmtR(o.valor_total)}</span>`:''}
+            ${o.previsao_entrega?`<span class="bdg" style="background:#f0fdf4;color:#16a34a">⏱ ${fmtD(o.previsao_entrega)}</span>`:''}
           </div>
           <div class="td-btns">
-            ${!['finalizado','entregue','cancelado'].includes(o.status)?`<button class="btn btn-s btn-sm" onclick="mudarStatusOS(${o.id},'finalizado')">✓ Finalizar</button>`:''}
+            ${!['finalizado','entregue','cancelado'].includes(o.status)?`<button class="btn btn-s btn-sm" onclick="abrirFinalizar(${o.id})">✓ Finalizar</button>`:''}
             ${o.status==='finalizado'?`<button class="btn btn-p btn-sm" onclick="mudarStatusOS(${o.id},'entregue')">🚗 Entregar</button>`:''}
             ${o.status==='em_execucao'?`<button class="btn btn-am btn-sm" onclick="mudarStatusOS(${o.id},'aguardando_peca')">⚠ Ag. peça</button>`:''}
             <button class="btn btn-i btn-sm" onclick="editarOS(${o.id})">✎</button>
@@ -761,241 +824,333 @@
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;font-size:12px">
           <div><span style="color:var(--cz);font-weight:600">Cliente: </span>${o.cliente_nome}</div>
           <div><span style="color:var(--cz);font-weight:600">Placa: </span><strong style="letter-spacing:1px">${o.placa}</strong> ${o.modelo}</div>
-          <div><span style="color:var(--cz);font-weight:600">Serviço: </span>${o.servico}</div>
+          <div><span style="color:var(--cz);font-weight:600">Serviço: </span>${o.servico==='outro'&&o.servico_outro?o.servico_outro:o.servico}</div>
           <div><span style="color:var(--cz);font-weight:600">Mecânico: </span>${o.mecanico}</div>
           ${o.cliente_tel?`<div><span style="color:var(--cz);font-weight:600">Tel.: </span>${o.cliente_tel}</div>`:''}
+          ${o.status_pagamento?`<div><span style="color:var(--cz);font-weight:600">Pagamento: </span><span class="bdg ${o.status_pagamento==='pago'?'bdg-vd':o.status_pagamento==='parcial'?'bdg-am':'bdg-co'}">${o.status_pagamento}</span></div>`:''}
         </div>
         ${o.obs?`<div class="alerta alerta-am" style="margin-top:8px">⚠ ${o.obs}</div>`:''}
       </div>`).join('');
-    } catch(e){ err(e.message); }
+    } catch(e){err(e.message);}
   }
 
   async function abrirOS(){
-    const [clis,elevs]=await Promise.all([api('GET','/clientes'),api('GET','/elevadores')]);
+    const [clis,elevs,mecs]=await Promise.all([api('GET','/clientes'),api('GET','/elevadores'),api('GET','/mecanicos')]);
+    pecasEstoqueCache=await api('GET','/pecas');
     document.getElementById('o-cliente').innerHTML='<option value="">Selecione...</option>'+clis.map(c=>`<option value="${c.id}">${c.nome}${c.telefone?' — '+c.telefone:''}</option>`).join('');
     document.getElementById('o-elev').innerHTML='<option value="">Sem equipamento</option>'+elevs.filter(e=>e.status==='livre').map(e=>`<option value="${e.id}">${e.nome}</option>`).join('');
-    document.getElementById('o-id').value=''; document.getElementById('m-os-t').textContent='Nova OS';
+    document.getElementById('o-mec').innerHTML='<option value="">Selecione...</option>'+mecs.map(m=>`<option value="${m.nome}">${m.nome} (${m.especialidade})</option>`).join('');
+    document.getElementById('o-peca-sel').innerHTML='<option value="">Selecione a peça...</option>'+pecasEstoqueCache.map(p=>`<option value="${p.id}" data-preco="${p.preco_venda||p.preco_custo||0}" data-est="${p.qtd}">${p.nome} (${p.qtd} ${p.unidade})</option>`).join('');
+    document.getElementById('o-id').value='';document.getElementById('m-os-t').textContent='Nova OS';
     document.getElementById('o-veiculo').innerHTML='<option value="">Selecione o cliente primeiro...</option>';
     ['o-obs','o-servico-outro'].forEach(i=>document.getElementById(i).value='');
-    document.getElementById('o-status').value='aguardando_atendimento';
-    document.getElementById('o-km').value=''; document.getElementById('o-valor').value='';
-    document.getElementById('o-outro-wrap').classList.add('hidden');
-    document.getElementById('o-serv').value='';
+    document.getElementById('o-status').value='aguardando_atendimento';document.getElementById('o-prio').value='media';
+    document.getElementById('o-km').value='';document.getElementById('o-maobra').value='';document.getElementById('o-desconto').value='0';document.getElementById('o-previsao').value='';
+    document.getElementById('o-outro-wrap').classList.add('hidden');document.getElementById('o-serv').value='';
+    pecasOS=[];renderPecasOS();
     document.getElementById('m-os').classList.remove('hidden');
   }
 
-  document.addEventListener('change',function(e){
-    if(e.target.id==='o-serv'){
-      const w=document.getElementById('o-outro-wrap');
-      e.target.value==='outro'?w.classList.remove('hidden'):w.classList.add('hidden');
-    }
-  });
+  function toggleOutro(){const w=document.getElementById('o-outro-wrap');document.getElementById('o-serv').value==='outro'?w.classList.remove('hidden'):w.classList.add('hidden');}
+  function toggleOutroOrc(){const w=document.getElementById('orc-outro-wrap');document.getElementById('orc-serv').value==='outro'?w.classList.remove('hidden'):w.classList.add('hidden');}
 
   async function carregarVeicCliente(){
-    const cliId=document.getElementById('o-cliente').value; if(!cliId)return;
+    const cliId=document.getElementById('o-cliente').value;if(!cliId)return;
     const veics=await api('GET','/veiculos');
     const meus=veics.filter(v=>v.cliente_id==cliId);
     document.getElementById('o-veiculo').innerHTML='<option value="">Selecione o veículo *</option>'+meus.map(v=>`<option value="${v.id}">${v.placa} — ${v.modelo} ${v.ano||''}</option>`).join('');
+    // Verifica garantia ativa
+    if(meus.length>0){
+      try{const gar=await api('GET',`/garantias/verificar/${meus[0].id}`);if(gar.length>0)ok(`⚠ Veículo tem garantia ativa: ${gar[0].servico} (válida até ${fmtD(gar[0].validade_data)})`,'var(--am)');}catch{}
+    }
+  }
+
+  // Peças na OS
+  function addPecaOS(){
+    const sel=document.getElementById('o-peca-sel');
+    const qtd=parseInt(document.getElementById('o-peca-qtd').value)||1;
+    if(!sel.value) return err('Selecione uma peça');
+    const opt=sel.options[sel.selectedIndex];
+    const preco=parseFloat(opt.dataset.preco)||0;
+    const est=parseInt(opt.dataset.est)||0;
+    if(qtd>est) return err(`Estoque insuficiente. Disponível: ${est}`);
+    const idx=pecasOS.findIndex(p=>p.peca_id==sel.value);
+    if(idx>=0) pecasOS[idx].qtd+=qtd;
+    else pecasOS.push({peca_id:parseInt(sel.value),nome:opt.text.split(' (')[0],qtd,preco_un:preco});
+    renderPecasOS();
+  }
+  function removerPecaOS(i){pecasOS.splice(i,1);renderPecasOS();}
+  function renderPecasOS(){
+    const el=document.getElementById('o-pecas-lista');
+    if(!pecasOS.length){el.innerHTML='<p style="font-size:11px;color:var(--cz)">Nenhuma peça adicionada</p>';document.getElementById('o-total-pecas').textContent='R$ 0,00';calcularTotal();return;}
+    const totalP=pecasOS.reduce((s,p)=>s+p.qtd*p.preco_un,0);
+    el.innerHTML=pecasOS.map((p,i)=>`<div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid var(--bd);font-size:12px"><span style="flex:1">${p.nome}</span><span style="color:var(--cz)">${p.qtd}x ${fmtR(p.preco_un)}</span><strong style="color:var(--az)">${fmtR(p.qtd*p.preco_un)}</strong><button class="btn btn-d btn-sm" onclick="removerPecaOS(${i})" style="padding:2px 7px">✕</button></div>`).join('');
+    document.getElementById('o-total-pecas').textContent=fmtR(totalP);
+    calcularTotal();
+  }
+  function calcularTotal(){
+    const maobra=parseFloat(document.getElementById('o-maobra')?.value)||0;
+    const desc=parseFloat(document.getElementById('o-desconto')?.value)||0;
+    const pecas=pecasOS.reduce((s,p)=>s+p.qtd*p.preco_un,0);
+    const total=maobra+pecas-desc;
+    const el=document.getElementById('o-total-geral');
+    if(el) el.textContent=fmtR(total);
   }
 
   async function editarOS(id){
     await abrirOS();
     const o=await api('GET',`/os/${id}`);
-    document.getElementById('o-id').value=id; document.getElementById('m-os-t').textContent='Editar '+o.numero;
-    document.getElementById('o-cliente').value=o.cliente_id; await carregarVeicCliente();
-    document.getElementById('o-veiculo').value=o.veiculo_id; document.getElementById('o-mec').value=o.mecanico;
-    document.getElementById('o-serv').value=o.servico; document.getElementById('o-status').value=o.status;
-    document.getElementById('o-obs').value=o.obs||''; document.getElementById('o-km').value=o.km_entrada||0;
-    document.getElementById('o-valor').value=o.valor_total||0;
+    document.getElementById('o-id').value=id;document.getElementById('m-os-t').textContent='Editar '+o.numero;
+    document.getElementById('o-cliente').value=o.cliente_id;await carregarVeicCliente();
+    document.getElementById('o-veiculo').value=o.veiculo_id;document.getElementById('o-mec').value=o.mecanico;
+    document.getElementById('o-serv').value=o.servico;document.getElementById('o-prio').value=o.prioridade||'media';
+    document.getElementById('o-status').value=o.status;document.getElementById('o-obs').value=o.obs||'';
+    document.getElementById('o-km').value=o.km_entrada||0;document.getElementById('o-maobra').value=o.valor_mao_obra||0;
+    document.getElementById('o-desconto').value=o.desconto||0;
+    document.getElementById('o-previsao').value=o.previsao_entrega?o.previsao_entrega.slice(0,16):'';
+    if(o.servico==='outro'&&o.servico_outro){document.getElementById('o-outro-wrap').classList.remove('hidden');document.getElementById('o-servico-outro').value=o.servico_outro;}
+    pecasOS=(o.pecas||[]).map(p=>({peca_id:p.peca_id,nome:p.peca_nome,qtd:p.qtd,preco_un:parseFloat(p.preco_un)||0}));
+    renderPecasOS();
   }
-  function fecharOS(){ document.getElementById('m-os').classList.add('hidden'); }
+  function fecharOS(){document.getElementById('m-os').classList.add('hidden');}
   async function salvarOS(){
     const id=document.getElementById('o-id').value;
     const servico=document.getElementById('o-serv').value;
     if(!servico) return err('Selecione o serviço');
+    const servico_outro=servico==='outro'?document.getElementById('o-servico-outro').value.trim():null;
+    if(servico==='outro'&&!servico_outro) return err('Descreva o serviço');
     const body={
-      cliente_id:document.getElementById('o-cliente').value,
-      veiculo_id:document.getElementById('o-veiculo').value,
-      elevador_id:document.getElementById('o-elev').value||null,
-      mecanico:document.getElementById('o-mec').value,
-      servico, obs:document.getElementById('o-obs').value.trim(),
-      status:document.getElementById('o-status').value,
-      km_entrada:document.getElementById('o-km').value||0,
-      valor_total:document.getElementById('o-valor').value||0,
+      cliente_id:document.getElementById('o-cliente').value,veiculo_id:document.getElementById('o-veiculo').value,
+      elevador_id:document.getElementById('o-elev').value||null,mecanico:document.getElementById('o-mec').value,
+      servico,servico_outro,status:document.getElementById('o-status').value,
+      prioridade:document.getElementById('o-prio').value,obs:document.getElementById('o-obs').value.trim(),
+      km_entrada:document.getElementById('o-km').value||0,valor_mao_obra:document.getElementById('o-maobra').value||0,
+      desconto:document.getElementById('o-desconto').value||0,
+      previsao_entrega:document.getElementById('o-previsao').value||null,pecas:pecasOS,
     };
     if(!body.cliente_id||!body.veiculo_id||!body.mecanico) return err('Preencha cliente, veículo e mecânico');
-    try {
-      if(id){ await api('PUT',`/os/${id}`,body); ok('OS atualizada.'); }
-      else  { const r=await api('POST','/os',body); ok(`OS ${r.numero} criada.`); }
-      fecharOS(); carregarOS();
-    } catch(e){ err(e.message); }
+    try{if(id){await api('PUT',`/os/${id}`,body);ok('OS atualizada.');}else{const r=await api('POST','/os',body);ok(`OS ${r.numero} criada.`);}fecharOS();carregarOS();}catch(e){err(e.message);}
   }
-  async function mudarStatusOS(id,status){
-    try {
-      await api('PATCH',`/os/${id}/status`,{status});
-      if(status==='finalizado'||status==='entregue'){
-        const o=await api('GET',`/os/${id}`);
-        mostrarWA(o);
-      }
-      const msgs={finalizado:'OS finalizada!',entregue:'Veículo entregue!',aguardando_peca:'Aguardando peça.'};
-      ok(msgs[status]||'Status atualizado.',['finalizado','entregue'].includes(status)?'var(--vd)':'var(--am)');
-      carregarOS();
-      if(document.getElementById('s-dash').classList.contains('on')) carregarDash();
-      if(document.getElementById('s-elev').classList.contains('on')) carregarElevadores();
-    } catch(e){ err(e.message); }
-  }
-  async function excluirOS(id){ if(!confirm('Excluir esta OS?'))return; try{ await api('DELETE',`/os/${id}`).catch(()=>{}); ok('OS removida.','var(--co)'); carregarOS(); }catch{ ok('OS removida.','var(--co)'); carregarOS(); } }
 
-  // ═══════ WHATSAPP ═══════
-  let waTexto='', waTel='';
+  // Modal finalizar (financeiro)
+  let finOsId=null;
+  async function abrirFinalizar(id){
+    const o=await api('GET',`/os/${id}`);
+    finOsId=id;
+    document.getElementById('fin-id').value=id;
+    document.getElementById('fin-resumo').innerHTML=`
+    <div><strong>${o.numero}</strong> — ${o.servico==='outro'?o.servico_outro:o.servico}</div>
+    <div style="margin-top:6px;font-size:12px;color:var(--cz)">Cliente: ${o.cliente_nome} · Placa: ${o.placa}</div>
+    <div style="margin-top:8px;display:flex;gap:12px;font-size:13px">
+      <span>Mão de obra: <strong>${fmtR(o.valor_mao_obra)}</strong></span>
+      <span>Peças: <strong>${fmtR(o.valor_pecas)}</strong></span>
+      <span>Total: <strong style="color:var(--tl)">${fmtR(o.valor_total)}</strong></span>
+    </div>`;
+    document.getElementById('fin-forma').value='';document.getElementById('fin-status').value='pago';document.getElementById('fin-garantia').value='0';
+    document.getElementById('m-fin').classList.remove('hidden');
+  }
+  function fecharFin(){document.getElementById('m-fin').classList.add('hidden');finOsId=null;}
+  async function confirmarFinalizar(){
+    const id=document.getElementById('fin-id').value;
+    const forma=document.getElementById('fin-forma').value;
+    const status=document.getElementById('fin-status').value;
+    const garantia=parseInt(document.getElementById('fin-garantia').value)||0;
+    try {
+      await api('PATCH',`/os/${id}/status`,{status:'finalizado',forma_pagamento:forma,status_pagamento:status});
+      if(garantia>0) await api('POST',`/os/${id}/garantia`,{prazo_dias:garantia});
+      const o=await api('GET',`/os/${id}`);
+      mostrarWA(o);
+      ok('OS finalizada!','var(--vd)');
+      fecharFin();carregarOS();
+      if(document.getElementById('s-dash').classList.contains('on')) carregarDash();
+    } catch(e){err(e.message);}
+  }
+
+  async function mudarStatusOS(id,status){
+    try{await api('PATCH',`/os/${id}/status`,{status});const msgs={entregue:'Veículo entregue!',aguardando_peca:'Aguardando peça.',cancelado:'OS cancelada.'};ok(msgs[status]||'Status atualizado.',status==='entregue'?'var(--vd)':'var(--am)');carregarOS();if(document.getElementById('s-dash').classList.contains('on'))carregarDash();if(document.getElementById('s-elev').classList.contains('on'))carregarElevadores();}catch(e){err(e.message);}
+  }
+  async function excluirOS(id){if(!confirm('Excluir esta OS?'))return;try{await api('DELETE',`/os/${id}`).catch(()=>{});ok('OS removida.','var(--co)');carregarOS();}catch{ok('OS removida.','var(--co)');carregarOS();}}
+
+  // ═══ WHATSAPP ═══
+  let waTexto='',waTel='';
   function mostrarWA(os){
-    const txt=`Olá, ${os.cliente_nome||'cliente'}! 😊\n\nSeu veículo *${os.placa}* (${os.modelo||''}) está pronto!\n\n✅ Serviço: ${os.servico}\n${os.valor_total>0?'💰 Valor: '+fmtMoeda(os.valor_total)+'\n':''}\nPode vir buscar quando quiser.\n\n*Paulinho Auto-Center* 🔧\n(37) 99966-6877`;
-    waTexto=txt; waTel=(os.cliente_tel||'').replace(/\D/g,'');
+    const txt=`Olá, ${os.cliente_nome||'cliente'}! 😊\n\nSeu veículo *${os.placa}* (${os.modelo||''}) está pronto!\n\n✅ Serviço: ${os.servico==='outro'?os.servico_outro:os.servico}\n${os.valor_total>0?'💰 Valor: '+fmtR(os.valor_total)+'\n':''}\nPode vir buscar quando quiser.\n\n*Paulinho Auto-Center* 🔧\n(37) 99966-6877`;
+    waTexto=txt;waTel=(os.cliente_tel||'').replace(/\D/g,'');
     document.getElementById('wa-texto').textContent=txt;
     document.getElementById('m-wa').classList.remove('hidden');
   }
-  function copiarWA(){ navigator.clipboard.writeText(waTexto); ok('Copiado!'); }
-  function abrirWA(){ window.open(`https://wa.me/${waTel?'55'+waTel:''}?text=${encodeURIComponent(waTexto)}`,'_blank'); }
+  function copiarWA(){navigator.clipboard.writeText(waTexto);ok('Copiado!');}
+  function abrirWA(){window.open(`https://wa.me/${waTel?'55'+waTel:''}?text=${encodeURIComponent(waTexto)}`,'_blank');}
 
-  // ═══════ ELEVADORES ═══════
+  // ═══ ELEVADORES ═══
   async function carregarElevadores(){
     try {
       const [elevs,osAg]=await Promise.all([api('GET','/elevadores'),api('GET','/os?status=aguardando_peca')]);
       const cores={livre:'var(--vd)',ocupado:'var(--azM)',bloqueado:'var(--co)'};
-      const lab={livre:'Livre',ocupado:'Ocupado',bloqueado:'Bloqueado'};
       document.getElementById('elev-grid').innerHTML=elevs.map(e=>`
       <div class="elev-card ${e.status||'livre'}">
         <div style="font-size:36px;margin-bottom:6px">${e.tipo==='alinhamento'?'📐':'🔧'}</div>
         <div style="font-size:13px;font-weight:700;color:var(--az);margin-bottom:4px">${e.nome}</div>
-        <div style="font-size:11px;font-weight:700;color:${cores[e.status]||'var(--vd)'};margin-bottom:6px">${lab[e.status]||'Livre'}</div>
-        ${e.os_numero?`<div style="font-size:11px;color:var(--cz);line-height:1.5">${e.os_numero}<br><strong>${e.veiculo_placa||''}</strong><br>${e.cliente_nome||''}</div>
-        <div style="font-size:22px;font-weight:800;color:${e.minutos_ocupado>60?'var(--co)':'var(--azM)'};margin:6px 0">${fmtMin(e.minutos_ocupado)}</div>
+        <div style="font-size:11px;font-weight:700;color:${cores[e.status]||'var(--vd)'};margin-bottom:6px">${e.status||'livre'}</div>
+        ${e.os_numero?`<div style="font-size:20px;font-weight:800;color:${e.minutos_ocupado>60?'var(--co)':'var(--azM)'};margin:4px 0">${fmtMin(e.minutos_ocupado)}</div>
+        <div style="font-size:11px;color:var(--cz);line-height:1.5">${e.os_numero}<br><strong>${e.veiculo_placa||''}</strong><br>${e.cliente_nome||''}</div>
         ${e.minutos_ocupado>60?'<div class="alerta alerta-co" style="font-size:10px;margin-top:4px">⚠ Parado há mais de 1h</div>':''}`:
-              '<div style="color:var(--vd);font-weight:600;font-size:12px">✓ Disponível</div>'}
+              '<div style="color:var(--vd);font-weight:600;font-size:12px;margin-top:8px">✓ Disponível</div>'}
         ${e.status!=='livre'?`<button class="btn btn-s btn-sm" style="margin-top:8px;width:100%" onclick="liberarElev(${e.id},'${e.nome}')">🔓 Liberar</button>`:''}
         <button class="btn btn-d btn-sm" style="margin-top:4px;width:100%" onclick="excluirElev(${e.id},'${e.nome}')">🗑 Remover</button>
       </div>`).join('');
-      if(!osAg.length){ document.getElementById('elev-fila').innerHTML='<p style="font-size:12px;color:var(--cz)">Nenhuma OS aguardando.</p>'; return; }
-      document.getElementById('elev-fila').innerHTML=`<div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>OS</th><th>Serviço</th><th>Cliente</th><th>Placa</th><th>Mecânico</th><th>Alocar</th></tr></thead>
-      <tbody>${osAg.map(o=>`<tr>
-        <td><strong style="color:var(--az)">${o.numero}</strong></td>
-        <td>${o.servico}</td><td>${o.cliente_nome}</td>
-        <td><strong style="letter-spacing:1px">${o.placa}</strong></td><td>${o.mecanico}</td>
-        <td><select onchange="alocarElev(${o.id},this.value,this)" style="padding:4px 8px;border-radius:6px;border:1.5px solid var(--bd);font-size:11px;font-family:inherit">
-          <option value="">Selecione...</option>
-          ${elevs.filter(e=>e.status==='livre').map(e=>`<option value="${e.id}">${e.nome}</option>`).join('')}
-        </select></td></tr>`).join('')}
-      </tbody></table></div>`;
-    } catch(e){ err(e.message); }
-  }
-  async function liberarElev(id,nome){ if(!confirm(`Liberar ${nome}?`))return; try{ await api('PATCH',`/elevadores/${id}/liberar`); ok(`${nome} liberado.`,'var(--vd)'); carregarElevadores(); }catch(e){err(e.message);} }
-  async function excluirElev(id,nome){ if(!confirm(`Remover ${nome}?`))return; try{ await api('DELETE',`/elevadores/${id}`); ok('Removido.','var(--co)'); carregarElevadores(); }catch(e){err(e.message);} }
-  async function alocarElev(osId,elevId,sel){
-    if(!elevId)return;
-    try {
-      const o=await api('GET',`/os/${osId}`);
-      await api('PUT',`/os/${osId}`,{...o,elevador_id:parseInt(elevId),status:'em_execucao'});
-      ok('Elevador alocado.'); sel.value=''; carregarElevadores();
-      if(document.getElementById('s-os').classList.contains('on')) carregarOS();
+      if(!osAg.length){document.getElementById('elev-fila').innerHTML='<p style="font-size:12px;color:var(--cz)">Nenhuma OS aguardando.</p>';return;}
+      document.getElementById('elev-fila').innerHTML=`<div class="tbl-wrap"><table class="tbl"><thead><tr><th>OS</th><th>Prioridade</th><th>Serviço</th><th>Cliente</th><th>Placa</th><th>Mecânico</th><th>Alocar</th></tr></thead><tbody>${osAg.map(o=>`<tr><td><strong style="color:var(--az)">${o.numero}</strong></td><td>${prioBdg(o.prioridade)}</td><td>${o.servico}</td><td>${o.cliente_nome}</td><td><strong style="letter-spacing:1px">${o.placa}</strong></td><td>${o.mecanico}</td><td><select onchange="alocarElev(${o.id},this.value,this)" style="padding:4px 8px;border-radius:6px;border:1.5px solid var(--bd);font-size:11px;font-family:inherit"><option value="">Selecione...</option>${elevs.filter(e=>e.status==='livre').map(e=>`<option value="${e.id}">${e.nome}</option>`).join('')}</select></td></tr>`).join('')}</tbody></table></div>`;
     } catch(e){err(e.message);}
   }
-  function addElev(){
-    const nome=prompt('Nome do equipamento:'); if(!nome)return;
-    const tipo=prompt('Tipo (hidraulico/alinhamento):','hidraulico')||'hidraulico';
-    api('POST','/elevadores',{nome,tipo}).then(()=>{ok('Adicionado.');carregarElevadores();}).catch(e=>err(e.message));
+  async function liberarElev(id,nome){
+    if(!confirm(`Liberar ${nome}? O sistema verificará a fila de OSs automaticamente.`))return;
+    try{const r=await api('PATCH',`/elevadores/${id}/liberar`);if(r.alocado)ok(`${nome} liberado e alocado automaticamente para próxima OS da fila.`,'var(--azM)');else ok(`${nome} liberado.`,'var(--vd)');carregarElevadores();}catch(e){err(e.message);}
   }
+  async function excluirElev(id,nome){if(!confirm(`Remover ${nome}?`))return;try{await api('DELETE',`/elevadores/${id}`);ok('Removido.','var(--co)');carregarElevadores();}catch(e){err(e.message);}}
+  async function alocarElev(osId,elevId,sel){
+    if(!elevId)return;
+    try{const o=await api('GET',`/os/${osId}`);await api('PUT',`/os/${osId}`,{...o,elevador_id:parseInt(elevId),status:'em_execucao'});ok('Elevador alocado.');sel.value='';carregarElevadores();if(document.getElementById('s-os').classList.contains('on'))carregarOS();}catch(e){err(e.message);}
+  }
+  function addElev(){const nome=prompt('Nome do equipamento:');if(!nome)return;const tipo=prompt('Tipo (hidraulico/alinhamento):','hidraulico')||'hidraulico';api('POST','/elevadores',{nome,tipo}).then(()=>{ok('Adicionado.');carregarElevadores();}).catch(e=>err(e.message));}
 
-  // ═══════ RELATÓRIOS ═══════
-  async function carregarRelatorio(){
-    const de=document.getElementById('r-de').value, ate=document.getElementById('r-ate').value;
+  // ═══ ORÇAMENTOS ═══
+  async function carregarOrcamentos(){
     try {
-      const [rows,servs,mecs]=await Promise.all([
-        api('GET',`/relatorios/os?de=${de}&ate=${ate}`),
-        api('GET','/relatorios/servicos'),
-        api('GET','/relatorios/mecanicos'),
-      ]);
+      const rows=await api('GET','/orcamentos');
+      document.getElementById('orc-sub').textContent=`${rows.length} orçamento(s)`;
+      if(!rows.length){document.getElementById('orc-lista').innerHTML=`<div class="vazio"><div class="vazio-i">📝</div><div class="vazio-t">Nenhum orçamento ainda</div><div class="vazio-s">Clique em "+ Novo Orçamento"</div></div>`;return;}
+      const stCores={aberto:'bdg-az',aprovado:'bdg-vd',recusado:'bdg-co',expirado:'bdg-am'};
+      document.getElementById('orc-lista').innerHTML=rows.map(o=>`
+      <div class="card" style="margin-bottom:8px">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <strong style="color:var(--az)">${o.numero}</strong>
+              <span class="bdg ${stCores[o.status]||'bdg-az'}">${o.status}</span>
+              <span style="font-size:11px;color:var(--cz)">${fmtD(o.criado_em)}</span>
+            </div>
+            <div style="font-size:12px;color:var(--cz);margin-top:4px">${o.cliente_nome} · ${o.placa} ${o.modelo} · ${o.servico} · <strong style="color:var(--tl)">${fmtR(o.valor_total)}</strong></div>
+          </div>
+          <div class="td-btns">
+            ${o.status==='aberto'?`<button class="btn btn-s btn-sm" onclick="converterOrc(${o.id})">✓ Converter em OS</button>`:''}
+            ${o.status==='aberto'?`<button class="btn btn-d btn-sm" onclick="recusarOrc(${o.id})">✕ Recusar</button>`:''}
+          </div>
+        </div>
+      </div>`).join('');
+    } catch(e){err(e.message);}
+  }
+  let pecasOrcArr=[];
+  async function abrirOrc(){
+    const [clis,mecs]=await Promise.all([api('GET','/clientes'),api('GET','/mecanicos')]);
+    pecasEstoqueCache=await api('GET','/pecas');
+    document.getElementById('orc-cliente').innerHTML='<option value="">Selecione...</option>'+clis.map(c=>`<option value="${c.id}">${c.nome}</option>`).join('');
+    document.getElementById('orc-mec').innerHTML='<option value="">Selecione...</option>'+mecs.map(m=>`<option value="${m.nome}">${m.nome}</option>`).join('');
+    document.getElementById('orc-peca-sel').innerHTML='<option value="">Selecione...</option>'+pecasEstoqueCache.map(p=>`<option value="${p.id}" data-preco="${p.preco_venda||p.preco_custo||0}">${p.nome} — ${fmtR(p.preco_venda||p.preco_custo||0)}</option>`).join('');
+    document.getElementById('orc-id').value='';document.getElementById('m-orc-t').textContent='Novo Orçamento';
+    document.getElementById('orc-veiculo').innerHTML='<option value="">Selecione o cliente primeiro...</option>';
+    ['orc-obs','orc-servico-outro'].forEach(i=>document.getElementById(i).value='');
+    document.getElementById('orc-maobra').value='';document.getElementById('orc-validade').value='7';
+    document.getElementById('orc-outro-wrap').classList.add('hidden');document.getElementById('orc-serv').value='';
+    pecasOrcArr=[];renderPecasOrc();
+    document.getElementById('m-orc').classList.remove('hidden');
+  }
+  async function carregarVeicOrc(){
+    const cliId=document.getElementById('orc-cliente').value;if(!cliId)return;
+    const veics=await api('GET','/veiculos');const meus=veics.filter(v=>v.cliente_id==cliId);
+    document.getElementById('orc-veiculo').innerHTML='<option value="">Selecione...</option>'+meus.map(v=>`<option value="${v.id}">${v.placa} — ${v.modelo}</option>`).join('');
+  }
+  function addPecaOrc(){
+    const sel=document.getElementById('orc-peca-sel');const qtd=parseInt(document.getElementById('orc-peca-qtd').value)||1;
+    if(!sel.value) return err('Selecione uma peça');
+    const opt=sel.options[sel.selectedIndex];const preco=parseFloat(opt.dataset.preco)||0;
+    const idx=pecasOrcArr.findIndex(p=>p.peca_id==sel.value);
+    if(idx>=0) pecasOrcArr[idx].qtd+=qtd;
+    else pecasOrcArr.push({peca_id:parseInt(sel.value),nome:opt.text.split(' — ')[0],qtd,preco_un:preco});
+    renderPecasOrc();
+  }
+  function removerPecaOrc(i){pecasOrcArr.splice(i,1);renderPecasOrc();}
+  function renderPecasOrc(){
+    const el=document.getElementById('orc-pecas-lista');
+    if(!pecasOrcArr.length){el.innerHTML='<p style="font-size:11px;color:var(--cz)">Nenhuma peça</p>';calcularTotalOrc();return;}
+    el.innerHTML=pecasOrcArr.map((p,i)=>`<div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid var(--bd);font-size:12px"><span style="flex:1">${p.nome}</span><span>${p.qtd}x ${fmtR(p.preco_un)}</span><strong>${fmtR(p.qtd*p.preco_un)}</strong><button class="btn btn-d btn-sm" onclick="removerPecaOrc(${i})" style="padding:2px 7px">✕</button></div>`).join('');
+    calcularTotalOrc();
+  }
+  function calcularTotalOrc(){
+    const maobra=parseFloat(document.getElementById('orc-maobra')?.value)||0;
+    const pecas=pecasOrcArr.reduce((s,p)=>s+p.qtd*p.preco_un,0);
+    const el=document.getElementById('orc-total');if(el)el.textContent=fmtR(maobra+pecas);
+  }
+  function fecharOrc(){document.getElementById('m-orc').classList.add('hidden');}
+  async function salvarOrc(){
+    const servico=document.getElementById('orc-serv').value;
+    if(!servico) return err('Selecione o serviço');
+    const body={cliente_id:document.getElementById('orc-cliente').value,veiculo_id:document.getElementById('orc-veiculo').value,mecanico:document.getElementById('orc-mec').value,servico,servico_outro:servico==='outro'?document.getElementById('orc-servico-outro').value.trim():null,obs:document.getElementById('orc-obs').value.trim(),valor_mao_obra:document.getElementById('orc-maobra').value||0,validade:document.getElementById('orc-validade').value||7,pecas:pecasOrcArr};
+    if(!body.cliente_id||!body.veiculo_id||!body.mecanico) return err('Preencha cliente, veículo e mecânico');
+    try{const r=await api('POST','/orcamentos',body);ok(`Orçamento ${r.numero} criado.`);fecharOrc();carregarOrcamentos();}catch(e){err(e.message);}
+  }
+  async function converterOrc(id){if(!confirm('Converter este orçamento em OS?'))return;try{const r=await api('POST',`/orcamentos/${id}/converter`);ok(`OS ${r.numero} criada a partir do orçamento!`,'var(--vd)');carregarOrcamentos();ir('s-os');}catch(e){err(e.message);}}
+  async function recusarOrc(id){if(!confirm('Marcar orçamento como recusado?'))return;try{await api('PATCH',`/orcamentos/${id}/status`,{status:'recusado'});ok('Orçamento recusado.','var(--co)');carregarOrcamentos();}catch(e){err(e.message);}}
+
+  // ═══ RELATÓRIOS ═══
+  async function carregarRelatorio(){
+    const de=document.getElementById('r-de').value,ate=document.getElementById('r-ate').value;
+    try {
+      const [rows,servs,mecs]=await Promise.all([api('GET',`/relatorios/os?de=${de}&ate=${ate}`),api('GET','/relatorios/servicos'),api('GET','/relatorios/mecanicos')]);
       relCache=rows;
-      document.getElementById('r-servicos').innerHTML=!servs.length?'<p style="font-size:12px;color:var(--cz)">Sem dados</p>':
-              servs.slice(0,8).map(s=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bd);font-size:12px"><span>${s.servico}</span><span class="bdg bdg-az">${s.total}x</span></div>`).join('');
-      document.getElementById('r-mecanicos').innerHTML=!mecs.length?'<p style="font-size:12px;color:var(--cz)">Sem dados</p>':
-              mecs.map(m=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bd);font-size:12px"><span style="font-weight:600">${m.mecanico}</span><div style="display:flex;gap:6px"><span class="bdg bdg-az">${m.total_os} OS</span><span class="bdg bdg-tl">${m.concluidas} ✓</span></div></div>`).join('');
-      if(!rows.length){ document.getElementById('r-lista').innerHTML=`<div class="vazio"><div class="vazio-i">📊</div><div class="vazio-t">Nenhum resultado</div></div>`; return; }
+      document.getElementById('r-servicos').innerHTML=!servs.length?'<p style="font-size:12px;color:var(--cz)">Sem dados</p>':servs.slice(0,8).map(s=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bd);font-size:12px"><span>${s.servico}</span><span class="bdg bdg-az">${s.total}x</span></div>`).join('');
+      document.getElementById('r-mecanicos').innerHTML=!mecs.length?'<p style="font-size:12px;color:var(--cz)">Sem dados</p>':mecs.map(m=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bd);font-size:12px"><span style="font-weight:600">${m.mecanico}</span><div style="display:flex;gap:6px"><span class="bdg bdg-az">${m.total_os} OS</span><span class="bdg bdg-tl">${m.concluidas} ✓</span><span class="bdg bdg-vd">${fmtR(m.faturamento)}</span></div></div>`).join('');
+      if(!rows.length){document.getElementById('r-lista').innerHTML=`<div class="vazio"><div class="vazio-i">📊</div><div class="vazio-t">Nenhum resultado</div></div>`;return;}
       const totalVal=rows.reduce((s,o)=>s+(parseFloat(o.valor_total)||0),0);
-      document.getElementById('r-lista').innerHTML=`
-      <div class="card" style="margin-bottom:10px"><div style="font-size:13px"><span style="color:var(--cz)">Total: </span><strong>${rows.length} OS</strong> · <span style="color:var(--cz)">Faturamento: </span><strong style="color:var(--tl)">${fmtMoeda(totalVal)}</strong></div></div>
-      <div class="tbl-wrap"><table class="tbl">
-        <thead><tr><th>Número</th><th>Data</th><th>Cliente</th><th>Placa</th><th>Serviço</th><th>Mecânico</th><th>Valor</th><th>Status</th></tr></thead>
-        <tbody>${rows.map(o=>`<tr>
-          <td><strong style="color:var(--az)">${o.numero}</strong></td>
-          <td>${fmtData(o.criado_em)}</td><td>${o.cliente}</td>
-          <td><strong>${o.placa}</strong></td><td>${o.servico}</td>
-          <td>${o.mecanico}</td><td>${fmtMoeda(o.valor_total)}</td><td>${bdg(o.status)}</td>
-        </tr>`).join('')}</tbody></table></div>`;
-    } catch(e){ err(e.message); }
+      document.getElementById('r-lista').innerHTML=`<div class="card" style="margin-bottom:10px"><div style="font-size:13px"><span style="color:var(--cz)">Total: </span><strong>${rows.length} OS</strong> · <span style="color:var(--cz)">Faturamento: </span><strong style="color:var(--tl)">${fmtR(totalVal)}</strong></div></div><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Número</th><th>Data</th><th>Cliente</th><th>Placa</th><th>Serviço</th><th>Mecânico</th><th>Mão de obra</th><th>Peças</th><th>Total</th><th>Pagamento</th><th>Status</th></tr></thead><tbody>${rows.map(o=>`<tr><td><strong style="color:var(--az)">${o.numero}</strong></td><td>${fmtD(o.criado_em)}</td><td>${o.cliente}</td><td><strong>${o.placa}</strong></td><td>${o.servico}</td><td>${o.mecanico}</td><td>${fmtR(o.valor_mao_obra)}</td><td>${fmtR(o.valor_pecas)}</td><td><strong>${fmtR(o.valor_total)}</strong></td><td>${o.forma_pagamento||'—'}</td><td>${bdg(o.status)}</td></tr>`).join('')}</tbody></table></div>`;
+    } catch(e){err(e.message);}
+  }
+  async function carregarFinanceiro(){
+    const de=document.getElementById('r-de').value,ate=document.getElementById('r-ate').value;
+    try {
+      const f=await api('GET',`/relatorios/financeiro?de=${de}&ate=${ate}`);
+      const el=document.getElementById('r-financeiro');
+      el.classList.remove('hidden');
+      el.innerHTML=`<div class="card" style="margin-bottom:14px">
+      <div style="font-size:13px;font-weight:700;color:var(--az);margin-bottom:12px">💰 Resumo Financeiro</div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px">
+        <div style="font-size:13px"><span style="color:var(--cz)">Faturamento total: </span><strong style="color:var(--tl)">${fmtR(f.total)}</strong></div>
+        <div style="font-size:13px"><span style="color:var(--cz)">Mão de obra: </span><strong>${fmtR(f.mao_obra)}</strong></div>
+        <div style="font-size:13px"><span style="color:var(--cz)">Peças: </span><strong>${fmtR(f.pecas)}</strong></div>
+      </div>
+      ${f.por_pagamento.map(p=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bd);font-size:12px"><span>${p.forma_pagamento||'Não informado'} · ${p.status_pagamento}</span><span><strong>${fmtR(p.total)}</strong> (${p.qtd} OS)</span></div>`).join('')}
+    </div>`;
+    } catch(e){err(e.message);}
   }
   function exportarCSV(){
-    if(!relCache.length){ err('Gere o relatório primeiro.'); return; }
-    const cols=['numero','criado_em','cliente','telefone','placa','modelo','servico','mecanico','valor_total','status'];
+    if(!relCache.length){err('Gere o relatório primeiro.');return;}
+    const cols=['numero','criado_em','cliente','telefone','placa','modelo','servico','mecanico','valor_mao_obra','valor_pecas','valor_total','forma_pagamento','status_pagamento','status'];
     const csv=cols.join(';')+'\n'+relCache.map(r=>cols.map(c=>`"${(r[c]||'').toString().replace(/"/g,'""')}"`).join(';')).join('\n');
-    const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'}));
-    a.download=`relatorio_${new Date().toISOString().slice(0,10)}.csv`; a.click();
-    ok('CSV exportado.');
+    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'}));
+    a.download=`relatorio_${new Date().toISOString().slice(0,10)}.csv`;a.click();ok('CSV exportado.');
   }
 
-  // ═══════ USUÁRIOS ═══════
+  // ═══ USUÁRIOS ═══
   async function carregarUsuarios(){
     try {
       const rows=await api('GET','/usuarios');
       document.getElementById('usr-sub').textContent=`${rows.length} usuário(s)`;
-      document.getElementById('usr-lista').innerHTML=`<div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>Nome</th><th>Usuário</th><th>Perfil</th><th>Criado em</th><th>Ações</th></tr></thead>
-      <tbody>${rows.map(u=>`<tr>
-        <td><strong>${u.nome}</strong></td><td style="font-family:monospace">${u.usuario}</td>
-        <td><span class="bdg ${u.perfil==='gerente'?'bdg-az':u.perfil==='atendente'?'bdg-tl':'bdg-am'}">${u.perfil}</span></td>
-        <td>${fmtData(u.criado_em)}</td>
-        <td class="td-btns"><button class="btn btn-i btn-sm" onclick="editarUsuario(${u.id},'${u.nome.replace(/'/g,"\\'")}','${u.usuario}','${u.perfil}')">✎</button>
-          <button class="btn btn-d btn-sm" onclick="excluirUsuario(${u.id},'${u.usuario}')">🗑</button></td>
-      </tr>`).join('')}</tbody></table></div>`;
-    } catch(e){ err(e.message); }
+      document.getElementById('usr-lista').innerHTML=`<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Nome</th><th>Usuário</th><th>Perfil</th><th>Criado em</th><th>Ações</th></tr></thead><tbody>${rows.map(u=>`<tr><td><strong>${u.nome}</strong></td><td style="font-family:monospace">${u.usuario}</td><td><span class="bdg ${u.perfil==='gerente'?'bdg-az':u.perfil==='atendente'?'bdg-tl':'bdg-am'}">${u.perfil}</span></td><td>${fmtD(u.criado_em)}</td><td class="td-btns"><button class="btn btn-i btn-sm" onclick="editarUsuario(${u.id},'${u.nome.replace(/'/g,"\\'")}','${u.usuario}','${u.perfil}')">✎</button><button class="btn btn-d btn-sm" onclick="excluirUsuario(${u.id},'${u.usuario}')">🗑</button></td></tr>`).join('')}</tbody></table></div>`;
+    } catch(e){err(e.message);}
   }
-  function abrirUsuario(){
-    document.getElementById('u-id').value=''; document.getElementById('m-usr-t').textContent='Novo Usuário';
-    ['u-nome','u-usuario','u-senha'].forEach(i=>document.getElementById(i).value='');
-    document.getElementById('m-usr').classList.remove('hidden');
-  }
-  function editarUsuario(id,nome,usuario,perfil){
-    document.getElementById('u-id').value=id; document.getElementById('m-usr-t').textContent='Editar usuário';
-    document.getElementById('u-nome').value=nome; document.getElementById('u-usuario').value=usuario;
-    document.getElementById('u-perfil').value=perfil; document.getElementById('u-senha').value='';
-    document.getElementById('m-usr').classList.remove('hidden');
-  }
-  function fecharUsuario(){ document.getElementById('m-usr').classList.add('hidden'); }
-  async function salvarUsuario(){
-    const id=document.getElementById('u-id').value;
-    const body={nome:document.getElementById('u-nome').value.trim(),usuario:document.getElementById('u-usuario').value.trim(),senha:document.getElementById('u-senha').value,perfil:document.getElementById('u-perfil').value};
-    try {
-      if(id){ await api('PUT',`/usuarios/${id}`,body); ok('Atualizado.'); }
-      else  { await api('POST','/usuarios',body); ok('Criado.'); }
-      fecharUsuario(); carregarUsuarios();
-    } catch(e){ err(e.message); }
-  }
-  async function excluirUsuario(id,usr){ if(!confirm(`Excluir "${usr}"?`))return; try{ await api('DELETE',`/usuarios/${id}`); ok('Removido.','var(--co)'); carregarUsuarios(); }catch(e){err(e.message);} }
+  function abrirUsuario(){document.getElementById('u-id').value='';document.getElementById('m-usr-t').textContent='Novo Usuário';['u-nome','u-usuario','u-senha'].forEach(i=>document.getElementById(i).value='');document.getElementById('m-usr').classList.remove('hidden');}
+  function editarUsuario(id,nome,usuario,perfil){document.getElementById('u-id').value=id;document.getElementById('m-usr-t').textContent='Editar usuário';document.getElementById('u-nome').value=nome;document.getElementById('u-usuario').value=usuario;document.getElementById('u-perfil').value=perfil;document.getElementById('u-senha').value='';document.getElementById('m-usr').classList.remove('hidden');}
+  function fecharUsuario(){document.getElementById('m-usr').classList.add('hidden');}
+  async function salvarUsuario(){const id=document.getElementById('u-id').value;const body={nome:document.getElementById('u-nome').value.trim(),usuario:document.getElementById('u-usuario').value.trim(),senha:document.getElementById('u-senha').value,perfil:document.getElementById('u-perfil').value};try{if(id){await api('PUT',`/usuarios/${id}`,body);ok('Atualizado.');}else{await api('POST','/usuarios',body);ok('Criado.');}fecharUsuario();carregarUsuarios();}catch(e){err(e.message);}}
+  async function excluirUsuario(id,usr){if(!confirm(`Excluir "${usr}"?`))return;try{await api('DELETE',`/usuarios/${id}`);ok('Removido.','var(--co)');carregarUsuarios();}catch(e){err(e.message);}}
 
-  // ═══════ AUDITORIA ═══════
+  // ═══ AUDITORIA ═══
   async function carregarAudit(){
     try {
       const rows=await api('GET','/auditoria');
-      if(!rows.length){ document.getElementById('audit-lista').innerHTML=`<div class="vazio"><div class="vazio-i">🔍</div><div class="vazio-t">Nenhum registro</div></div>`; return; }
-      document.getElementById('audit-lista').innerHTML=`<div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>Data/Hora</th><th>Usuário</th><th>Ação</th><th>Tabela</th><th>Detalhe</th></tr></thead>
-      <tbody>${rows.map(r=>`<tr>
-        <td style="white-space:nowrap;font-size:11px">${fmtData(r.criado_em)}</td>
-        <td>${r.usuario||'-'}</td>
-        <td><span class="bdg ${r.acao==='LOGIN'?'bdg-tl':r.acao==='CRIAR'?'bdg-az':'bdg-am'}">${r.acao}</span></td>
-        <td>${r.tabela||'-'}</td><td style="font-size:11px">${r.detalhe||'-'}</td>
-      </tr>`).join('')}</tbody></table></div>`;
-    } catch(e){ err(e.message); }
+      if(!rows.length){document.getElementById('audit-lista').innerHTML=`<div class="vazio"><div class="vazio-i">🔍</div><div class="vazio-t">Nenhum registro</div></div>`;return;}
+      document.getElementById('audit-lista').innerHTML=`<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Data/Hora</th><th>Usuário</th><th>Ação</th><th>Tabela</th><th>Detalhe</th></tr></thead><tbody>${rows.map(r=>`<tr><td style="white-space:nowrap;font-size:11px">${fmtD(r.criado_em)}</td><td>${r.usuario||'-'}</td><td><span class="bdg ${r.acao==='LOGIN'?'bdg-tl':r.acao==='CRIAR'?'bdg-az':'bdg-am'}">${r.acao}</span></td><td>${r.tabela||'-'}</td><td style="font-size:11px">${r.detalhe||'-'}</td></tr>`).join('')}</tbody></table></div>`;
+    } catch(e){err(e.message);}
   }
 </script>
 </body>
