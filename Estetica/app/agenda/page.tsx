@@ -1,6 +1,5 @@
 import { createClient } from '@/utils/supabase/server'
 import { criarAgendamento, setStatusAgendamento, criarBox, abrirOrdemDoAgendamento } from '@/app/agenda/actions'
-import ConfirmSubmit from '@/components/ConfirmSubmit'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 
@@ -122,13 +121,7 @@ export default async function AgendaPage({
                             <input type="hidden" name="id" value={a.id} />
                             <input type="hidden" name="dia" value={dia} />
                             <input type="hidden" name="status" value="cancelado" />
-                            <ConfirmSubmit
-                              label="Cancelar"
-                              confirmLabel="Sim, cancelar"
-                              pergunta="Cancelar?"
-                              style={s.mini}
-                              confirmStyle={{ ...s.mini, background: '#2a1416', color: '#f4a7ab', borderColor: '#5c2326' }}
-                            />
+                            <button type="submit" style={s.mini}>Cancelar</button>
                           </form>
                         </div>
                       )}

@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
-import { exigirAdmin } from '@/lib/auth'
+import { createClient } from '@/utils/supabase/server'
 
 const num = (v: FormDataEntryValue | null) =>
   Number(String(v ?? '').replace(',', '.')) || 0
@@ -11,7 +11,7 @@ const num = (v: FormDataEntryValue | null) =>
 // tela protegida). A comissão passa a valer nas PRÓXIMAS ordens — itens
 // já fechados mantêm a comissão congelada do momento da venda.
 export async function atualizarFuncionario(formData: FormData) {
-  const { supabase } = await exigirAdmin()
+  const supabase = await createClient()
   const id = String(formData.get('id') ?? '')
 
   const { error } = await supabase
@@ -27,7 +27,7 @@ export async function atualizarFuncionario(formData: FormData) {
 }
 
 export async function setFuncionarioAtivo(formData: FormData) {
-  const { supabase } = await exigirAdmin()
+  const supabase = await createClient()
   const id = String(formData.get('id') ?? '')
   const ativo = String(formData.get('ativo') ?? 'true') === 'true'
 

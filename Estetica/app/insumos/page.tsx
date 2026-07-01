@@ -1,6 +1,5 @@
 import { createClient } from '@/utils/supabase/server'
 import { criarInsumo, ajustarMinimo, registrarEntrada, removerInsumo } from '@/app/insumos/actions'
-import EmptyState from '@/components/EmptyState'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 
@@ -83,11 +82,7 @@ export default async function InsumosPage({
 
         <section style={s.grid}>
           {(insumos ?? []).length === 0 ? (
-            <EmptyState
-              icon="estoque"
-              titulo="Estoque vazio"
-              descricao="Cadastre seus insumos (shampoo, cera, panos…) para acompanhar consumo e receber alerta quando faltar."
-            />
+            <p style={s.vazio}>Nenhum insumo cadastrado.</p>
           ) : (
             (insumos as any[]).map((i) => {
               const baixo = Number(i.estoque_minimo) > 0 && Number(i.qtd_estoque) <= Number(i.estoque_minimo)

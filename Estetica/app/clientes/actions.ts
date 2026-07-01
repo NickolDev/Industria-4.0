@@ -2,10 +2,10 @@
 
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
-import { exigirSessaoAtiva } from '@/lib/auth'
+import { createClient } from '@/utils/supabase/server'
 
 export async function criarCliente(formData: FormData) {
-  const { supabase } = await exigirSessaoAtiva()
+  const supabase = await createClient()
 
   const nome = String(formData.get('nome') ?? '').trim()
   const telefone = String(formData.get('telefone') ?? '').trim()
@@ -36,7 +36,7 @@ export async function criarCliente(formData: FormData) {
 }
 
 export async function atualizarCliente(formData: FormData) {
-  const { supabase } = await exigirSessaoAtiva()
+  const supabase = await createClient()
   const id = String(formData.get('id') ?? '')
 
   const { error } = await supabase
@@ -53,7 +53,7 @@ export async function atualizarCliente(formData: FormData) {
 }
 
 export async function adicionarVeiculo(formData: FormData) {
-  const { supabase } = await exigirSessaoAtiva()
+  const supabase = await createClient()
   const clienteId = String(formData.get('cliente_id') ?? '')
 
   const { error } = await supabase.from('veiculos').insert({
@@ -69,7 +69,7 @@ export async function adicionarVeiculo(formData: FormData) {
 }
 
 export async function removerVeiculo(formData: FormData) {
-  const { supabase } = await exigirSessaoAtiva()
+  const supabase = await createClient()
   const clienteId = String(formData.get('cliente_id') ?? '')
   const veiculoId = String(formData.get('veiculo_id') ?? '')
 

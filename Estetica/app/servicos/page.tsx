@@ -1,6 +1,5 @@
 import { createClient } from '@/utils/supabase/server'
 import { criarServico, salvarServico, setAtivo, removerServico } from '@/app/servicos/actions'
-import EmptyState from '@/components/EmptyState'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 
@@ -94,29 +93,19 @@ export default async function ServicosPage({
           </form>
         </section>
 
-        {principais.length === 0 && adicionais.length === 0 ? (
-          <EmptyState
-            icon="servicos"
-            titulo="Catálogo vazio"
-            descricao="Cadastre seus serviços e preços acima. Eles aparecem nas ordens e no link de agendamento online."
-          />
-        ) : (
-          <>
-            <section style={s.bloco}>
-              <p style={s.blocoTitulo}>Lavagens</p>
-              {principais.length === 0 ? <p style={s.vazio}>Nenhuma lavagem cadastrada.</p> : (
-                <ul style={s.lista}>{principais.map((x: any) => <Linha key={x.id} x={x} />)}</ul>
-              )}
-            </section>
+        <section style={s.bloco}>
+          <p style={s.blocoTitulo}>Lavagens</p>
+          {principais.length === 0 ? <p style={s.vazio}>Nenhuma lavagem cadastrada.</p> : (
+            <ul style={s.lista}>{principais.map((x: any) => <Linha key={x.id} x={x} />)}</ul>
+          )}
+        </section>
 
-            <section style={s.bloco}>
-              <p style={s.blocoTitulo}>Adicionais</p>
-              {adicionais.length === 0 ? <p style={s.vazio}>Nenhum adicional cadastrado.</p> : (
-                <ul style={s.lista}>{adicionais.map((x: any) => <Linha key={x.id} x={x} />)}</ul>
-              )}
-            </section>
-          </>
-        )}
+        <section style={s.bloco}>
+          <p style={s.blocoTitulo}>Adicionais</p>
+          {adicionais.length === 0 ? <p style={s.vazio}>Nenhum adicional cadastrado.</p> : (
+            <ul style={s.lista}>{adicionais.map((x: any) => <Linha key={x.id} x={x} />)}</ul>
+          )}
+        </section>
       </div>
     </main>
   )

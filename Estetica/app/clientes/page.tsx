@@ -1,6 +1,5 @@
 import { createClient } from '@/utils/supabase/server'
 import { criarCliente } from '@/app/clientes/actions'
-import EmptyState from '@/components/EmptyState'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 
@@ -50,15 +49,7 @@ export default async function ClientesPage({
         </section>
 
         {(clientes?.length ?? 0) === 0 ? (
-          q ? (
-            <p style={s.vazio}>Nenhum cliente encontrado.</p>
-          ) : (
-            <EmptyState
-              icon="clientes"
-              titulo="Nenhum cliente ainda"
-              descricao="Seus clientes aparecem aqui conforme você cadastra ou conforme eles agendam pelo link online. Cadastre o primeiro acima."
-            />
-          )
+          <p style={s.vazio}>{q ? 'Nenhum cliente encontrado.' : 'Nenhum cliente cadastrado ainda.'}</p>
         ) : (
           <ul style={s.lista}>
             {(clientes as any[]).map((c) => (

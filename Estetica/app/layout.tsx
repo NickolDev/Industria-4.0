@@ -1,19 +1,4 @@
-import './globals.css'
 import type { Metadata } from 'next'
-import { Inter, Space_Grotesk } from 'next/font/google'
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
-const grotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-grotesk',
-  weight: ['500', '600', '700'],
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: 'Painel da Estética',
@@ -26,8 +11,19 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${grotesk.variable}`}>
-      <body>{children}</body>
+    <html lang="pt-BR">
+      <body
+        style={{
+          margin: 0,
+          fontFamily:
+            'system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+          background: '#0f1115',
+          color: '#e6e8ec',
+          WebkitFontSmoothing: 'antialiased',
+        }}
+      >
+        {children}
+      </body>
     </html>
   )
 }

@@ -2,11 +2,11 @@
 
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
-import { exigirAdmin } from '@/lib/auth'
+import { createClient } from '@/utils/supabase/server'
 import { enviarTeste } from '@/lib/whatsapp'
 
 export async function salvarConfig(formData: FormData) {
-  const { supabase } = await exigirAdmin()
+  const supabase = await createClient()
 
   const tokenNovo = String(formData.get('access_token') ?? '').trim()
 
@@ -36,7 +36,7 @@ export async function salvarConfig(formData: FormData) {
 }
 
 export async function testarEnvio(formData: FormData) {
-  const { supabase } = await exigirAdmin()
+  const supabase = await createClient()
   const telefone = String(formData.get('telefone') ?? '').trim()
 
   const { data: cfg } = await supabase

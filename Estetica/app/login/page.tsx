@@ -34,12 +34,8 @@ export default async function LoginPage({
           <button type="submit" style={styles.button}>Entrar</button>
         </form>
 
-        <p style={{ ...styles.foot, marginTop: 14 }}>
-          <Link href="/recuperar" style={styles.link}>Esqueci minha senha</Link>
-        </p>
-
         <p style={styles.foot}>
-          Acesso exclusivo. Fale com a administração para liberar sua estética.
+          Não tem conta? <Link href="/cadastro" style={styles.link}>Cadastrar estética</Link>
         </p>
       </div>
     </main>

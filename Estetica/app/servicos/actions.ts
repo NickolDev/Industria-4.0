@@ -2,13 +2,13 @@
 
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
-import { exigirAdmin } from '@/lib/auth'
+import { createClient } from '@/utils/supabase/server'
 
 const numero = (v: FormDataEntryValue | null) =>
   Number(String(v ?? '').replace(',', '.')) || 0
 
 export async function criarServico(formData: FormData) {
-  const { supabase } = await exigirAdmin()
+  const supabase = await createClient()
 
   const nome = String(formData.get('nome') ?? '').trim()
   const tipo = String(formData.get('tipo') ?? 'principal')
@@ -27,7 +27,7 @@ export async function criarServico(formData: FormData) {
 }
 
 export async function salvarServico(formData: FormData) {
-  const { supabase } = await exigirAdmin()
+  const supabase = await createClient()
   const id = String(formData.get('id') ?? '')
 
   const { error } = await supabase
@@ -43,7 +43,7 @@ export async function salvarServico(formData: FormData) {
 }
 
 export async function setAtivo(formData: FormData) {
-  const { supabase } = await exigirAdmin()
+  const supabase = await createClient()
   const id = String(formData.get('id') ?? '')
   const ativo = String(formData.get('ativo') ?? 'true') === 'true'
 
@@ -52,7 +52,7 @@ export async function setAtivo(formData: FormData) {
 }
 
 export async function removerServico(formData: FormData) {
-  const { supabase } = await exigirAdmin()
+  const supabase = await createClient()
   const id = String(formData.get('id') ?? '')
 
   const { error } = await supabase.from('servicos').delete().eq('id', id)

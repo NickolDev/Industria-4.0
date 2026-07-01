@@ -2,10 +2,10 @@ import { createClient } from '@/utils/supabase/server'
 import { sair } from '@/app/auth/actions'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import styles from './dashboard.module.css'
 
 const brl = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
 
+// Define o intervalo [inicio, fim) a partir do filtro escolhido
 function periodo(range: string) {
   const hoje = new Date()
   const y = hoje.getFullYear()
@@ -34,29 +34,25 @@ export default async function DashboardPage({
   } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
+  const { data: funcionario } = await supabase
+    .from('funcionarios')
+    .select('nome, cargo, tenant:tenants(nome)')
+    .eq('auth_user_id', user.id)
+    .single()
+
+  const nomeEstetica =
+    (funcionario?.tenant as { nome?: string } | null)?.nome ?? '—'
+  const ehAdmin = funcionario?.cargo === 'dono' || funcionario?.cargo === 'gerente'
+
   const { inicio, fim, label } = periodo(range)
   const p_inicio = inicio.toISOString()
   const p_fim = fim.toISOString()
 
-  const [
-    { data: funcionario },
-    ,
-    { data: ehPlataforma },
-    { data: resumoData },
-    { data: serie },
-    { data: top },
-  ] = await Promise.all([
-    supabase.from('funcionarios').select('nome, cargo, tenant:tenants(nome)').eq('auth_user_id', user.id).single(),
-    supabase.rpc('registrar_acesso'),
-    supabase.rpc('is_plataforma_admin'),
+  const [{ data: resumoData }, { data: serie }, { data: top }] = await Promise.all([
     supabase.rpc('dashboard_resumo', { p_inicio, p_fim }),
     supabase.rpc('dashboard_serie_diaria', { p_inicio, p_fim }),
     supabase.rpc('dashboard_top_servicos', { p_inicio, p_fim, p_limite: 5 }),
   ])
-
-  const nomeEstetica =
-    (funcionario?.tenant as { nome?: string } | null)?.nome ?? 'Estética'
-  const ehAdmin = funcionario?.cargo === 'dono' || funcionario?.cargo === 'gerente'
 
   const r = (resumoData?.[0] ?? {}) as Record<string, number>
   const n = (v: unknown) => Number(v ?? 0)
@@ -64,127 +60,111 @@ export default async function DashboardPage({
   const dias = (serie ?? []) as { dia: string; faturamento: number }[]
   const maxDia = Math.max(1, ...dias.map((d) => n(d.faturamento)))
 
-  const topServicos = (top ?? []) as { servico: string; qtd: number; faturamento: number }[]
-  const maxServ = Math.max(1, ...topServicos.map((t) => n(t.faturamento)))
-
-  const numOrdens = n(r.num_ordens)
-  const periodos = [
-    { k: 'mes', t: 'Este mês' },
-    { k: 'mes-passado', t: 'Mês passado' },
-    { k: '7dias', t: '7 dias' },
-  ]
-  const secundarios = [
+  const cards = [
+    { rotulo: 'Faturamento', valor: brl.format(n(r.faturamento)), destaque: true },
     { rotulo: 'Lucro bruto', valor: brl.format(n(r.lucro_bruto)) },
     { rotulo: 'Custo de insumos', valor: brl.format(n(r.custo_insumos)) },
     { rotulo: 'Comissões', valor: brl.format(n(r.total_comissoes)) },
+    { rotulo: 'Ordens concluídas', valor: String(n(r.num_ordens)) },
+    { rotulo: 'Ticket médio', valor: brl.format(n(r.ticket_medio)) },
   ]
 
   return (
-    <main className={styles.page}>
-      <div className={styles.shell}>
-        <header className={styles.top}>
+    <main style={s.wrap}>
+      <div style={s.shell}>
+        <header style={s.header}>
           <div>
-            <p className={styles.brand}>{nomeEstetica}</p>
-            <h1 className={styles.h1}>Visão geral</h1>
+            <p style={s.eyebrow}>{nomeEstetica}</p>
+            <h1 style={s.title}>Faturamento</h1>
           </div>
           <form action={sair}>
-            <button type="submit" className={styles.logout}>Sair</button>
+            <button type="submit" style={s.sair}>Sair</button>
           </form>
         </header>
 
-        <nav className={styles.nav}>
-          <Link href="/dashboard" className={`${styles.navlink} ${styles.navactive}`}>Visão geral</Link>
-          <Link href="/ordens" className={styles.navlink}>Ordens</Link>
-          <Link href="/clientes" className={styles.navlink}>Clientes</Link>
-          <Link href="/agenda" className={styles.navlink}>Agenda</Link>
-          {ehAdmin && <span className={styles.navdiv} />}
-          {ehAdmin && <Link href="/servicos" className={styles.navlink}>Serviços</Link>}
-          {ehAdmin && <Link href="/insumos" className={styles.navlink}>Estoque</Link>}
-          {ehAdmin && <Link href="/equipe" className={styles.navlink}>Equipe</Link>}
-          {ehAdmin && <Link href="/config/whatsapp" className={styles.navlink}>WhatsApp</Link>}
-          {ehAdmin && <Link href="/config/agendamento" className={styles.navlink}>Agendar online</Link>}
-          {ehPlataforma && <Link href="/admin" className={`${styles.navlink} ${styles.navplat}`}>Plataforma</Link>}
+        <nav style={s.nav}>
+          {[
+            { k: 'mes', t: 'Este mês' },
+            { k: 'mes-passado', t: 'Mês passado' },
+            { k: '7dias', t: '7 dias' },
+          ].map((o) => (
+            <Link
+              key={o.k}
+              href={`/dashboard?range=${o.k}`}
+              style={{ ...s.chip, ...(range === o.k ? s.chipAtivo : {}) }}
+            >
+              {o.t}
+            </Link>
+          ))}
+          <Link href="/ordens" style={{ ...s.chip, marginLeft: 'auto' }}>
+            Ordens
+          </Link>
+          <Link href="/clientes" style={s.chip}>
+            Clientes
+          </Link>
+          <Link href="/agenda" style={s.chip}>
+            Agenda
+          </Link>
+          {ehAdmin && (
+            <Link href="/servicos" style={s.chip}>
+              Serviços
+            </Link>
+          )}
+          {ehAdmin && (
+            <Link href="/insumos" style={s.chip}>
+              Estoque
+            </Link>
+          )}
+          {ehAdmin && (
+            <Link href="/config/whatsapp" style={s.chip}>
+              WhatsApp
+            </Link>
+          )}
+          {ehAdmin && (
+            <Link href="/equipe" style={s.chip}>
+              Equipe
+            </Link>
+          )}
         </nav>
 
-        <section className={styles.hero}>
-          <div className={styles.heroHead}>
-            <p className={styles.heroLabel}>Faturamento · {label}</p>
-            <div className={styles.seg}>
-              {periodos.map((o) => (
-                <Link
-                  key={o.k}
-                  href={`/dashboard?range=${o.k}`}
-                  className={`${styles.segbtn} ${range === o.k ? styles.segon : ''}`}
-                >
-                  {o.t}
-                </Link>
-              ))}
-            </div>
-          </div>
-          <p className={styles.heroValue}>{brl.format(n(r.faturamento))}</p>
-          <p className={styles.heroSub}>
-            <strong>{numOrdens}</strong> {numOrdens === 1 ? 'ordem concluída' : 'ordens concluídas'}
-            <span className={styles.dot}>·</span>
-            ticket médio <strong>{brl.format(n(r.ticket_medio))}</strong>
-          </p>
-        </section>
-
-        <section className={styles.kpis}>
-          {secundarios.map((c) => (
-            <div key={c.rotulo} className={styles.kpi}>
-              <p className={styles.kpiLabel}>{c.rotulo}</p>
-              <p className={styles.kpiValue}>{c.valor}</p>
+        <section style={s.grid}>
+          {cards.map((c) => (
+            <div key={c.rotulo} style={{ ...s.card, ...(c.destaque ? s.cardDestaque : {}) }}>
+              <p style={s.cardRotulo}>{c.rotulo}</p>
+              <p style={s.cardValor}>{c.valor}</p>
             </div>
           ))}
         </section>
 
-        <section className={styles.card}>
-          <p className={styles.cardTitle}>Faturamento por dia</p>
+        <section style={s.bloco}>
+          <p style={s.blocoTitulo}>Faturamento por dia · {label}</p>
           {dias.length === 0 ? (
-            <div className={styles.empty}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M3 3v18h18" /><path d="M7 14l3-3 3 3 4-5" />
-              </svg>
-              <span>Nenhuma ordem concluída neste período. Conclua uma ordem para ver o faturamento aqui.</span>
-            </div>
+            <p style={s.vazio}>Nenhuma ordem concluída neste período ainda.</p>
           ) : (
-            <div className={styles.chart}>
-              <div className={styles.bars}>
-                {dias.map((d) => (
-                  <div
-                    key={d.dia}
-                    className={styles.barWrap}
-                    title={`Dia ${d.dia.slice(8, 10)} · ${brl.format(n(d.faturamento))}`}
-                  >
-                    <div className={styles.bar} style={{ height: `${Math.max(3, (n(d.faturamento) / maxDia) * 100)}%` }} />
-                    <span className={styles.barDay}>{d.dia.slice(8, 10)}</span>
-                  </div>
-                ))}
-              </div>
+            <div style={s.chart}>
+              {dias.map((d) => (
+                <div key={d.dia} style={s.barWrap} title={`${d.dia}: ${brl.format(n(d.faturamento))}`}>
+                  <div style={{ ...s.bar, height: `${(n(d.faturamento) / maxDia) * 100}%` }} />
+                  <span style={s.barLabel}>{d.dia.slice(8, 10)}</span>
+                </div>
+              ))}
             </div>
           )}
         </section>
 
-        <section className={styles.card}>
-          <p className={styles.cardTitle}>Serviços mais vendidos</p>
-          {topServicos.length === 0 ? (
-            <div className={styles.empty}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" />
-              </svg>
-              <span>Nenhum serviço concluído neste período ainda.</span>
-            </div>
+        <section style={s.bloco}>
+          <p style={s.blocoTitulo}>Serviços mais vendidos</p>
+          {(top?.length ?? 0) === 0 ? (
+            <p style={s.vazio}>Sem dados no período.</p>
           ) : (
-            <ul className={styles.svcList}>
-              {topServicos.map((t, i) => (
-                <li key={t.servico} className={styles.svcRow}>
-                  <span className={styles.rank}>{String(i + 1).padStart(2, '0')}</span>
-                  <span className={styles.svcName}>{t.servico}</span>
-                  <span className={styles.svcBarTrack}>
-                    <span className={styles.svcBarFill} style={{ width: `${(n(t.faturamento) / maxServ) * 100}%` }} />
+            <ul style={s.lista}>
+              {(top as { servico: string; qtd: number; faturamento: number }[]).map((t) => (
+                <li key={t.servico} style={s.linha}>
+                  <span>{t.servico}</span>
+                  <span style={s.linhaDir}>
+                    <span style={s.qtd}>{n(t.qtd)}x</span>
+                    {brl.format(n(t.faturamento))}
                   </span>
-                  <span className={styles.svcQtd}>{n(t.qtd)}x</span>
-                  <span className={styles.svcVal}>{brl.format(n(t.faturamento))}</span>
                 </li>
               ))}
             </ul>
@@ -193,4 +173,32 @@ export default async function DashboardPage({
       </div>
     </main>
   )
+}
+
+const s: Record<string, React.CSSProperties> = {
+  wrap: { minHeight: '100dvh', background: '#0f1115', padding: 24, color: '#e6e8ec' },
+  shell: { maxWidth: 880, margin: '0 auto' },
+  header: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 },
+  eyebrow: { fontSize: 12, letterSpacing: 1, textTransform: 'uppercase', color: '#7aa7ff', margin: '0 0 2px' },
+  title: { fontSize: 26, fontWeight: 600, margin: 0 },
+  sair: { height: 36, borderRadius: 8, border: '1px solid #2d333f', background: 'transparent', color: '#e6e8ec', fontSize: 13, cursor: 'pointer', padding: '0 14px' },
+  nav: { display: 'flex', gap: 8, marginBottom: 20, alignItems: 'center' },
+  chip: { fontSize: 13, color: '#c2c7d0', textDecoration: 'none', padding: '6px 12px', borderRadius: 8, border: '1px solid #262b36' },
+  chipAtivo: { background: '#16233d', borderColor: '#2c4a7a', color: '#cfe0ff' },
+  grid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 12, marginBottom: 22 },
+  card: { background: '#171a21', border: '1px solid #262b36', borderRadius: 12, padding: '14px 16px' },
+  cardDestaque: { borderColor: '#2c4a7a', background: '#141b29' },
+  cardRotulo: { fontSize: 12, color: '#9aa1ad', margin: '0 0 6px' },
+  cardValor: { fontSize: 22, fontWeight: 600, margin: 0 },
+  bloco: { background: '#171a21', border: '1px solid #262b36', borderRadius: 12, padding: '18px 20px', marginBottom: 16 },
+  blocoTitulo: { fontSize: 13, fontWeight: 600, color: '#c2c7d0', margin: '0 0 16px' },
+  chart: { display: 'flex', alignItems: 'flex-end', gap: 6, height: 160 },
+  barWrap: { flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', height: '100%' },
+  bar: { width: '100%', maxWidth: 28, background: '#3b82f6', borderRadius: '4px 4px 0 0', minHeight: 2 },
+  barLabel: { fontSize: 11, color: '#6b7280', marginTop: 6 },
+  vazio: { fontSize: 14, color: '#6b7280', margin: 0 },
+  lista: { listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 },
+  linha: { display: 'flex', justifyContent: 'space-between', fontSize: 14, padding: '8px 0', borderBottom: '1px solid #1e232c' },
+  linhaDir: { display: 'flex', gap: 12, alignItems: 'center' },
+  qtd: { fontSize: 12, color: '#7aa7ff' },
 }

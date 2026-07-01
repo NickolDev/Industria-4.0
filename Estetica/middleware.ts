@@ -38,33 +38,12 @@ export async function middleware(request: NextRequest) {
   const rotaPublica =
     path === '/login' ||
     path === '/cadastro' ||
-    path === '/recuperar' ||
-    path === '/aceitar-convite' ||  // convite de funcionário: a pessoa ainda não tem conta
-    path.startsWith('/auth') ||
-    path.startsWith('/agendar') ||  // página pública de agendamento
-    path.startsWith('/api/cron')    // chamada da Vercel, autenticada por CRON_SECRET própria
+    path.startsWith('/auth')
 
   if (!user && !rotaPublica) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     return NextResponse.redirect(url)
-  }
-
-  // Bloqueio por pagamento: se o usuário está logado mas a estética dele não
-  // está ativa, manda para /bloqueado. /admin e /bloqueado ficam de fora
-  // (super-admin não tem estética; o bloqueado precisa ver a própria tela).
-  if (
-    user &&
-    !rotaPublica &&
-    !path.startsWith('/bloqueado') &&
-    !path.startsWith('/admin')
-  ) {
-    const { data: mt } = await supabase.rpc('meu_tenant')
-    if (mt && mt.status !== 'ativo') {
-      const url = request.nextUrl.clone()
-      url.pathname = '/bloqueado'
-      return NextResponse.redirect(url)
-    }
   }
 
   return response

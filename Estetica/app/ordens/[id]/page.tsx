@@ -1,6 +1,5 @@
 import { createClient } from '@/utils/supabase/server'
-import { adicionarItem, removerItem, fecharOrdem, entregarOrdem, cancelarOrdem } from '@/app/ordens/actions'
-import ConfirmSubmit from '@/components/ConfirmSubmit'
+import { adicionarItem, removerItem, fecharOrdem } from '@/app/ordens/actions'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 
@@ -90,13 +89,7 @@ export default async function OrdemPage({
                       <form action={removerItem}>
                         <input type="hidden" name="os_id" value={id} />
                         <input type="hidden" name="item_id" value={it.id} />
-                        <ConfirmSubmit
-                          label="×"
-                          confirmLabel="Remover"
-                          pergunta="Remover?"
-                          style={s.remover}
-                          confirmStyle={s.removerConfirma}
-                        />
+                        <button type="submit" style={s.remover} aria-label="Remover">×</button>
                       </form>
                     )}
                   </div>
@@ -155,34 +148,10 @@ export default async function OrdemPage({
             </button>
           </form>
         )}
-
-        {/* Pronto: pode marcar como entregue */}
-        {ordem.status === 'pronto' && (
-          <form action={entregarOrdem} style={{ marginBottom: 10 }}>
-            <input type="hidden" name="os_id" value={id} />
-            <button type="submit" style={s.entregar}>Marcar como entregue</button>
-          </form>
-        )}
-
-        {ordem.status === 'entregue' && (
-          <p style={s.concluida}>Carro entregue. Serviço concluído. ✓</p>
-        )}
-        {ordem.status === 'cancelada' && (
-          <p style={s.cancelada}>Ordem cancelada.</p>
-        )}
-
-        {/* Cancelar: enquanto não estiver entregue/cancelada */}
-        {ordem.status !== 'entregue' && ordem.status !== 'cancelada' && (
-          <form action={cancelarOrdem} style={s.cancelarLinha}>
-            <input type="hidden" name="os_id" value={id} />
-            <ConfirmSubmit
-              label="Cancelar ordem"
-              confirmLabel="Sim, cancelar"
-              pergunta="Cancelar esta ordem?"
-              style={s.cancelarBtn}
-              confirmStyle={s.cancelarConfirma}
-            />
-          </form>
+        {!aberta && (
+          <p style={s.concluida}>
+            Ordem {labelStatus(ordem.status).toLowerCase()}. O faturamento já entrou no painel.
+          </p>
         )}
       </div>
     </main>
@@ -213,7 +182,6 @@ const s: Record<string, React.CSSProperties> = {
   itemDir: { display: 'flex', alignItems: 'center', gap: 10 },
   itemPreco: { fontSize: 15, fontWeight: 600 },
   remover: { width: 26, height: 26, borderRadius: 6, border: '1px solid #2d333f', background: 'transparent', color: '#9aa1ad', fontSize: 16, lineHeight: 1, cursor: 'pointer' },
-  removerConfirma: { height: 30, padding: '0 12px', borderRadius: 6, border: '1px solid #5c2326', background: '#2a1416', color: '#f4a7ab', fontSize: 12, fontWeight: 600, cursor: 'pointer' },
   totalLinha: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 14, paddingTop: 14, borderTop: '1px solid #2d333f' },
   totalRotulo: { fontSize: 14, color: '#c2c7d0' },
   totalValor: { fontSize: 24, fontWeight: 700 },
@@ -221,11 +189,6 @@ const s: Record<string, React.CSSProperties> = {
   input: { height: 42, borderRadius: 8, border: '1px solid #2d333f', background: '#0f1115', color: '#e6e8ec', padding: '0 12px', fontSize: 14 },
   button: { height: 42, borderRadius: 8, border: 'none', background: '#3b82f6', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' },
   fechar: { width: '100%', height: 46, borderRadius: 10, border: '1px solid #245c3e', background: '#13211a', color: '#86e0ab', fontSize: 15, fontWeight: 600, cursor: 'pointer' },
-  entregar: { width: '100%', height: 46, borderRadius: 10, border: 'none', background: '#3b82f6', color: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer' },
-  cancelarLinha: { display: 'flex', justifyContent: 'center', marginTop: 14 },
-  cancelarBtn: { height: 38, padding: '0 16px', borderRadius: 9, border: '1px solid #2d333f', background: 'transparent', color: '#9aa1ad', fontSize: 13, cursor: 'pointer' },
-  cancelarConfirma: { height: 38, padding: '0 16px', borderRadius: 9, border: '1px solid #5c2326', background: '#2a1416', color: '#f4a7ab', fontSize: 13, fontWeight: 600, cursor: 'pointer' },
   concluida: { fontSize: 14, color: '#86e0ab', textAlign: 'center', padding: '12px 0' },
-  cancelada: { fontSize: 14, color: '#f4a7ab', textAlign: 'center', padding: '12px 0' },
   vazio: { fontSize: 14, color: '#6b7280', margin: 0 },
 }

@@ -3,22 +3,14 @@
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 import { createClient } from '@/utils/supabase/server'
-import { exigirAdmin } from '@/lib/auth'
 
 // Admin cria um convite. tenant_id é preenchido pelo DEFAULT da tabela
 // (current_tenant_id) e validado pelo RLS — o cliente nunca o informa.
-// Dupla verificação: exigirAdmin confirma sessão + tenant ativo + cargo.
 export async function criarConvite(formData: FormData) {
-  const { supabase } = await exigirAdmin()
+  const supabase = await createClient()
 
-  const email = String(formData.get('email') ?? '').trim().toLowerCase()
+  const email = String(formData.get('email') ?? '').trim()
   const cargo = String(formData.get('cargo') ?? 'operador')
-
-  // Validação de entrada extra (o banco também valida o cargo).
-  const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-  if (!emailValido) redirect(`/equipe?erro=${encodeURIComponent('E-mail inválido.')}`)
-  if (!['gerente', 'operador'].includes(cargo))
-    redirect(`/equipe?erro=${encodeURIComponent('Cargo inválido.')}`)
 
   const { error } = await supabase.from('convites').insert({ email, cargo })
 

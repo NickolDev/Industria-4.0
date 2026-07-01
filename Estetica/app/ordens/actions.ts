@@ -2,14 +2,14 @@
 
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
-import { exigirSessaoAtiva } from '@/lib/auth'
+import { createClient } from '@/utils/supabase/server'
 import { notificarOrdemPronta } from '@/lib/whatsapp'
 
 // Cria cliente + veículo + ordem em sequência e abre a ordem nova.
 // (Escolher um cliente já existente entra quando montarmos a tela de
 //  clientes; por ora, cadastro rápido.)
 export async function criarOrdem(formData: FormData) {
-  const { supabase } = await exigirSessaoAtiva()
+  const supabase = await createClient()
 
   const clienteNome = String(formData.get('cliente_nome') ?? '').trim()
   const clienteTel = String(formData.get('cliente_telefone') ?? '').trim()
@@ -53,7 +53,7 @@ export async function criarOrdem(formData: FormData) {
 // branco, usa o preço-base do serviço. O total da ordem e a comissão
 // do item são recalculados pelos gatilhos do banco.
 export async function adicionarItem(formData: FormData) {
-  const { supabase } = await exigirSessaoAtiva()
+  const supabase = await createClient()
 
   const osId = String(formData.get('os_id') ?? '')
   const servicoId = String(formData.get('servico_id') ?? '')
@@ -83,7 +83,7 @@ export async function adicionarItem(formData: FormData) {
 }
 
 export async function removerItem(formData: FormData) {
-  const { supabase } = await exigirSessaoAtiva()
+  const supabase = await createClient()
   const osId = String(formData.get('os_id') ?? '')
   const itemId = String(formData.get('item_id') ?? '')
 
@@ -94,67 +94,29 @@ export async function removerItem(formData: FormData) {
 // Fecha a ordem: marca como 'pronto'. Dispara, no banco, o carimbo de
 // conclusão e a baixa de estoque. A partir daqui ela conta no dashboard.
 export async function fecharOrdem(formData: FormData) {
-  const { supabase } = await exigirSessaoAtiva()
+  const supabase = await createClient()
   const osId = String(formData.get('os_id') ?? '')
 
-  // .select().single() aqui não é só para ler de volta: é a prova de que
-  // o RLS aceitou o update (ou seja, a ordem é mesmo do meu tenant). Sem
-  // isso, um os_id de outra estética falharia silenciosamente e o código
-  // seguiria para notificar mesmo assim — a notificação roda com a
-  // service role (ignora RLS), então precisa dessa confirmação antes.
-  const { data: atualizada, error } = await supabase
+  await supabase
     .from('ordens_servico')
     .update({ status: 'pronto' })
     .eq('id', osId)
-    .select('id')
-    .single()
 
-  if (!error && atualizada) {
-    // "Carro pronto" no WhatsApp — best-effort: se falhar, não trava nada.
-    try {
-      await notificarOrdemPronta(osId)
-    } catch {
-      // falha de notificação não deve impedir o fechamento da ordem
-    }
+  // "Carro pronto" no WhatsApp — best-effort: se falhar, não trava nada.
+  try {
+    await notificarOrdemPronta(osId)
+  } catch {
+    // falha de notificação não deve impedir o fechamento da ordem
   }
 
   revalidatePath(`/ordens/${osId}`)
   revalidatePath('/dashboard')
 }
 
-// Marca a ordem como ENTREGUE (carro saiu). Passo final do fluxo:
-// aberta → pronto → entregue.
-export async function entregarOrdem(formData: FormData) {
-  const { supabase } = await exigirSessaoAtiva()
-  const osId = String(formData.get('os_id') ?? '')
-
-  await supabase
-    .from('ordens_servico')
-    .update({ status: 'entregue' })
-    .eq('id', osId)
-
-  revalidatePath(`/ordens/${osId}`)
-  revalidatePath('/ordens')
-}
-
-// Cancela a ordem. Não conta no faturamento. Ação destrutiva — a tela
-// pede confirmação antes de chamar isto.
-export async function cancelarOrdem(formData: FormData) {
-  const { supabase } = await exigirSessaoAtiva()
-  const osId = String(formData.get('os_id') ?? '')
-
-  await supabase
-    .from('ordens_servico')
-    .update({ status: 'cancelada' })
-    .eq('id', osId)
-
-  revalidatePath(`/ordens/${osId}`)
-  revalidatePath('/ordens')
-  revalidatePath('/dashboard')
-}
+// Abre uma ordem para um cliente/veículo JÁ existentes (a partir da
 // ficha do cliente). Evita recadastrar quem é cliente recorrente.
 export async function abrirOrdemVeiculo(formData: FormData) {
-  const { supabase } = await exigirSessaoAtiva()
+  const supabase = await createClient()
   const clienteId = String(formData.get('cliente_id') ?? '')
   const veiculoId = String(formData.get('veiculo_id') ?? '')
 

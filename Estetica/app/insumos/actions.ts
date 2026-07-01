@@ -2,13 +2,13 @@
 
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
-import { exigirAdmin } from '@/lib/auth'
+import { createClient } from '@/utils/supabase/server'
 
 const num = (v: FormDataEntryValue | null) =>
   Number(String(v ?? '').replace(',', '.')) || 0
 
 export async function criarInsumo(formData: FormData) {
-  const { supabase } = await exigirAdmin()
+  const supabase = await createClient()
 
   const { error } = await supabase.from('insumos').insert({
     nome: String(formData.get('nome') ?? '').trim(),
@@ -23,7 +23,7 @@ export async function criarInsumo(formData: FormData) {
 }
 
 export async function ajustarMinimo(formData: FormData) {
-  const { supabase } = await exigirAdmin()
+  const supabase = await createClient()
   const id = String(formData.get('id') ?? '')
 
   const { error } = await supabase
@@ -38,7 +38,7 @@ export async function ajustarMinimo(formData: FormData) {
 // Compra de insumo: chama a função do banco, que registra a entrada no
 // histórico e recalcula o custo médio ponderado automaticamente.
 export async function registrarEntrada(formData: FormData) {
-  const { supabase } = await exigirAdmin()
+  const supabase = await createClient()
 
   const { error } = await supabase.rpc('registrar_entrada', {
     p_insumo_id: String(formData.get('id') ?? ''),
@@ -52,7 +52,7 @@ export async function registrarEntrada(formData: FormData) {
 }
 
 export async function removerInsumo(formData: FormData) {
-  const { supabase } = await exigirAdmin()
+  const supabase = await createClient()
   const id = String(formData.get('id') ?? '')
 
   const { error } = await supabase.from('insumos').delete().eq('id', id)

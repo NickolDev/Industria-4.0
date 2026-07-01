@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
-import { exigirAdmin } from '@/lib/auth'
+import { createClient } from '@/utils/supabase/server'
 
 const num = (v: FormDataEntryValue | null) =>
   Number(String(v ?? '').replace(',', '.')) || 0
@@ -10,7 +10,7 @@ const num = (v: FormDataEntryValue | null) =>
 // Adiciona um insumo à ficha. Como (servico_id, insumo_id) é único,
 // usamos upsert: se o insumo já estiver na ficha, atualiza a quantidade.
 export async function adicionarFicha(formData: FormData) {
-  const { supabase } = await exigirAdmin()
+  const supabase = await createClient()
   const servicoId = String(formData.get('servico_id') ?? '')
   const insumoId = String(formData.get('insumo_id') ?? '')
 
@@ -26,7 +26,7 @@ export async function adicionarFicha(formData: FormData) {
 }
 
 export async function atualizarFicha(formData: FormData) {
-  const { supabase } = await exigirAdmin()
+  const supabase = await createClient()
   const servicoId = String(formData.get('servico_id') ?? '')
   const id = String(formData.get('id') ?? '')
 
@@ -40,7 +40,7 @@ export async function atualizarFicha(formData: FormData) {
 }
 
 export async function removerFicha(formData: FormData) {
-  const { supabase } = await exigirAdmin()
+  const supabase = await createClient()
   const servicoId = String(formData.get('servico_id') ?? '')
   const id = String(formData.get('id') ?? '')
 

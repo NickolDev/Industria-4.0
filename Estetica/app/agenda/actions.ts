@@ -2,14 +2,14 @@
 
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
-import { exigirSessaoAtiva } from '@/lib/auth'
+import { createClient } from '@/utils/supabase/server'
 
 // App fixado em horário de Brasília (sem horário de verão no Brasil hoje).
 // Suporte a múltiplos fusos é evolução futura.
 const OFFSET = '-03:00'
 
 export async function criarAgendamento(formData: FormData) {
-  const { supabase } = await exigirSessaoAtiva()
+  const supabase = await createClient()
 
   const dia = String(formData.get('data') ?? '')
   const hora = String(formData.get('hora') ?? '')
@@ -55,7 +55,7 @@ export async function criarAgendamento(formData: FormData) {
 }
 
 export async function setStatusAgendamento(formData: FormData) {
-  const { supabase } = await exigirSessaoAtiva()
+  const supabase = await createClient()
   const id = String(formData.get('id') ?? '')
   const dia = String(formData.get('dia') ?? '')
   const status = String(formData.get('status') ?? '')
@@ -65,7 +65,7 @@ export async function setStatusAgendamento(formData: FormData) {
 }
 
 export async function criarBox(formData: FormData) {
-  const { supabase } = await exigirSessaoAtiva()
+  const supabase = await createClient()
   const dia = String(formData.get('dia') ?? '')
   const nome = String(formData.get('nome') ?? '').trim()
 
@@ -76,7 +76,7 @@ export async function criarBox(formData: FormData) {
 // Transforma o agendamento numa ordem de serviço de verdade, já ligada
 // (ordens_servico.agendamento_id) e com cliente/veículo preenchidos.
 export async function abrirOrdemDoAgendamento(formData: FormData) {
-  const { supabase } = await exigirSessaoAtiva()
+  const supabase = await createClient()
   const agId = String(formData.get('id') ?? '')
   const clienteId = String(formData.get('cliente_id') ?? '')
   const veiculoId = String(formData.get('veiculo_id') ?? '')
